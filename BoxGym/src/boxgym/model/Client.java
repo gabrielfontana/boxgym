@@ -1,12 +1,22 @@
 package boxgym.model;
 
 public class Client {
+
     private int id;
     private String cpf;
     private String name;
 
+    public Client() {
+
+    }
+
     public Client(int id, String cpf, String name) {
         this.id = id;
+        this.cpf = cpf;
+        this.name = name;
+    }
+
+    public Client(String cpf, String name) {
         this.cpf = cpf;
         this.name = name;
     }
@@ -33,5 +43,5 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
-    }        
+    }
 }
