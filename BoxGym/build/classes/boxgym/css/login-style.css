@@ -1,0 +1,38 @@
+.border-pane {
+    -fx-background-color: #303138;
+}
+
+.left-pane {
+    -fx-background-color: #ffffff;
+}
+
+.right-pane {
+    -fx-background-color: #303138;
+}
+
+.icon-label {
+    -fx-background-color:  #363b41;
+}
+
+.icon {
+    -fx-fill: #ffffff;
+}
+
+.txt-field {
+    -fx-background-color: #3b4148;
+    -fx-background-radius: 0px;
+    -fx-prompt-text-fill: #adadad;
+    -fx-text-fill: #ffffff;
+}
+
+.txt-field:focused {
+    -fx-background-color: #363b41;
+    -fx-background-radius: 0px;
+    -fx-prompt-text-fill: #ffffff;
+    -fx-text-fill: #ffffff;
+}
+
+.login-btn {
+    -fx-background-color: #8a2f5b;
+    -fx-text-fill: #ffffff;
+}

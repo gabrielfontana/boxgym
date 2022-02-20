@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="BoxGym.jnlp">
+  <information>
+    <title>BoxGym</title>
+    <vendor>gabri</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="BoxGym.jar" size="18831" download="eager" />
+    <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\fontawesomefx-commons-8.15.jar" size="20957" download="eager" />
+    <jar href="lib\fontawesomefx-controls-8.15.jar" size="3369" download="eager" />
+    <jar href="lib\fontawesomefx-emojione-2.2.7-2.jar" size="3642164" download="eager" />
+    <jar href="lib\fontawesomefx-fontawesome-4.7.0-5.jar" size="136891" download="eager" />
+    <jar href="lib\fontawesomefx-glyphsbrowser-1.3.0.jar" size="68461" download="eager" />
+    <jar href="lib\fontawesomefx-icons525-3.0.0-4.jar" size="110545" download="eager" />
+    <jar href="lib\fontawesomefx-materialdesignfont-1.7.22-4.jar" size="197373" download="eager" />
+    <jar href="lib\fontawesomefx-materialicons-2.2.0-5.jar" size="103686" download="eager" />
+    <jar href="lib\fontawesomefx-octicons-4.3.0-5.jar" size="37157" download="eager" />
+    <jar href="lib\fontawesomefx-weathericons-2.0.10-5.jar" size="83098" download="eager" />
+    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.21.jar" size="827942" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="boxgym.Main"  name="BoxGym" />
+  <update check="always"/>
+</jnlp>

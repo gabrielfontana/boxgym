@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="loginBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="border-pane" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.LoginController">
+   <left>
+      <Pane prefHeight="375.0" prefWidth="350.0" styleClass="left-pane" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane fx:id="content" prefHeight="375.0" prefWidth="350.0" styleClass="right-pane" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
+                     <graphic>
+                        <MaterialDesignIconView fill="#ee3333" glyphName="ACCOUNT" size="21.0" styleClass="icon" />
+                     </graphic>
+                  </Label>
+                  <TextField fx:id="userTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
+                     <graphic>
+                        <MaterialDesignIconView fill="#903131" glyphName="LOCK" size="21.0" styleClass="icon" />
+                     </graphic>
+                  </Label>
+                  <PasswordField fx:id="passwordTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Senha" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="45.0" prefWidth="250.0" ripplerFill="WHITE" styleClass="login-btn" text="Entrar">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </right>
+</BorderPane>
