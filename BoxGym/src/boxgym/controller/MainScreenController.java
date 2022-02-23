@@ -1,6 +1,6 @@
 package boxgym.controller;
 
-import static boxgym.Constants.*;
+import static boxgym.Constant.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

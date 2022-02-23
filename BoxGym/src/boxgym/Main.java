@@ -1,6 +1,6 @@
 package boxgym;
 
-import static boxgym.Constants.*;
+import static boxgym.Constant.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

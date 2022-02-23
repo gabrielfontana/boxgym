@@ -1,6 +1,6 @@
 package boxgym.jdbc;
 
-import static boxgym.Constants.*;
+import static boxgym.Constant.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

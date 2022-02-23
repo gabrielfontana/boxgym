@@ -1,6 +1,7 @@
 package boxgym.controller;
 
-import static boxgym.Constants.*;
+import boxgym.AlertUtil;
+import static boxgym.Constant.*;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -10,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,21 +30,13 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loginButton.setDefaultButton(true);
     }
-
-    private void warningAlert(String title, String headerText, String contentText) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setAlertType(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-        alert.showAndWait();
-    }
-
+           
     private void checkLogin() throws IOException {
+        AlertUtil alert = new AlertUtil();
         String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
 
-        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
-            warningAlert(WARNING_ALERT_TITLE, WARNING_ALERT_HEADER, WARNING_ALERT_CONTENT_EMPTY);
+        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {            
+            alert.warningAlert(WARNING_ALERT_TITLE, WARNING_ALERT_HEADER, WARNING_ALERT_CONTENT_EMPTY);            
         } else if (userTextField.getText().equals(DEFAULT_LOGIN_USERNAME) && sha256hex.equals(DEFAULT_LOGIN_PASSWORD)) {
             loginButton.getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource(PATH_MAINSCREEN_VIEW));
@@ -55,7 +47,7 @@ public class LoginController implements Initializable {
             s1.setScene(scene);
             s1.show();
         } else {
-            warningAlert(WARNING_ALERT_TITLE, WARNING_ALERT_HEADER, WARNING_ALERT_CONTENT_WRONG);
+            alert.warningAlert(WARNING_ALERT_TITLE, WARNING_ALERT_HEADER, WARNING_ALERT_CONTENT_WRONG);
             userTextField.setText("");
             passwordTextField.setText("");
         }
