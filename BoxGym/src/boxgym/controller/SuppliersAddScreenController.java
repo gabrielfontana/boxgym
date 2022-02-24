@@ -60,8 +60,8 @@ public class SuppliersAddScreenController implements Initializable {
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
         loadComboBox();
-        TextValidationHelper.onlyNumbers(companyRegistryTextField);
-        TextValidationHelper.onlyLetters(corporateNameTextField);
+//        TextValidationHelper.onlyNumbers(companyRegistryTextField);
+//        TextValidationHelper.onlyLetters(corporateNameTextField);
     }
     
     private void loadComboBox() {
