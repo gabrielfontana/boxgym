@@ -28,10 +28,10 @@ public class SuppliersController implements Initializable {
     @FXML
     void addSupplier(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(PATH_SUPPLIERS_ADD_VIEW));            
+            Parent root = FXMLLoader.load(getClass().getResource(SUPPLIERS_ADD_VIEW));            
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle(TITLE_SUPPLIERS_ADD);
+            stage.setTitle(SUPPLIERS_ADD_TITLE);
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {

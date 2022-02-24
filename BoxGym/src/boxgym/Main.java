@@ -11,10 +11,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(PATH_LOGIN_VIEW)); //Carrega FXML          
+        Parent root = FXMLLoader.load(getClass().getResource(LOGIN_VIEW)); //Carrega FXML          
         Scene scene = new Scene(root); //Coloca o FXML em uma cena
         primaryStage.setResizable(false); //Não permitir a maximização da janela
-        primaryStage.setTitle(TITLE_LOGIN); //Título da janela
+        primaryStage.setTitle(LOGIN_TITLE); //Título da janela
         primaryStage.setScene(scene); //Coloca a cena em uma janela
         primaryStage.show(); //Abre a janela
     }

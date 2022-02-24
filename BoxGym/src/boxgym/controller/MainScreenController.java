@@ -27,7 +27,7 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            changeContentArea(PATH_HOME_VIEW);
+            changeContentArea(HOME_VIEW);
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,89 +41,89 @@ public class MainScreenController implements Initializable {
     
     @FXML
     void handleHome(ActionEvent event) throws IOException {
-        changeContentArea(PATH_HOME_VIEW);
+        changeContentArea(HOME_VIEW);
     }
 
     @FXML
     void handleLogout(ActionEvent event) throws IOException {
         borderPane.getScene().getWindow().hide();        
-        Parent root = FXMLLoader.load(getClass().getResource(PATH_LOGIN_VIEW));
+        Parent root = FXMLLoader.load(getClass().getResource(LOGIN_VIEW));
         Scene scene = new Scene(root);
         Stage s1 = new Stage();
         s1.setResizable(false);
-        s1.setTitle(TITLE_LOGIN);
+        s1.setTitle(LOGIN_TITLE);
         s1.setScene(scene);
         s1.show();
     }
     
     @FXML
     void handlePlans(ActionEvent event) throws IOException {
-        changeContentArea(PATH_PLANS_VIEW);
+        changeContentArea(PLANS_VIEW);
     }
     
     @FXML
     void handleClients(ActionEvent event) throws IOException {
-        changeContentArea(PATH_CLIENTS_VIEW);
+        changeContentArea(CLIENTS_VIEW);
     }
     
     @FXML
     void handleSuppliers(ActionEvent event) throws IOException {
-        changeContentArea(PATH_SUPPLIERS_VIEW);
+        changeContentArea(SUPPLIERS_VIEW);
     }
     
     @FXML
     void handleEmployees(ActionEvent event) throws IOException {
-        changeContentArea(PATH_EMPLOYEES_VIEW);
+        changeContentArea(EMPLOYEES_VIEW);
     }
     
     @FXML
     void handleBillsToPay(ActionEvent event) throws IOException {
-        changeContentArea(PATH_BILLSTOPAY_VIEW);
+        changeContentArea(BILLSTOPAY_VIEW);
     }
     
     @FXML
     void handleBillsToReceive(ActionEvent event) throws IOException {
-        changeContentArea(PATH_BILLSTORECEIVE_VIEW);
+        changeContentArea(BILLSTORECEIVE_VIEW);
     }
     
     @FXML
     void handleBanks(ActionEvent event) throws IOException {
-        changeContentArea(PATH_BANKS_VIEW);
+        changeContentArea(BANKS_VIEW);
     }
     
     @FXML
     void handleSales(ActionEvent event) throws IOException {
-        changeContentArea(PATH_SALES_VIEW);
+        changeContentArea(SALES_VIEW);
     }
     
     @FXML
     void handleProducts(ActionEvent event) throws IOException {
-        changeContentArea(PATH_PRODUCTS_VIEW);
+        changeContentArea(PRODUCTS_VIEW);
     }
     
     @FXML
     void handleStock(ActionEvent event) throws IOException {
-        changeContentArea(PATH_STOCK_VIEW);
+        changeContentArea(STOCK_VIEW);
     }
     
     @FXML
     void handleFiles(ActionEvent event) throws IOException {
-        changeContentArea(PATH_FILES_VIEW);
+        changeContentArea(FILES_VIEW);
     }
     
     @FXML
     void handleExercises(ActionEvent event) throws IOException {
-        changeContentArea(PATH_EXERCISES_VIEW);
+        changeContentArea(EXERCISES_VIEW);
     }
     
     @FXML
     void handleMeasurements(ActionEvent event) throws IOException {
-        changeContentArea(PATH_MEASUREMENTS_VIEW);
+        changeContentArea(MEASUREMENTS_VIEW);
     }
     
     @FXML
     void handleAbout(ActionEvent event) throws IOException {
-        changeContentArea(PATH_ABOUT_VIEW);
+        changeContentArea(ABOUT_VIEW);
     }
     
 }

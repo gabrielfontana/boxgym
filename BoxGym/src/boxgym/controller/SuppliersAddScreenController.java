@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
+import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,16 +10,15 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
 public class SuppliersAddScreenController implements Initializable {
-  
+
     @FXML
     private TitledPane infoTitledPane;
-    
+
     @FXML
     private TitledPane addressTitledPane;
 
@@ -36,7 +36,7 @@ public class SuppliersAddScreenController implements Initializable {
 
     @FXML
     private TextField phoneTextField;
-    
+
     @FXML
     private TextField zipCodeTextField;
 
@@ -54,17 +54,19 @@ public class SuppliersAddScreenController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
-   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
-        loadFederativeUnits();
+        loadComboBox();
+        TextValidationHelper.onlyNumbers(companyRegistryTextField);
+        TextValidationHelper.onlyLetters(corporateNameTextField);
     }
-
-    private void loadFederativeUnits() {
-        federativeUnitComboBox.setPromptText("Selecione");
-        federativeUnitComboBox.setItems(FXCollections.observableArrayList(LIST_FEDERATIVE_UNITS));
+    
+    private void loadComboBox() {
+        federativeUnitComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
+        federativeUnitComboBox.setItems(FXCollections.observableArrayList(FEDERATIVE_UNITS_LIST));
     }
 
     @FXML
@@ -78,8 +80,7 @@ public class SuppliersAddScreenController implements Initializable {
 
         supplierDao.add(supplier);
     }
-    
-    
+
     @FXML
     void clear(ActionEvent event) {
         companyRegistryTextField.setText("");
@@ -94,5 +95,5 @@ public class SuppliersAddScreenController implements Initializable {
         cityTextField.setText("");
         federativeUnitComboBox.valueProperty().set(null);
     }
-        
+
 }
