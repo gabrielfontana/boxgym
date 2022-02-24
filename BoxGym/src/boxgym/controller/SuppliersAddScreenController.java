@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
+import boxgym.helper.LimitedTextField;
 import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
@@ -11,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
 public class SuppliersAddScreenController implements Initializable {
@@ -23,34 +23,34 @@ public class SuppliersAddScreenController implements Initializable {
     private TitledPane addressTitledPane;
 
     @FXML
-    private TextField companyRegistryTextField;
+    private LimitedTextField companyRegistryTextField;
 
     @FXML
-    private TextField corporateNameTextField;
+    private LimitedTextField corporateNameTextField;
 
     @FXML
-    private TextField tradeNameTextField;
+    private LimitedTextField tradeNameTextField;
 
     @FXML
-    private TextField emailTextField;
+    private LimitedTextField emailTextField;
 
     @FXML
-    private TextField phoneTextField;
+    private LimitedTextField phoneTextField;
 
     @FXML
-    private TextField zipCodeTextField;
+    private LimitedTextField zipCodeTextField;
 
     @FXML
-    private TextField addressTextField;
+    private LimitedTextField addressTextField;
 
     @FXML
-    private TextField addressComplementTextField;
+    private LimitedTextField addressComplementTextField;
 
     @FXML
-    private TextField districtTextField;
+    private LimitedTextField districtTextField;
 
     @FXML
-    private TextField cityTextField;
+    private LimitedTextField cityTextField;
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
@@ -60,8 +60,20 @@ public class SuppliersAddScreenController implements Initializable {
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
         loadComboBox();
-//        TextValidationHelper.onlyNumbers(companyRegistryTextField);
-//        TextValidationHelper.onlyLetters(corporateNameTextField);
+        regexInputRestrictions();
+    }
+    
+    private void regexInputRestrictions() {
+        companyRegistryTextField.setValidationPattern("[0-9]", 14, "Sem pontuação!");
+        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255, "");
+        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255, "");
+        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255, "");
+        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
+        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
+        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255, "");
+        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255, "");
+        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255, "");
+        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255, "");
     }
     
     private void loadComboBox() {

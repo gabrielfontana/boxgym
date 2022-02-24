@@ -27,7 +27,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="companyRegistryTextField" prefHeight="25.0" prefWidth="550.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="companyRegistryTextField" prefHeight="25.0" prefWidth="550.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -40,7 +40,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="corporateNameTextField" prefHeight="25.0" prefWidth="550.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="corporateNameTextField" prefHeight="25.0" prefWidth="550.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -55,7 +55,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="tradeNameTextField" prefHeight="25.0" prefWidth="222.0" />
+                              <boxgym.helper.LimitedTextField fx:id="tradeNameTextField" prefHeight="25.0" prefWidth="222.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="15.0" />
@@ -70,7 +70,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="550.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="emailTextField" prefHeight="25.0" prefWidth="550.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -83,7 +83,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="phoneTextField" prefHeight="25.0" prefWidth="550.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="phoneTextField" prefHeight="25.0" prefWidth="550.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -111,7 +111,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="zipCodeTextField" prefHeight="25.0" prefWidth="125.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="zipCodeTextField" prefHeight="25.0" prefWidth="125.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -124,7 +124,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="addressTextField" prefHeight="25.0" prefWidth="250.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="addressTextField" prefHeight="25.0" prefWidth="250.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -137,7 +137,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="addressComplementTextField" prefHeight="25.0" prefWidth="250.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="addressComplementTextField" prefHeight="25.0" prefWidth="250.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -154,7 +154,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="districtTextField" prefHeight="25.0" prefWidth="250.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="districtTextField" prefHeight="25.0" prefWidth="250.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
@@ -167,7 +167,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="cityTextField" prefHeight="25.0" prefWidth="250.0" />
+                                    <boxgym.helper.LimitedTextField fx:id="cityTextField" prefHeight="25.0" prefWidth="250.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="10.0" />
