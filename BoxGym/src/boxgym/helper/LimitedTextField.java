@@ -65,12 +65,15 @@ public class LimitedTextField extends TextField {
         this.restrict.set(restrict);
     }
 
+    public void setValidationPattern(String regex, int maxLength) {
+        this.setRestrict(regex);
+        this.setMaxLength(maxLength);
+    }
+
     public void setValidationPattern(String regex, int maxLength, String tooltip) {
         this.setRestrict(regex);
         this.setMaxLength(maxLength);
-        if(!(tooltip.isEmpty())){
-            this.setTooltip(new Tooltip(tooltip));
-        }
+        this.setTooltip(new Tooltip(tooltip));
     }
 
     public void setCNPJField() {
