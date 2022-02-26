@@ -8,38 +8,64 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.dbutils.DbUtils;
 
 public class SupplierDao {
 
-    private Connection connection;
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     public SupplierDao() {
-        this.connection = new ConnectionFactory().getConnection();
+        this.conn = new ConnectionFactory().getConnection();
     }
-    
-    public boolean add(Supplier supplier) {
+
+    public boolean checkDuplicate(Supplier supplier) {
+        try {
+            String cnpj = supplier.getCompanyRegistry();
+            String sql = "SELECT companyRegistry FROM supplier WHERE companyRegistry = '" + cnpj + "'";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery(sql);
+            if (rs.next()) {
+                return (cnpj.equals(rs.getString("companyRegistry")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return false;
+    }
+
+    public boolean insert(Supplier supplier) {
         String sql = "INSERT INTO supplier (companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, supplier.getCompanyRegistry());
-            stmt.setString(2, supplier.getCorporateName());
-            stmt.setString(3, supplier.getTradeName());
-            stmt.setString(4, supplier.getEmail());
-            stmt.setString(5, supplier.getPhone());
-            stmt.setString(6, supplier.getZipCode());
-            stmt.setString(7, supplier.getAddress());
-            stmt.setString(8, supplier.getAddressComplement());
-            stmt.setString(9, supplier.getDistrict());
-            stmt.setString(10, supplier.getCity());
-            stmt.setString(11, supplier.getFederativeUnit());
-            stmt.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, supplier.getCompanyRegistry());
+            ps.setString(2, supplier.getCorporateName());
+            ps.setString(3, supplier.getTradeName());
+            ps.setString(4, supplier.getEmail());
+            ps.setString(5, supplier.getPhone());
+            ps.setString(6, supplier.getZipCode());
+            ps.setString(7, supplier.getAddress());
+            ps.setString(8, supplier.getAddressComplement());
+            ps.setString(9, supplier.getDistrict());
+            ps.setString(10, supplier.getCity());
+            ps.setString(11, supplier.getFederativeUnit());
+            ps.execute();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);            
-            return false;
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
         }
+        return false;
     }
 
 }

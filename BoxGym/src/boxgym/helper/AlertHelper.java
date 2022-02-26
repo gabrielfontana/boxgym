@@ -20,4 +20,13 @@ public class AlertHelper {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
+    
+    public void errorAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
 }

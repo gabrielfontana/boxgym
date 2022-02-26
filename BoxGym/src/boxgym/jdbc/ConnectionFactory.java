@@ -1,6 +1,7 @@
 package boxgym.jdbc;
 
 import static boxgym.Constant.*;
+import boxgym.helper.AlertHelper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,7 +16,8 @@ public class ConnectionFactory {
             
             return DriverManager.getConnection(url, userName, userPassword);
         } catch (SQLException ex) {
-            System.out.println("Não foi possível abrir a conexão!");
+            AlertHelper alert = new AlertHelper();
+            alert.errorAlert("", "Ops, algo deu errado!", "Falha ao estabelecer conexão com o banco de dados.");
             throw new RuntimeException(ex);            
         }
     }

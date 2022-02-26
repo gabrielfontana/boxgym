@@ -101,30 +101,28 @@ public class SuppliersAddScreenController implements Initializable {
         AlertHelper alert = new AlertHelper();
 
         Supplier supplier = new Supplier(companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit);
-
+        SupplierDao supplierDaoCheck = new SupplierDao();
+        
         validation.handleEmptyField(companyRegistry, "'CNPJ'\n");
         validation.handleEmptyField(corporateName, "'Razão Social'\n");
         validation.handleEmptyField(tradeName, "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
-            alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, validation.getMessage());
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage());
+        } else if (!(CnpjValidator.isValid(companyRegistry))) {
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.");            
+        } else if (supplierDaoCheck.checkDuplicate(supplier)) {
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.");
+            companyRegistryTextField.setText("");
+        } else if (!(phone.length() == 0 || phone.length() == 10 || phone.length() == 11)) {
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
+        } else if (!(zipCode.length() == 0 || zipCode.length() == 8)) {
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
-            if (!(CnpjValidator.isValid(companyRegistry))) {
-                alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'CNPJ' inválido!");
-            } else {
-                if (!(phone.length() == 0 || phone.length() == 10 || phone.length() == 11)) {
-                    alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'Telefone' inválido!");
-                } else {
-                    if (!(zipCode.length() == 0 || zipCode.length() == 8)) {
-                        alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "O campo 'CEP' deve conter 8 dígitos!");
-                    } else {
-                        SupplierDao supplierDao = new SupplierDao();
-                        supplierDao.add(supplier);
-                        alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
-                        clear();
-                    }
-                }
-            }
+            SupplierDao supplierDaoInsert = new SupplierDao();
+            supplierDaoInsert.insert(supplier);
+            alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
+            clear();
         }
     }
 
