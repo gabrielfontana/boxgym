@@ -120,7 +120,7 @@ public class SuppliersAddScreenController implements Initializable {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
             SupplierDao supplierDaoInsert = new SupplierDao();
-            supplierDaoInsert.insert(supplier);
+            supplierDaoInsert.create(supplier);
             alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
             clear();
         }

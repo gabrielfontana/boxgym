@@ -13,16 +13,14 @@ public class Supplier {
     private String addressComplement; //Complemento
     private String district; //Bairro
     private String city; //Cidade
-    private String federativeUnit; //Unidade Federativa;
+    private String federativeUnit; //Unidade Federativa
+    private String createdAt; //Criado em
+    private String updatedAt; //Atualizado em
 
     public Supplier() {
 
     }
 
-    public Supplier(String federativeUnit) {
-        this.federativeUnit = federativeUnit;
-    }
-        
     public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone, String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
         this.companyRegistry = companyRegistry;
         this.corporateName = corporateName;
@@ -36,22 +34,7 @@ public class Supplier {
         this.city = city;
         this.federativeUnit = federativeUnit;
     }
-
-    public Supplier(int supplierId, String companyRegistry, String corporateName, String tradeName, String email, String phone, String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
-        this.supplierId = supplierId;
-        this.companyRegistry = companyRegistry;
-        this.corporateName = corporateName;
-        this.tradeName = tradeName;
-        this.email = email;
-        this.phone = phone;
-        this.zipCode = zipCode;
-        this.address = address;
-        this.addressComplement = addressComplement;
-        this.district = district;
-        this.city = city;
-        this.federativeUnit = federativeUnit;
-    }
-
+        
     public int getSupplierId() {
         return supplierId;
     }
@@ -146,6 +129,40 @@ public class Supplier {
 
     public void setFederativeUnit(String federativeUnit) {
         this.federativeUnit = federativeUnit;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+        
+    @Override
+    public String toString() {
+        return "\nsupplierId = " + supplierId
+                + "\ncompanyRegistry = " + companyRegistry
+                + "\ncorporateName = " + corporateName
+                + "\ntradeName = " + tradeName
+                + "\nemail = " + email
+                + "\nphone = " + phone
+                + "\nzipCode = " + zipCode
+                + "\naddress =" + address
+                + "\naddressComplement =" + addressComplement
+                + "\ndistrict = " + district
+                + "\ncity = " + city
+                + "\nfederativeUnit = " + federativeUnit
+                + "\ncreatedAt = " + createdAt
+                + "\nupdatedAt = " + updatedAt;
     }
 
 }
