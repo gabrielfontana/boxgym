@@ -76,7 +76,7 @@ public class LimitedTextField extends TextField {
         this.setTooltip(new Tooltip(tooltip));
     }
 
-    public void setCNPJField() {
+    public void setCnpjField() {
         this.setRestrict("[0-9]");
         this.setMaxLength(14);
         this.setTooltip(new Tooltip("Sem pontuação!"));

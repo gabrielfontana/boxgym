@@ -3,6 +3,7 @@ package boxgym.controller;
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.CnpjValidator;
 import boxgym.helper.LimitedTextField;
 import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
@@ -96,36 +97,36 @@ public class SuppliersAddScreenController implements Initializable {
         String city = cityTextField.getText();
         String federativeUnit = federativeUnitComboBox.getSelectionModel().getSelectedItem();
 
-        int emptyCounter = 0;
-        String handleEmptyField = "Por favor, preencha o(s) seguinte(s) campo(s): \n\n";
-
+        TextValidationHelper validation = new TextValidationHelper();
         AlertHelper alert = new AlertHelper();
 
         Supplier supplier = new Supplier(companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit);
 
-        if (companyRegistry.isEmpty()) {
-            handleEmptyField += "'CNPJ'\n";
-            emptyCounter++;
-        }
-        if (corporateName.isEmpty()) {
-            handleEmptyField += "'Razão Social'\n";
-            emptyCounter++;
-        }
-        if (tradeName.isEmpty()) {
-            handleEmptyField += "'Nome Fantasia'";
-            emptyCounter++;
-        }
+        validation.handleEmptyField(companyRegistry, "'CNPJ'\n");
+        validation.handleEmptyField(corporateName, "'Razão Social'\n");
+        validation.handleEmptyField(tradeName, "'Nome Fantasia'");
 
-        if (emptyCounter == 0) {
-            SupplierDao supplierDao = new SupplierDao();
-            supplierDao.add(supplier);
+        if (validation.getEmptyCounter() == 0) {
+            if (CnpjValidator.isValid(companyRegistry)) {
+                if (phone.length() == 0 || phone.length() == 10 || phone.length() == 11) {
+                    SupplierDao supplierDao = new SupplierDao();
+                    supplierDao.add(supplier);
+                    alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
+                    clear();
+                } else {
+                    alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'Telefone' inválido!");
+                }
+            } else {
+                alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'CNPJ' inválido!");
+                companyRegistryTextField.setText("");
+            }
         } else {
-            alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, handleEmptyField);
+            alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, validation.getMessage());
         }
     }
 
     @FXML
-    void clear(ActionEvent event) {
+    void clear() {
         companyRegistryTextField.setText("");
         corporateNameTextField.setText("");
         tradeNameTextField.setText("");
