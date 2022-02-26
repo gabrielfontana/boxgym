@@ -106,22 +106,25 @@ public class SuppliersAddScreenController implements Initializable {
         validation.handleEmptyField(corporateName, "'Razão Social'\n");
         validation.handleEmptyField(tradeName, "'Nome Fantasia'");
 
-        if (validation.getEmptyCounter() == 0) {
-            if (CnpjValidator.isValid(companyRegistry)) {
-                if (phone.length() == 0 || phone.length() == 10 || phone.length() == 11) {
-                    SupplierDao supplierDao = new SupplierDao();
-                    supplierDao.add(supplier);
-                    alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
-                    clear();
-                } else {
-                    alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'Telefone' inválido!");
-                }
-            } else {
-                alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'CNPJ' inválido!");
-                companyRegistryTextField.setText("");
-            }
-        } else {
+        if (!(validation.getEmptyCounter() == 0)) {
             alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, validation.getMessage());
+        } else {
+            if (!(CnpjValidator.isValid(companyRegistry))) {
+                alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'CNPJ' inválido!");
+            } else {
+                if (!(phone.length() == 0 || phone.length() == 10 || phone.length() == 11)) {
+                    alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "'Telefone' inválido!");
+                } else {
+                    if (!(zipCode.length() == 0 || zipCode.length() == 8)) {
+                        alert.warningAlert(SUPPLIERS_ADD_WARNING_ALERT_TITLE, SUPPLIERS_ADD_WARNING_ALERT_HEADER, "O campo 'CEP' deve conter 8 dígitos!");
+                    } else {
+                        SupplierDao supplierDao = new SupplierDao();
+                        supplierDao.add(supplier);
+                        alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
+                        clear();
+                    }
+                }
+            }
         }
     }
 
