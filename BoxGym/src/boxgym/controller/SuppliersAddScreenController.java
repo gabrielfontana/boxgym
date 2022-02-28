@@ -15,9 +15,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 
 public class SuppliersAddScreenController implements Initializable {
 
+    @FXML
+    private AnchorPane anchorPane;
+    
     @FXML
     private TitledPane infoTitledPane;
 
@@ -123,6 +127,7 @@ public class SuppliersAddScreenController implements Initializable {
             supplierDaoInsert.create(supplier);
             alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
             clear();
+            anchorPane.getScene().getWindow().hide();           
         }
     }
 

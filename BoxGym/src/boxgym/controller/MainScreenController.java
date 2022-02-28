@@ -34,9 +34,12 @@ public class MainScreenController implements Initializable {
     }
 
     private void changeContentArea (String path) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource(path));
+        AnchorPane anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource(path));
+        contentArea.getChildren().setAll(anchorPane);
+        
+        /*Parent fxml = FXMLLoader.load(getClass().getResource(path));
         contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
+        contentArea.getChildren().setAll(fxml);*/
     }
     
     @FXML
