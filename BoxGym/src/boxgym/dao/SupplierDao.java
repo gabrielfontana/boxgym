@@ -34,7 +34,7 @@ public class SupplierDao {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbUtils.closeQuietly(conn);
+            //DbUtils.closeQuietly(conn);
             DbUtils.closeQuietly(ps);
             DbUtils.closeQuietly(rs);
         }

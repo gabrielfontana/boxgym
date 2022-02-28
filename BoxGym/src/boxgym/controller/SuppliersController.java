@@ -89,7 +89,8 @@ public class SuppliersController implements Initializable {
             stage.setResizable(false);
             stage.setTitle(SUPPLIERS_ADD_TITLE);
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.showAndWait();
+            initSupplierTableView();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }

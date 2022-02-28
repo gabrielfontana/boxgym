@@ -11,19 +11,19 @@
       <TableView fx:id="supplierTableView" layoutX="20.0" layoutY="181.0" prefHeight="600.0" prefWidth="1240.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
         <columns>
             <TableColumn fx:id="supplierIdTableColumn" prefWidth="70.0" text="ID" />
-          <TableColumn fx:id="companyRegistryTableColumn" prefWidth="70.0" text="CNPJ" />
-            <TableColumn fx:id="corporateNameTableColumn" prefWidth="70.0" text="Razão Social" />
-            <TableColumn fx:id="tradeNameTableColumn" prefWidth="70.0" text="Nome Fantasia" />
-            <TableColumn fx:id="emailTableColumn" prefWidth="70.0" text="E-mail" />
-            <TableColumn fx:id="phoneTableColumn" prefWidth="70.0" text="Telefone" />
-            <TableColumn fx:id="zipCodeTableColumn" prefWidth="70.0" text="CEP" />
-            <TableColumn fx:id="addressTableColumn" prefWidth="70.0" text="Endereço" />
-            <TableColumn fx:id="addressComplementTableColumn" prefWidth="70.0" text="Complemento" />
-            <TableColumn fx:id="districtTableColumn" prefWidth="70.0" text="Bairro" />
-            <TableColumn fx:id="cityTableColumn" prefWidth="70.0" text="Cidade" />
+          <TableColumn fx:id="companyRegistryTableColumn" prefWidth="125.0" text="CNPJ" />
+            <TableColumn fx:id="corporateNameTableColumn" prefWidth="175.0" text="Razão Social" />
+            <TableColumn fx:id="tradeNameTableColumn" prefWidth="175.0" text="Nome Fantasia" />
+            <TableColumn fx:id="emailTableColumn" prefWidth="175.0" text="E-mail" />
+            <TableColumn fx:id="phoneTableColumn" prefWidth="125.0" text="Telefone" />
+            <TableColumn fx:id="zipCodeTableColumn" prefWidth="125.0" text="CEP" />
+            <TableColumn fx:id="addressTableColumn" prefWidth="175.0" text="Endereço" />
+            <TableColumn fx:id="addressComplementTableColumn" prefWidth="175.0" text="Complemento" />
+            <TableColumn fx:id="districtTableColumn" prefWidth="175.0" text="Bairro" />
+            <TableColumn fx:id="cityTableColumn" prefWidth="175.0" text="Cidade" />
             <TableColumn fx:id="federativeUnitTableColumn" prefWidth="70.0" text="UF" />
-            <TableColumn fx:id="createdAtTableColumn" prefWidth="70.0" text="Data de Criação" />
-            <TableColumn fx:id="updatedAtTableColumn" prefWidth="70.0" text="Última Atualização" />
+            <TableColumn fx:id="createdAtTableColumn" prefWidth="175.0" text="Data de Criação" />
+            <TableColumn fx:id="updatedAtTableColumn" prefWidth="175.0" text="Última Atualização" />
         </columns>
       </TableView>
    </children>

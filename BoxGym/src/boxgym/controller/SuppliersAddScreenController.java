@@ -21,7 +21,7 @@ public class SuppliersAddScreenController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
-    
+
     @FXML
     private TitledPane infoTitledPane;
 
@@ -89,45 +89,35 @@ public class SuppliersAddScreenController implements Initializable {
 
     @FXML
     void save(ActionEvent event) {
-        String companyRegistry = companyRegistryTextField.getText();
-        String corporateName = corporateNameTextField.getText();
-        String tradeName = tradeNameTextField.getText();
-        String email = emailTextField.getText();
-        String phone = phoneTextField.getText();
-        String zipCode = zipCodeTextField.getText();
-        String address = addressTextField.getText();
-        String addressComplement = addressComplementTextField.getText();
-        String district = districtTextField.getText();
-        String city = cityTextField.getText();
-        String federativeUnit = federativeUnitComboBox.getSelectionModel().getSelectedItem();
+        Supplier supplier = new Supplier(companyRegistryTextField.getText(), corporateNameTextField.getText(), tradeNameTextField.getText(),
+                emailTextField.getText(), phoneTextField.getText(), zipCodeTextField.getText(), addressTextField.getText(), addressComplementTextField.getText(),
+                districtTextField.getText(), cityTextField.getText(), federativeUnitComboBox.getSelectionModel().getSelectedItem());
 
-        TextValidationHelper validation = new TextValidationHelper();
+        SupplierDao supplierDao = new SupplierDao();
+
         AlertHelper alert = new AlertHelper();
 
-        Supplier supplier = new Supplier(companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit);
-        SupplierDao supplierDaoCheck = new SupplierDao();
-        
-        validation.handleEmptyField(companyRegistry, "'CNPJ'\n");
-        validation.handleEmptyField(corporateName, "'Razão Social'\n");
-        validation.handleEmptyField(tradeName, "'Nome Fantasia'");
+        TextValidationHelper validation = new TextValidationHelper();
+
+        validation.handleEmptyField(companyRegistryTextField.getText(), "'CNPJ'\n");
+        validation.handleEmptyField(corporateNameTextField.getText(), "'Razão Social'\n");
+        validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage());
-        } else if (!(CnpjValidator.isValid(companyRegistry))) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.");            
-        } else if (supplierDaoCheck.checkDuplicate(supplier)) {
+        } else if (!(CnpjValidator.isValid(companyRegistryTextField.getText()))) {
+            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.");
+        } else if (supplierDao.checkDuplicate(supplier)) {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.");
             companyRegistryTextField.setText("");
-        } else if (!(phone.length() == 0 || phone.length() == 10 || phone.length() == 11)) {
+        } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
-        } else if (!(zipCode.length() == 0 || zipCode.length() == 8)) {
+        } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
-            SupplierDao supplierDaoInsert = new SupplierDao();
-            supplierDaoInsert.create(supplier);
+            supplierDao.create(supplier);
             alert.confirmationAlert("Informação", "O fornecedor foi cadastrado com sucesso", "");
-            clear();
-            anchorPane.getScene().getWindow().hide();           
+            anchorPane.getScene().getWindow().hide();
         }
     }
 

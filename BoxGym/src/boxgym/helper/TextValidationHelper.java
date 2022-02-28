@@ -1,6 +1,7 @@
 package boxgym.helper;
 
 public class TextValidationHelper {
+
     private int emptyCounter;
     private String message;
 
@@ -16,9 +17,9 @@ public class TextValidationHelper {
     public String getMessage() {
         return message;
     }
-                 
+
     public boolean handleEmptyField(String field, String message) {
-        if(field.isEmpty()){
+        if (field.isEmpty()) {
             this.message += message;
             this.emptyCounter++;
             return true;
