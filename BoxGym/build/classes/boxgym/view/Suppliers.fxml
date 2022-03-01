@@ -1,30 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1280.0" style="-fx-background-color: #bfe9f2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.SuppliersController">
+<AnchorPane prefHeight="695.0" prefWidth="1280.0" stylesheets="@../css/table-view-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.SuppliersController">
    <children>
-      <Button fx:id="addSupplierButton" layoutX="20.0" layoutY="30.0" mnemonicParsing="false" onAction="#addSupplier" prefWidth="67.0" text="Adicionar" />
-      <TableView fx:id="supplierTableView" layoutX="20.0" layoutY="181.0" prefHeight="600.0" prefWidth="1240.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-        <columns>
-            <TableColumn fx:id="supplierIdTableColumn" prefWidth="70.0" text="ID" />
-          <TableColumn fx:id="companyRegistryTableColumn" prefWidth="125.0" text="CNPJ" />
-            <TableColumn fx:id="corporateNameTableColumn" prefWidth="175.0" text="Razão Social" />
-            <TableColumn fx:id="tradeNameTableColumn" prefWidth="175.0" text="Nome Fantasia" />
-            <TableColumn fx:id="emailTableColumn" prefWidth="175.0" text="E-mail" />
-            <TableColumn fx:id="phoneTableColumn" prefWidth="125.0" text="Telefone" />
-            <TableColumn fx:id="zipCodeTableColumn" prefWidth="125.0" text="CEP" />
-            <TableColumn fx:id="addressTableColumn" prefWidth="175.0" text="Endereço" />
-            <TableColumn fx:id="addressComplementTableColumn" prefWidth="175.0" text="Complemento" />
-            <TableColumn fx:id="districtTableColumn" prefWidth="175.0" text="Bairro" />
-            <TableColumn fx:id="cityTableColumn" prefWidth="175.0" text="Cidade" />
-            <TableColumn fx:id="federativeUnitTableColumn" prefWidth="70.0" text="UF" />
-            <TableColumn fx:id="createdAtTableColumn" prefWidth="175.0" text="Data de Criação" />
-            <TableColumn fx:id="updatedAtTableColumn" prefWidth="175.0" text="Última Atualização" />
-        </columns>
-      </TableView>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="695.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="20.0" layoutY="27.0" text="Administrativo &gt; Fornecedores" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="supplierTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
+              <columns>
+                  <TableColumn fx:id="supplierIdTableColumn" prefWidth="100.0" style="-fx-alignment: CENTER;" text="ID" />
+                  <TableColumn fx:id="companyRegistryTableColumn" prefWidth="150.0" style="-fx-alignment: CENTER;" text="CNPJ" />
+                  <TableColumn fx:id="tradeNameTableColumn" prefWidth="250.0" style="-fx-alignment: CENTER;" text="Nome Fantasia" />
+                  <TableColumn fx:id="emailTableColumn" prefWidth="250.0" style="-fx-alignment: CENTER;" text="E-mail" />
+                  <TableColumn fx:id="phoneTableColumn" prefWidth="149.0" style="-fx-alignment: CENTER;" text="Telefone" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="944.0" layoutY="75.0" prefHeight="620.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <VBox layoutX="58.0" layoutY="66.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="ID: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="supplierIdLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="278.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="CNPJ: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="companyRegistryLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="258.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Razão Social: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="corporateNameLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="211.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Nome Fantasia: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="tradeNameLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="195.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="E-mail: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="emailLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="251.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Telefone: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="phoneLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="236.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="CEP: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="zipCodeLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="268.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Endereço: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="addressLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="232.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Complemento: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="addressComplementLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="200.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Bairro: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="districtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="253.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Cidade: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="cityLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="248.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="UF: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="federativeUnitLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="275.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Criação: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="createdAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="244.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="title-label" text="Modificação: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="updateAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="212.0" styleClass="data-label" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+               <children>
+                  <Button fx:id="addSupplierButton" mnemonicParsing="false" onAction="#addSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #35e838;" text="Adicionar">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="updateSupplierButton" mnemonicParsing="false" onAction="#updateSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="deleteSupplierButton" mnemonicParsing="false" onAction="#deleteSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #f55138;" text="Excluir">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

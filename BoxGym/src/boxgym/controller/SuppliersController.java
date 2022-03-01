@@ -2,13 +2,16 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
+import boxgym.helper.AlertHelper;
 import boxgym.model.Supplier;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,16 +21,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
-
-    @FXML
-    private Button addSupplierButton;
-
+    
     @FXML
     private TableView<Supplier> supplierTableView;
 
@@ -38,9 +39,6 @@ public class SuppliersController implements Initializable {
     private TableColumn<Supplier, String> companyRegistryTableColumn;
 
     @FXML
-    private TableColumn<Supplier, String> corporateNameTableColumn;
-
-    @FXML
     private TableColumn<Supplier, String> tradeNameTableColumn;
 
     @FXML
@@ -48,37 +46,55 @@ public class SuppliersController implements Initializable {
 
     @FXML
     private TableColumn<Supplier, String> phoneTableColumn;
+    
+    @FXML
+    private Label supplierIdLabel;
 
     @FXML
-    private TableColumn<Supplier, String> zipCodeTableColumn;
+    private Label companyRegistryLabel;
 
     @FXML
-    private TableColumn<Supplier, String> addressTableColumn;
+    private Label corporateNameLabel;
 
     @FXML
-    private TableColumn<Supplier, String> addressComplementTableColumn;
+    private Label tradeNameLabel;
 
     @FXML
-    private TableColumn<Supplier, String> districtTableColumn;
+    private Label emailLabel;
 
     @FXML
-    private TableColumn<Supplier, String> cityTableColumn;
+    private Label phoneLabel;
 
     @FXML
-    private TableColumn<Supplier, String> federativeUnitTableColumn;
+    private Label zipCodeLabel;
 
     @FXML
-    private TableColumn<Supplier, String> createdAtTableColumn;
+    private Label addressLabel;
 
     @FXML
-    private TableColumn<Supplier, String> updatedAtTableColumn;
+    private Label addressComplementLabel;
 
-    private List<Supplier> supplierList;
-    private ObservableList<Supplier> supplierObservableList;
+    @FXML
+    private Label districtLabel;
+
+    @FXML
+    private Label cityLabel;
+
+    @FXML
+    private Label federativeUnitLabel;
+
+    @FXML
+    private Label createdAtLabel;
+
+    @FXML
+    private Label updateAtLabel;
+
+    private Supplier selected;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initSupplierTableView();
+        tableViewListeners();
     }
 
     @FXML
@@ -96,27 +112,86 @@ public class SuppliersController implements Initializable {
         }
     }
 
+    @FXML
+    void deleteSupplier(ActionEvent event) {
+        SupplierDao supplierDao = new SupplierDao();
+        AlertHelper alert = new AlertHelper();
+
+        if (selected == null) {
+            alert.warningAlert("", "Selecione um fornecedor para excluir.", "");
+        } else {
+            supplierDao.delete(selected);
+            alert.confirmationAlert("", "O fornecedor '" + selected.getCorporateName() + "' foi excluído com sucesso!", "");
+            supplierTableView.setItems(loadData());
+        }
+    }
+    
+    private void showDetails() {       
+        if (selected == null) {
+            supplierIdLabel.setText("");
+            companyRegistryLabel.setText("");
+            corporateNameLabel.setText("");
+            tradeNameLabel.setText("");
+            emailLabel.setText("");
+            phoneLabel.setText("");
+            zipCodeLabel.setText("");
+            addressLabel.setText("");
+            addressComplementLabel.setText("");
+            districtLabel.setText("");
+            cityLabel.setText("");
+            federativeUnitLabel.setText("");
+            createdAtLabel.setText("");
+            updateAtLabel.setText("");
+        } else {
+            supplierIdLabel.setText(String.valueOf(selected.getSupplierId()));
+            companyRegistryLabel.setText(selected.getCompanyRegistry());
+            corporateNameLabel.setText(selected.getCorporateName());
+            tradeNameLabel.setText(selected.getTradeName());
+            emailLabel.setText(selected.getEmail());
+            phoneLabel.setText(selected.getPhone());
+            zipCodeLabel.setText(selected.getZipCode());
+            addressLabel.setText(selected.getAddress());
+            addressComplementLabel.setText(selected.getAddressComplement());
+            districtLabel.setText(selected.getDistrict());
+            cityLabel.setText(selected.getCity());
+            federativeUnitLabel.setText(selected.getFederativeUnit());
+            createdAtLabel.setText(selected.getCreatedAt());
+            updateAtLabel.setText(selected.getUpdatedAt());
+        }
+    }
+    
+    @FXML
+    void updateSupplier(ActionEvent event) {
+        
+    }
+
     private void initSupplierTableView() {
         supplierIdTableColumn.setCellValueFactory(new PropertyValueFactory("supplierId"));
         companyRegistryTableColumn.setCellValueFactory(new PropertyValueFactory("companyRegistry"));
-        corporateNameTableColumn.setCellValueFactory(new PropertyValueFactory("corporateName"));
         tradeNameTableColumn.setCellValueFactory(new PropertyValueFactory("tradeName"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory("email"));
-        phoneTableColumn.setCellValueFactory(new PropertyValueFactory("phone"));
-        zipCodeTableColumn.setCellValueFactory(new PropertyValueFactory("zipCode"));
-        addressTableColumn.setCellValueFactory(new PropertyValueFactory("address"));
-        addressComplementTableColumn.setCellValueFactory(new PropertyValueFactory("addressComplement"));
-        districtTableColumn.setCellValueFactory(new PropertyValueFactory("district"));
-        cityTableColumn.setCellValueFactory(new PropertyValueFactory("city"));
-        federativeUnitTableColumn.setCellValueFactory(new PropertyValueFactory("federativeUnit"));
-        createdAtTableColumn.setCellValueFactory(new PropertyValueFactory("createdAt"));
-        updatedAtTableColumn.setCellValueFactory(new PropertyValueFactory("updatedAt"));
+        phoneTableColumn.setCellValueFactory(new PropertyValueFactory("phone"));        
         supplierTableView.setItems(loadData());
     }
 
     private ObservableList<Supplier> loadData() {
         SupplierDao supplierDao = new SupplierDao();
         return FXCollections.observableArrayList(supplierDao.read());
+    }
+
+    private void tableViewListeners() {                
+        supplierTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                selected = (Supplier) newValue;
+                showDetails();
+            }
+        });
+
+        supplierTableView.skinProperty().addListener((obs, oldSkin, newSkin) -> {
+            final TableHeaderRow header = (TableHeaderRow) supplierTableView.lookup("TableHeaderRow");
+            header.reorderingProperty().addListener((o, oldVal, newVal) -> header.setReordering(false));
+        });
     }
 
 }
