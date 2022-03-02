@@ -17,7 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 
-public class SuppliersUpdateScreenController implements Initializable {
+public class SuppliersUpdateController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;

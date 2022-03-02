@@ -13,7 +13,7 @@ public final class Constant {
     public static final String PLANS_VIEW = "/boxgym/view/Plans.fxml";
     public static final String CLIENTS_VIEW = "/boxgym/view/Clients.fxml";
     public static final String SUPPLIERS_VIEW = "/boxgym/view/Suppliers.fxml";
-    public static final String SUPPLIERS_ADD_VIEW = "/boxgym/view/SuppliersAddScreen.fxml";
+    public static final String SUPPLIERS_ADD_VIEW = "/boxgym/view/SuppliersAdd.fxml";
     public static final String EMPLOYEES_VIEW = "/boxgym/view/Employees.fxml";
     public static final String BILLSTOPAY_VIEW = "/boxgym/view/BillsToPay.fxml";
     public static final String BILLSTORECEIVE_VIEW = "/boxgym/view/BillsToReceive.fxml";

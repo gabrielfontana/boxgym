@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BoxGym.jar" size="43004" download="eager" />
+    <jar href="BoxGym.jar" size="42799" download="eager" />
     <jar href="lib\caelum-stella-core-2.1.2.jar" size="119794" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
     <jar href="lib\commons-dbutils-1.7.jar" size="97075" download="eager" />

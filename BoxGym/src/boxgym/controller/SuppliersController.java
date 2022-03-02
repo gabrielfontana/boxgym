@@ -1,7 +1,6 @@
 package boxgym.controller;
 
 import static boxgym.Constant.*;
-import boxgym.controller.SuppliersUpdateScreenController;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.model.Supplier;
@@ -122,10 +121,10 @@ public class SuppliersController implements Initializable {
             alert.warningAlert("", "Selecione um fornecedor para editar.", "");
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdateScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
                 
-                //Instancia o SuppliersUpdateScreenController para que o initialize possa utilizar o parâmetro
-                SuppliersUpdateScreenController controller = new SuppliersUpdateScreenController();
+                //Instancia o SuppliersUpdateController para que o initialize possa utilizar o parâmetro
+                SuppliersUpdateController controller = new SuppliersUpdateController();
                 controller.setLoadSupplier(selected);                                
                 loader.setController(controller);
                 
