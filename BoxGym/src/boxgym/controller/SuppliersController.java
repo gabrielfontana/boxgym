@@ -1,6 +1,7 @@
 package boxgym.controller;
 
 import static boxgym.Constant.*;
+import boxgym.controller.SuppliersUpdateScreenController;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.model.Supplier;
@@ -20,7 +21,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,7 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
-    
+
     @FXML
     private TableView<Supplier> supplierTableView;
 
@@ -46,7 +46,7 @@ public class SuppliersController implements Initializable {
 
     @FXML
     private TableColumn<Supplier, String> phoneTableColumn;
-    
+
     @FXML
     private Label supplierIdLabel;
 
@@ -101,14 +101,46 @@ public class SuppliersController implements Initializable {
     void addSupplier(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(SUPPLIERS_ADD_VIEW));
+            
             Stage stage = new Stage();
             stage.setResizable(false);
             stage.setTitle(SUPPLIERS_ADD_TITLE);
             stage.setScene(new Scene(root));
             stage.showAndWait();
+            
             initSupplierTableView();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void updateSupplier(ActionEvent event) {
+        AlertHelper alert = new AlertHelper();
+
+        if (selected == null) {
+            alert.warningAlert("", "Selecione um fornecedor para editar.", "");
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdateScreen.fxml"));
+                
+                //Instancia o SuppliersUpdateScreenController para que o initialize possa utilizar o parâmetro
+                SuppliersUpdateScreenController controller = new SuppliersUpdateScreenController();
+                controller.setLoadSupplier(selected);                                
+                loader.setController(controller);
+                
+                Parent root = (Parent) loader.load();
+                
+                Stage stage = new Stage();
+                stage.setResizable(false);
+                stage.setTitle("Editando Fornecedor");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                
+                initSupplierTableView();
+            } catch (IOException ex) {
+                Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -125,8 +157,8 @@ public class SuppliersController implements Initializable {
             supplierTableView.setItems(loadData());
         }
     }
-    
-    private void showDetails() {       
+
+    private void showDetails() {
         if (selected == null) {
             supplierIdLabel.setText("");
             companyRegistryLabel.setText("");
@@ -159,18 +191,13 @@ public class SuppliersController implements Initializable {
             updateAtLabel.setText(selected.getUpdatedAt());
         }
     }
-    
-    @FXML
-    void updateSupplier(ActionEvent event) {
-        
-    }
 
     private void initSupplierTableView() {
         supplierIdTableColumn.setCellValueFactory(new PropertyValueFactory("supplierId"));
         companyRegistryTableColumn.setCellValueFactory(new PropertyValueFactory("companyRegistry"));
         tradeNameTableColumn.setCellValueFactory(new PropertyValueFactory("tradeName"));
         emailTableColumn.setCellValueFactory(new PropertyValueFactory("email"));
-        phoneTableColumn.setCellValueFactory(new PropertyValueFactory("phone"));        
+        phoneTableColumn.setCellValueFactory(new PropertyValueFactory("phone"));
         supplierTableView.setItems(loadData());
     }
 
@@ -179,7 +206,7 @@ public class SuppliersController implements Initializable {
         return FXCollections.observableArrayList(supplierDao.read());
     }
 
-    private void tableViewListeners() {                
+    private void tableViewListeners() {
         supplierTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {

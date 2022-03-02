@@ -105,23 +105,21 @@ public class SupplierDao {
     }
 
     public boolean update(Supplier supplier) {
-        String sql = "UPDATE supplier SET companyRegistry = ?, corporateName = ?, tradeName = ?, email = ?, phone = ?, "
-                + "zipCode = ?, address = ?, addressComplement = ?, district = ?, city = ?, federativeUnit = ? WHERE supplierId = ?;";
+        String sql = "UPDATE supplier SET corporateName = ?, tradeName = ?, email = ?, phone = ?, zipCode = ?, address = ?, addressComplement = ?, district = ?, city = ?, federativeUnit = ? WHERE supplierId = ?;";
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, supplier.getCompanyRegistry());
-            ps.setString(2, supplier.getCorporateName());
-            ps.setString(3, supplier.getTradeName());
-            ps.setString(4, supplier.getEmail());
-            ps.setString(5, supplier.getPhone());
-            ps.setString(6, supplier.getZipCode());
-            ps.setString(7, supplier.getAddress());
-            ps.setString(8, supplier.getAddressComplement());
-            ps.setString(9, supplier.getDistrict());
-            ps.setString(10, supplier.getCity());
-            ps.setString(11, supplier.getFederativeUnit());
-            ps.setInt(12, supplier.getSupplierId());
+            ps.setString(1, supplier.getCorporateName());
+            ps.setString(2, supplier.getTradeName());
+            ps.setString(3, supplier.getEmail());
+            ps.setString(4, supplier.getPhone());
+            ps.setString(5, supplier.getZipCode());
+            ps.setString(6, supplier.getAddress());
+            ps.setString(7, supplier.getAddressComplement());
+            ps.setString(8, supplier.getDistrict());
+            ps.setString(9, supplier.getCity());
+            ps.setString(10, supplier.getFederativeUnit());
+            ps.setInt(11, supplier.getSupplierId());
             ps.execute();
             return true;
         } catch (SQLException ex) {
