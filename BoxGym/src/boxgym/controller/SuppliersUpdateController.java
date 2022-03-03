@@ -2,18 +2,17 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
-import boxgym.helper.AlertHelper;
-import boxgym.helper.CnpjValidator;
 import boxgym.helper.LimitedTextField;
-import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 
@@ -29,7 +28,7 @@ public class SuppliersUpdateController implements Initializable {
     private TitledPane addressTitledPane;
 
     @FXML
-    private LimitedTextField companyRegistryTextField;
+    private Label companyRegistryLabel;
 
     @FXML
     private LimitedTextField corporateNameTextField;
@@ -77,11 +76,14 @@ public class SuppliersUpdateController implements Initializable {
         addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
         suppliersInputRestrictions();
-        initSupplier();
+        
+        Platform.runLater(() -> {
+            initSupplier();
+        });          
     }
   
     private void initSupplier() {
-        companyRegistryTextField.setText(loadSupplier.getCompanyRegistry());
+        companyRegistryLabel.setText(loadSupplier.getCompanyRegistry());
         corporateNameTextField.setText(loadSupplier.getCorporateName());
         tradeNameTextField.setText(loadSupplier.getTradeName());
         emailTextField.setText(loadSupplier.getEmail());
@@ -99,8 +101,7 @@ public class SuppliersUpdateController implements Initializable {
         federativeUnitComboBox.setItems(FXCollections.observableArrayList(FEDERATIVE_UNITS_LIST));
     }
 
-    private void suppliersInputRestrictions() {
-        companyRegistryTextField.setValidationPattern(POSITIVE_INTEGERS_NUMBERS_REGEX, CNPJ_MAX_LENGTH, TOOLTIP_TEXT);
+    private void suppliersInputRestrictions() {       
         corporateNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
         tradeNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
         emailTextField.setValidationPattern(EMAIL_REGEX, STANDARD_MAX_LENGTH);
@@ -124,8 +125,7 @@ public class SuppliersUpdateController implements Initializable {
     }
         
     @FXML
-    void clear() {
-        companyRegistryTextField.setText("");
+    void clear() {        
         corporateNameTextField.setText("");
         tradeNameTextField.setText("");
         emailTextField.setText("");

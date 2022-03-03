@@ -122,14 +122,11 @@ public class SuppliersController implements Initializable {
         } else {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
-                
-                //Instancia o SuppliersUpdateController para que o initialize possa utilizar o parâmetro
-                SuppliersUpdateController controller = new SuppliersUpdateController();
-                controller.setLoadSupplier(selected);                                
-                loader.setController(controller);
-                
                 Parent root = (Parent) loader.load();
                 
+                SuppliersUpdateController controller = loader.getController();
+                controller.setLoadSupplier(selected);                                
+                                                
                 Stage stage = new Stage();
                 stage.setResizable(false);
                 stage.setTitle("Editando Fornecedor");
