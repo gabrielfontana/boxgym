@@ -108,6 +108,7 @@ public class SuppliersController implements Initializable {
             stage.showAndWait();
             
             initSupplierTableView();
+            supplierTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,6 +135,7 @@ public class SuppliersController implements Initializable {
                 stage.showAndWait();
                 
                 initSupplierTableView();
+                supplierTableView.getSelectionModel().selectLast();
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
             }
