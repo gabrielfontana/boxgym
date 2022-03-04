@@ -115,7 +115,7 @@ public class SuppliersAddController implements Initializable {
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
             alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
-            supplierDao.create(supplier);            
+            supplierDao.create(supplier);
             anchorPane.getScene().getWindow().hide();
         }
     }

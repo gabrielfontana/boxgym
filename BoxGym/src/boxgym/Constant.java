@@ -64,5 +64,5 @@ public final class Constant {
     public static final int PHONE_MAX_LENGTH = 11;
     public static final int CEP_MAX_LENGTH = 8;
     public static final String TOOLTIP_TEXT = "Sem pontuação!";
-    
+
 }

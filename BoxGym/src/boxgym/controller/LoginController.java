@@ -30,13 +30,13 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loginButton.setDefaultButton(true);
     }
-           
+
     private void checkLogin() throws IOException {
         AlertHelper alert = new AlertHelper();
         String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
 
-        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {            
-            alert.warningAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT);            
+        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
+            alert.warningAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT);
         } else if (userTextField.getText().equals(DEFAULT_LOGIN_USERNAME) && sha256hex.equals(DEFAULT_LOGIN_PASSWORD)) {
             loginButton.getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource(MAINSCREEN_VIEW));

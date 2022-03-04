@@ -92,7 +92,7 @@ public class SuppliersController implements Initializable {
     private Label updateAtLabel;
 
     private Supplier selected;
-    
+
     AlertHelper alert = new AlertHelper();
 
     @Override
@@ -150,18 +150,14 @@ public class SuppliersController implements Initializable {
     @FXML
     void deleteSupplier(ActionEvent event) {
         SupplierDao supplierDao = new SupplierDao();
-        
+
         if (selected == null) {
             alert.warningAlert("", "Selecione um fornecedor para excluir!", "");
         } else {
-            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmation.setTitle("Aviso");
-            confirmation.setHeaderText("Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?");
-            confirmation.setContentText("Esta ação é irreversível!");
-            Optional<ButtonType> result = confirmation.showAndWait();
-            
-            if (result.get() == ButtonType.OK) {
-                supplierDao.delete(selected);                
+            alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
+
+            if (alert.getResult().get() == ButtonType.YES) {
+                supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
                 alert.informationAlert("", "O fornecedor foi excluído com sucesso!", "");
             }

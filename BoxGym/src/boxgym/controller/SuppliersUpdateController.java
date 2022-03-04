@@ -59,7 +59,7 @@ public class SuppliersUpdateController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
-    
+
     private Supplier loadSupplier;
 
     public Supplier getLoadSupplier() {
@@ -69,19 +69,19 @@ public class SuppliersUpdateController implements Initializable {
     public void setLoadSupplier(Supplier loadSupplier) {
         this.loadSupplier = loadSupplier;
     }
-                
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {        
+    public void initialize(URL url, ResourceBundle rb) {
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
         suppliersInputRestrictions();
-        
+
         Platform.runLater(() -> {
             initSupplier();
-        });          
+        });
     }
-  
+
     private void initSupplier() {
         companyRegistryLabel.setText(loadSupplier.getCompanyRegistry());
         corporateNameTextField.setText(loadSupplier.getCorporateName());
@@ -95,13 +95,13 @@ public class SuppliersUpdateController implements Initializable {
         cityTextField.setText(loadSupplier.getCity());
         federativeUnitComboBox.valueProperty().set(loadSupplier.getFederativeUnit());
     }
-    
+
     private void loadFederativeUnitComboBox() {
         federativeUnitComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
         federativeUnitComboBox.setItems(FXCollections.observableArrayList(FEDERATIVE_UNITS_LIST));
     }
 
-    private void suppliersInputRestrictions() {       
+    private void suppliersInputRestrictions() {
         corporateNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
         tradeNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
         emailTextField.setValidationPattern(EMAIL_REGEX, STANDARD_MAX_LENGTH);
@@ -119,13 +119,13 @@ public class SuppliersUpdateController implements Initializable {
                 emailTextField.getText(), phoneTextField.getText(), zipCodeTextField.getText(), addressTextField.getText(), addressComplementTextField.getText(),
                 districtTextField.getText(), cityTextField.getText(), federativeUnitComboBox.getSelectionModel().getSelectedItem());
 
-        SupplierDao supplierDao = new SupplierDao();        
-        supplierDao.update(supplier);        
+        SupplierDao supplierDao = new SupplierDao();
+        supplierDao.update(supplier);
         anchorPane.getScene().getWindow().hide();
     }
-        
+
     @FXML
-    void clear() {        
+    void clear() {
         corporateNameTextField.setText("");
         tradeNameTextField.setText("");
         emailTextField.setText("");
@@ -136,5 +136,5 @@ public class SuppliersUpdateController implements Initializable {
         districtTextField.setText("");
         cityTextField.setText("");
         federativeUnitComboBox.valueProperty().set(null);
-    }            
+    }
 }

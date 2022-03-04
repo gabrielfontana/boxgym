@@ -69,14 +69,14 @@ public class SupplierDao {
         }
         return false;
     }
-    
+
     public List<Supplier> read() {
         List<Supplier> suppliersList = new ArrayList<>();
         String sql = "SELECT * FROM supplier";
-        try {            
+        try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Supplier s = new Supplier();
                 s.setSupplierId(rs.getInt("supplierId"));
                 s.setCompanyRegistry(rs.getString("companyRegistry"));
@@ -131,12 +131,12 @@ public class SupplierDao {
         }
         return false;
     }
-    
+
     public boolean delete(Supplier supplier) {
         String sql = "DELETE FROM supplier WHERE supplierId = ?;";
 
         try {
-            ps = conn.prepareStatement(sql);            
+            ps = conn.prepareStatement(sql);
             ps.setInt(1, supplier.getSupplierId());
             ps.execute();
             return true;
