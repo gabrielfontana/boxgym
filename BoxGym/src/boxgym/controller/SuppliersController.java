@@ -7,6 +7,7 @@ import boxgym.model.Supplier;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -89,6 +92,8 @@ public class SuppliersController implements Initializable {
     private Label updateAtLabel;
 
     private Supplier selected;
+    
+    AlertHelper alert = new AlertHelper();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -100,14 +105,15 @@ public class SuppliersController implements Initializable {
     void addSupplier(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(SUPPLIERS_ADD_VIEW));
-            
+
             Stage stage = new Stage();
             stage.setResizable(false);
             stage.setTitle(SUPPLIERS_ADD_TITLE);
             stage.setScene(new Scene(root));
             stage.showAndWait();
-            
+
             initSupplierTableView();
+            alert.informationAlert("", "O fornecedor foi cadastrado com sucesso!", "");
             supplierTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,25 +122,24 @@ public class SuppliersController implements Initializable {
 
     @FXML
     void updateSupplier(ActionEvent event) {
-        AlertHelper alert = new AlertHelper();
-
         if (selected == null) {
             alert.warningAlert("", "Selecione um fornecedor para editar.", "");
         } else {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
                 Parent root = (Parent) loader.load();
-                
+
                 SuppliersUpdateController controller = loader.getController();
-                controller.setLoadSupplier(selected);                                
-                                                
+                controller.setLoadSupplier(selected);
+
                 Stage stage = new Stage();
                 stage.setResizable(false);
                 stage.setTitle("Editando Fornecedor");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                
+
                 initSupplierTableView();
+                alert.informationAlert("", "O fornecedor foi editado com sucesso!", "");
                 supplierTableView.getSelectionModel().selectLast();
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,14 +150,21 @@ public class SuppliersController implements Initializable {
     @FXML
     void deleteSupplier(ActionEvent event) {
         SupplierDao supplierDao = new SupplierDao();
-        AlertHelper alert = new AlertHelper();
-
+        
         if (selected == null) {
-            alert.warningAlert("", "Selecione um fornecedor para excluir.", "");
+            alert.warningAlert("", "Selecione um fornecedor para excluir!", "");
         } else {
-            supplierDao.delete(selected);
-            alert.confirmationAlert("", "O fornecedor '" + selected.getCorporateName() + "' foi excluído com sucesso!", "");
-            supplierTableView.setItems(loadData());
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("Aviso");
+            confirmation.setHeaderText("Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?");
+            confirmation.setContentText("Esta ação é irreversível!");
+            Optional<ButtonType> result = confirmation.showAndWait();
+            
+            if (result.get() == ButtonType.OK) {
+                supplierDao.delete(selected);                
+                supplierTableView.setItems(loadData());
+                alert.informationAlert("", "O fornecedor foi excluído com sucesso!", "");
+            }
         }
     }
 
