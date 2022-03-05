@@ -7,7 +7,6 @@ import boxgym.model.Supplier;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,15 +20,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
+
+    @FXML
+    private TextField searchBox;
 
     @FXML
     private TableView<Supplier> supplierTableView;
@@ -113,7 +115,6 @@ public class SuppliersController implements Initializable {
             stage.showAndWait();
 
             initSupplierTableView();
-            alert.informationAlert("", "O fornecedor foi cadastrado com sucesso!", "");
             supplierTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,7 +140,6 @@ public class SuppliersController implements Initializable {
                 stage.showAndWait();
 
                 initSupplierTableView();
-                alert.informationAlert("", "O fornecedor foi editado com sucesso!", "");
                 supplierTableView.getSelectionModel().selectLast();
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);

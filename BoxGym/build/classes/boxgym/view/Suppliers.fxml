@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -19,7 +20,8 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="supplierTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
+            <TextField fx:id="searchBox" layoutX="20.0" layoutY="91.0" prefHeight="25.0" prefWidth="340.0" promptText="Pesquisar..." />
+            <TableView fx:id="supplierTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
               <columns>
                   <TableColumn fx:id="supplierIdTableColumn" prefWidth="100.0" resizable="false" style="-fx-alignment: CENTER;" text="ID" />
                   <TableColumn fx:id="companyRegistryTableColumn" prefWidth="150.0" resizable="false" style="-fx-alignment: CENTER;" text="CNPJ" />
@@ -30,7 +32,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="944.0" layoutY="75.0" prefHeight="620.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+      <AnchorPane layoutX="944.0" layoutY="75.0" prefHeight="620.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
          <children>
             <VBox layoutX="58.0" layoutY="66.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
                <children>
@@ -44,7 +46,7 @@
                         <Label fx:id="supplierIdLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="278.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -57,7 +59,7 @@
                         <Label fx:id="companyRegistryLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="258.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -70,7 +72,7 @@
                         <Label fx:id="corporateNameLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="211.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -83,7 +85,7 @@
                         <Label fx:id="tradeNameLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="195.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -96,7 +98,7 @@
                         <Label fx:id="emailLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="251.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -109,7 +111,7 @@
                         <Label fx:id="phoneLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="236.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -122,7 +124,7 @@
                         <Label fx:id="zipCodeLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="268.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -135,7 +137,7 @@
                         <Label fx:id="addressLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="232.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -148,7 +150,7 @@
                         <Label fx:id="addressComplementLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="200.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -161,7 +163,7 @@
                         <Label fx:id="districtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="253.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -174,7 +176,7 @@
                         <Label fx:id="cityLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="248.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -187,7 +189,7 @@
                         <Label fx:id="federativeUnitLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="275.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -200,7 +202,7 @@
                         <Label fx:id="createdAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="244.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox>
@@ -213,7 +215,7 @@
                         <Label fx:id="updateAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="212.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>

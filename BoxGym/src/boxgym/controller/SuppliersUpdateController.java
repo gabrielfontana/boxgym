@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
+import boxgym.helper.AlertHelper;
 import boxgym.helper.LimitedTextField;
 import boxgym.model.Supplier;
 import java.net.URL;
@@ -59,6 +60,8 @@ public class SuppliersUpdateController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
+    
+    AlertHelper alert = new AlertHelper();
 
     private Supplier loadSupplier;
 
@@ -121,6 +124,7 @@ public class SuppliersUpdateController implements Initializable {
 
         SupplierDao supplierDao = new SupplierDao();
         supplierDao.update(supplier);
+        alert.informationAlert("", "O fornecedor foi editado com sucesso!", "");
         anchorPane.getScene().getWindow().hide();
     }
 
