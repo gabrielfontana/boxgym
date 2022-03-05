@@ -14,6 +14,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +103,7 @@ public class SuppliersController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initSupplierTableView();
         tableViewListeners();
+        //search();
     }
 
     @FXML
@@ -212,6 +215,41 @@ public class SuppliersController implements Initializable {
         return FXCollections.observableArrayList(supplierDao.read());
     }
 
+    private void search() {
+        FilteredList<Supplier> filteredData = new FilteredList<>(loadData(), p -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(supplier -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name field in your object with filter.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(supplier.getCorporateName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                    // Filter matches first name.
+                } else if (String.valueOf(supplier.getTradeName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                }
+
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Supplier> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(supplierTableView.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        supplierTableView.setItems(sortedData);
+    }
+    
     private void tableViewListeners() {
         supplierTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
