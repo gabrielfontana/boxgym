@@ -28,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
@@ -102,8 +103,8 @@ public class SuppliersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initSupplierTableView();
-        tableViewListeners();
-        //search();
+        tableViewListeners();        
+        searchBox.setOnKeyTyped((KeyEvent e) -> search());
     }
 
     @FXML
@@ -214,39 +215,46 @@ public class SuppliersController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
         return FXCollections.observableArrayList(supplierDao.read());
     }
+    
+    private boolean searchFindsSupplier(Supplier supplier, String searchText) {
+        String supplierId = String.valueOf(supplier.getSupplierId()).toLowerCase();
+        String companyRegistry = String.valueOf(supplier.getCompanyRegistry()).toLowerCase();
+        String corporateName = String.valueOf(supplier.getCorporateName()).toLowerCase();
+        String tradeName = String.valueOf(supplier.getTradeName()).toLowerCase();
+        String email = String.valueOf(supplier.getEmail()).toLowerCase();
+        String phone = String.valueOf(supplier.getPhone()).toLowerCase();
+        String zipCode = String.valueOf(supplier.getZipCode()).toLowerCase();
+        String address = String.valueOf(supplier.getAddress()).toLowerCase();
+        String addressComplement = String.valueOf(supplier.getAddressComplement()).toLowerCase();
+        String district = String.valueOf(supplier.getDistrict()).toLowerCase();
+        String city = String.valueOf(supplier.getCity()).toLowerCase();
+        String federativeUnit = String.valueOf(supplier.getFederativeUnit()).toLowerCase();
+        String createdAt = String.valueOf(supplier.getCreatedAt()).toLowerCase();
+        String updatedAt = String.valueOf(supplier.getUpdatedAt()).toLowerCase();
+
+        return (supplierId.contains(searchText)) || (companyRegistry.contains(searchText))
+                || (corporateName.contains(searchText)) || (tradeName.contains(searchText))
+                || (email.contains(searchText)) || (phone.contains(searchText))
+                || (zipCode.contains(searchText)) || (address.contains(searchText))
+                || (addressComplement.contains(searchText)) || (district.contains(searchText))
+                || (city.contains(searchText)) || (federativeUnit.contains(searchText))
+                || (createdAt.contains(searchText)) || (updatedAt.contains(searchText));
+    }
 
     private void search() {
         FilteredList<Supplier> filteredData = new FilteredList<>(loadData(), p -> true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
         searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(supplier -> {
-                // If filter text is empty, display all persons.
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
-                }
-
-                // Compare first name and last name field in your object with filter.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (String.valueOf(supplier.getCorporateName()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                    // Filter matches first name.
-                } else if (String.valueOf(supplier.getTradeName()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
-                }
-
-                return false; // Does not match.
+                }                
+                return searchFindsSupplier(supplier, newValue.toLowerCase());
             });
         });
 
-        // 3. Wrap the FilteredList in a SortedList. 
         SortedList<Supplier> sortedData = new SortedList<>(filteredData);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(supplierTableView.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
         supplierTableView.setItems(sortedData);
     }
     
