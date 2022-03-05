@@ -91,7 +91,7 @@ public class SuppliersController implements Initializable {
     private Label createdAtLabel;
 
     @FXML
-    private Label updateAtLabel;
+    private Label updatedAtLabel;
 
     private Supplier selected;
 
@@ -179,7 +179,7 @@ public class SuppliersController implements Initializable {
             cityLabel.setText("");
             federativeUnitLabel.setText("");
             createdAtLabel.setText("");
-            updateAtLabel.setText("");
+            updatedAtLabel.setText("");
         } else {
             supplierIdLabel.setText(String.valueOf(selected.getSupplierId()));
             companyRegistryLabel.setText(selected.getCompanyRegistry());
@@ -194,7 +194,7 @@ public class SuppliersController implements Initializable {
             cityLabel.setText(selected.getCity());
             federativeUnitLabel.setText(selected.getFederativeUnit());
             createdAtLabel.setText(selected.getCreatedAt());
-            updateAtLabel.setText(selected.getUpdatedAt());
+            updatedAtLabel.setText(selected.getUpdatedAt());
         }
     }
 

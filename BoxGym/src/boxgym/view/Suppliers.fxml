@@ -212,7 +212,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="updateAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="212.0" styleClass="data-label" />
+                        <Label fx:id="updatedAtLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="212.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
