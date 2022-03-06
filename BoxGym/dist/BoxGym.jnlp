@@ -8,10 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BoxGym.jar" size="45702" download="eager" />
+    <jar href="BoxGym.jar" size="47169" download="eager" />
     <jar href="lib\caelum-stella-core-2.1.2.jar" size="119794" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
     <jar href="lib\commons-dbutils-1.7.jar" size="97075" download="eager" />
+    <jar href="lib\commons-io-2.11.0.jar" size="327135" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
     <jar href="lib\fontawesomefx-commons-8.15.jar" size="20957" download="eager" />
     <jar href="lib\fontawesomefx-controls-8.15.jar" size="3369" download="eager" />
@@ -24,7 +25,9 @@
     <jar href="lib\fontawesomefx-octicons-4.3.0-5.jar" size="37157" download="eager" />
     <jar href="lib\fontawesomefx-weathericons-2.0.10-5.jar" size="83098" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\log4j-api-2.17.1.jar" size="301872" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.21.jar" size="827942" download="eager" />
+    <jar href="lib\poi-5.2.1.jar" size="2920161" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="boxgym.Main"  name="BoxGym" />
   <update check="always"/>

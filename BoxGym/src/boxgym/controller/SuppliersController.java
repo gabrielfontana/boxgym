@@ -103,7 +103,7 @@ public class SuppliersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initSupplierTableView();
-        tableViewListeners();        
+        tableViewListeners();
         searchBox.setOnKeyTyped((KeyEvent e) -> search());
     }
 
@@ -215,7 +215,7 @@ public class SuppliersController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
         return FXCollections.observableArrayList(supplierDao.read());
     }
-    
+
     private boolean searchFindsSupplier(Supplier supplier, String searchText) {
         String supplierId = String.valueOf(supplier.getSupplierId()).toLowerCase();
         String companyRegistry = String.valueOf(supplier.getCompanyRegistry()).toLowerCase();
@@ -248,7 +248,7 @@ public class SuppliersController implements Initializable {
             filteredData.setPredicate(supplier -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
-                }                
+                }
                 return searchFindsSupplier(supplier, newValue.toLowerCase());
             });
         });
@@ -257,7 +257,7 @@ public class SuppliersController implements Initializable {
         sortedData.comparatorProperty().bind(supplierTableView.comparatorProperty());
         supplierTableView.setItems(sortedData);
     }
-    
+
     private void tableViewListeners() {
         supplierTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -271,6 +271,21 @@ public class SuppliersController implements Initializable {
             final TableHeaderRow header = (TableHeaderRow) supplierTableView.lookup("TableHeaderRow");
             header.reorderingProperty().addListener((o, oldVal, newVal) -> header.setReordering(false));
         });
+    }
+
+    @FXML
+    void exportExcel(ActionEvent event) throws IOException {
+        SupplierDao supplierDao = new SupplierDao();
+        if (supplierDao.exportToExcel()) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+    }
+
+    @FXML
+    void generatePdf(ActionEvent event) {
+
     }
 
 }

@@ -2,6 +2,9 @@ package boxgym.dao;
 
 import boxgym.jdbc.ConnectionFactory;
 import boxgym.model.Supplier;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +14,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.dbutils.DbUtils;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class SupplierDao {
 
@@ -141,6 +147,66 @@ public class SupplierDao {
             ps.execute();
             return true;
         } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return false;
+    }
+
+    public boolean exportToExcel() {
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("Fornecedores");
+            HSSFRow header = sheet.createRow(0);
+
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("CNPJ");
+            header.createCell(2).setCellValue("Razão Social");
+            header.createCell(3).setCellValue("Nome Fantasia");
+            header.createCell(4).setCellValue("E-mail");
+            header.createCell(5).setCellValue("Telefone");
+            header.createCell(6).setCellValue("CEP");
+            header.createCell(7).setCellValue("Endereço");
+            header.createCell(8).setCellValue("Complemento");
+            header.createCell(9).setCellValue("Bairro");
+            header.createCell(10).setCellValue("Cidade");
+            header.createCell(11).setCellValue("UF");
+            header.createCell(12).setCellValue("Criação");
+            header.createCell(13).setCellValue("Modificação");
+
+            String sql = "SELECT * FROM supplier";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            int i = 1;
+            while (rs.next()) {
+                HSSFRow row = sheet.createRow(i);
+                row.createCell(0).setCellValue(Integer.toString(rs.getInt("supplierId")));
+                row.createCell(1).setCellValue(rs.getString("companyRegistry"));
+                row.createCell(2).setCellValue(rs.getString("corporateName"));
+                row.createCell(3).setCellValue(rs.getString("tradeName"));
+                row.createCell(4).setCellValue(rs.getString("email"));
+                row.createCell(5).setCellValue(rs.getString("phone"));
+                row.createCell(6).setCellValue(rs.getString("zipCode"));
+                row.createCell(7).setCellValue(rs.getString("address"));
+                row.createCell(8).setCellValue(rs.getString("addressComplement"));
+                row.createCell(9).setCellValue(rs.getString("district"));
+                row.createCell(10).setCellValue(rs.getString("city"));
+                row.createCell(11).setCellValue(rs.getString("federativeUnit"));
+                row.createCell(12).setCellValue(rs.getString("createdAt"));
+                row.createCell(13).setCellValue(rs.getString("updatedAt"));
+                i++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Public\\Fornecedores.xls");
+            workbook.write(fileOut);
+            fileOut.close();
+            return true;
+        } catch (SQLException | FileNotFoundException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DbUtils.closeQuietly(conn);
