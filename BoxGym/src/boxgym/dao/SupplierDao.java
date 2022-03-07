@@ -9,25 +9,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.dbutils.DbUtils;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class SupplierDao {
-
+    
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
-
+    
     public SupplierDao() {
         this.conn = new ConnectionFactory().getConnection();
     }
-
+    
     public boolean checkDuplicate(Supplier supplier) {
         try {
             String cnpj = supplier.getCompanyRegistry();
@@ -46,11 +57,11 @@ public class SupplierDao {
         }
         return false;
     }
-
+    
     public boolean create(Supplier supplier) {
         String sql = "INSERT INTO supplier (companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
+        
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, supplier.getCompanyRegistry());
@@ -75,7 +86,7 @@ public class SupplierDao {
         }
         return false;
     }
-
+    
     public List<Supplier> read() {
         List<Supplier> suppliersList = new ArrayList<>();
         String sql = "SELECT * FROM supplier";
@@ -109,10 +120,10 @@ public class SupplierDao {
         }
         return suppliersList;
     }
-
+    
     public boolean update(Supplier supplier) {
         String sql = "UPDATE supplier SET corporateName = ?, tradeName = ?, email = ?, phone = ?, zipCode = ?, address = ?, addressComplement = ?, district = ?, city = ?, federativeUnit = ? WHERE supplierId = ?;";
-
+        
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, supplier.getCorporateName());
@@ -137,10 +148,10 @@ public class SupplierDao {
         }
         return false;
     }
-
+    
     public boolean delete(Supplier supplier) {
         String sql = "DELETE FROM supplier WHERE supplierId = ?;";
-
+        
         try {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, supplier.getSupplierId());
@@ -155,54 +166,64 @@ public class SupplierDao {
         }
         return false;
     }
-
+    
     public boolean exportToExcel() {
         try {
-            HSSFWorkbook workbook = new HSSFWorkbook();
-            HSSFSheet sheet = workbook.createSheet("Fornecedores");
-            HSSFRow header = sheet.createRow(0);
-
-            header.createCell(0).setCellValue("ID");
-            header.createCell(1).setCellValue("CNPJ");
-            header.createCell(2).setCellValue("Razão Social");
-            header.createCell(3).setCellValue("Nome Fantasia");
-            header.createCell(4).setCellValue("E-mail");
-            header.createCell(5).setCellValue("Telefone");
-            header.createCell(6).setCellValue("CEP");
-            header.createCell(7).setCellValue("Endereço");
-            header.createCell(8).setCellValue("Complemento");
-            header.createCell(9).setCellValue("Bairro");
-            header.createCell(10).setCellValue("Cidade");
-            header.createCell(11).setCellValue("UF");
-            header.createCell(12).setCellValue("Criação");
-            header.createCell(13).setCellValue("Modificação");
-
+            int i;
+            
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Fornecedores");
+            
+            XSSFCellStyle infoStyle = excelStyle(workbook, "Arial", true, BorderStyle.NONE);
+            XSSFCellStyle headerStyle = excelStyle(workbook, "Arial", true, BorderStyle.THIN);
+            XSSFCellStyle defaultStyle = excelStyle(workbook, "Arial", false, BorderStyle.THIN);
+            
+            CellRangeAddress mergedRegion = new CellRangeAddress(0, 0, 0, 3);
+            sheet.addMergedRegion(mergedRegion);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            XSSFRow dateRow = sheet.createRow(0);
+            createStyledCell(dateRow, 0, "Relatório gerado em: " + formatter.format(date), infoStyle);
+            
+            List<String> fields = Arrays.asList("ID", "CNPJ", "Razão Social", "Nome Fantasia", "E-mail", "Telefone", "CEP",
+                    "Endereço", "Complemento", "Bairro", "Cidade", "UF", "Criação", "Modificação");
+            XSSFRow headerRow = sheet.createRow(2);
+            for (i = 0; i < fields.size(); i++) {
+                createStyledCell(headerRow, i, fields.get(i), headerStyle);
+            }
+            
             String sql = "SELECT * FROM supplier";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-
-            int i = 1;
+            
+            int contentRow = 3;
             while (rs.next()) {
-                HSSFRow row = sheet.createRow(i);
-                row.createCell(0).setCellValue(Integer.toString(rs.getInt("supplierId")));
-                row.createCell(1).setCellValue(rs.getString("companyRegistry"));
-                row.createCell(2).setCellValue(rs.getString("corporateName"));
-                row.createCell(3).setCellValue(rs.getString("tradeName"));
-                row.createCell(4).setCellValue(rs.getString("email"));
-                row.createCell(5).setCellValue(rs.getString("phone"));
-                row.createCell(6).setCellValue(rs.getString("zipCode"));
-                row.createCell(7).setCellValue(rs.getString("address"));
-                row.createCell(8).setCellValue(rs.getString("addressComplement"));
-                row.createCell(9).setCellValue(rs.getString("district"));
-                row.createCell(10).setCellValue(rs.getString("city"));
-                row.createCell(11).setCellValue(rs.getString("federativeUnit"));
-                row.createCell(12).setCellValue(rs.getString("createdAt"));
-                row.createCell(13).setCellValue(rs.getString("updatedAt"));
-                i++;
+                XSSFRow row = sheet.createRow(contentRow);
+                createStyledCell(row, 0, rs.getInt("supplierId"), defaultStyle);
+                createStyledCell(row, 1, rs.getString("companyRegistry"), defaultStyle);
+                createStyledCell(row, 2, rs.getString("corporateName"), defaultStyle);
+                createStyledCell(row, 3, rs.getString("tradeName"), defaultStyle);
+                createStyledCell(row, 4, rs.getString("email"), defaultStyle);
+                createStyledCell(row, 5, rs.getString("phone"), defaultStyle);
+                createStyledCell(row, 6, rs.getString("zipCode"), defaultStyle);
+                createStyledCell(row, 7, rs.getString("address"), defaultStyle);
+                createStyledCell(row, 8, rs.getString("addressComplement"), defaultStyle);
+                createStyledCell(row, 9, rs.getString("district"), defaultStyle);
+                createStyledCell(row, 10, rs.getString("city"), defaultStyle);
+                createStyledCell(row, 11, rs.getString("federativeUnit"), defaultStyle);
+                createStyledCell(row, 12, rs.getString("createdAt"), defaultStyle);
+                createStyledCell(row, 13, rs.getString("updatedAt"), defaultStyle);
+                contentRow++;
             }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Public\\Fornecedores.xls");
+            
+            for (i = 0; i < fields.size(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+            
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Public\\Fornecedores.xlsx");
             workbook.write(fileOut);
             fileOut.close();
+            workbook.close();
             return true;
         } catch (SQLException | FileNotFoundException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -215,5 +236,33 @@ public class SupplierDao {
         }
         return false;
     }
-
+    
+    private XSSFCellStyle excelStyle(XSSFWorkbook workbook, String fontName, boolean bold, BorderStyle border) {
+        XSSFFont font = workbook.createFont();
+        font.setFontName(fontName);
+        font.setBold(bold);
+        XSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        style.setBorderTop(border);
+        style.setBorderBottom(border);
+        style.setBorderLeft(border);
+        style.setBorderRight(border);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        return style;
+    }
+    
+    private XSSFCell createStyledCell(XSSFRow row, int cellIndex, String cellValue, XSSFCellStyle style) {
+        XSSFCell cell = row.createCell(cellIndex);
+        cell.setCellValue(cellValue);
+        cell.setCellStyle(style);
+        return cell;
+    }
+    
+    private XSSFCell createStyledCell(XSSFRow row, int cellIndex, Integer cellValue, XSSFCellStyle style) {
+        XSSFCell cell = row.createCell(cellIndex);
+        cell.setCellValue(cellValue);
+        cell.setCellStyle(style);
+        return cell;
+    }
+   
 }

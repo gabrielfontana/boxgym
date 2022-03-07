@@ -8,9 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BoxGym.jar" size="47176" download="eager" />
+    <jar href="BoxGym.jar" size="48592" download="eager" />
     <jar href="lib\caelum-stella-core-2.1.2.jar" size="119794" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
+    <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
+    <jar href="lib\commons-compress-1.21.jar" size="1018316" download="eager" />
     <jar href="lib\commons-dbutils-1.7.jar" size="97075" download="eager" />
     <jar href="lib\commons-io-2.11.0.jar" size="327135" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
@@ -29,6 +31,9 @@
     <jar href="lib\log4j-core-2.17.2.jar" size="1811090" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.21.jar" size="827942" download="eager" />
     <jar href="lib\poi-5.2.1.jar" size="2920161" download="eager" />
+    <jar href="lib\poi-ooxml-5.2.1.jar" size="1976984" download="eager" />
+    <jar href="lib\poi-ooxml-full-5.2.1.jar" size="13060074" download="eager" />
+    <jar href="lib\xmlbeans-5.0.3.jar" size="2191828" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="boxgym.Main"  name="BoxGym" />
   <update check="always"/>
