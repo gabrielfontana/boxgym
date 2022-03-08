@@ -13,15 +13,15 @@
 
 <AnchorPane prefHeight="695.0" prefWidth="1280.0" stylesheets="@../css/table-view-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.SuppliersController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="695.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="20.0" layoutY="27.0" text="Administrativo &gt; Fornecedores" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="searchBox" layoutX="20.0" layoutY="89.0" prefHeight="30.0" prefWidth="500.0" promptText="Pesquisar..." />
-            <HBox alignment="CENTER_RIGHT" layoutX="695.0" layoutY="89.0" prefHeight="30.0" prefWidth="225.0">
+            <TextField fx:id="searchBox" layoutX="20.0" layoutY="89.0" prefHeight="30.0" prefWidth="500.0" promptText="Pesquisar..." AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="90.0" />
+            <HBox alignment="CENTER_RIGHT" layoutX="695.0" layoutY="90.0" prefHeight="30.0" prefWidth="225.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#generatePdf" prefHeight="30.0" prefWidth="100.0" text="Gerar PDF">
                      <HBox.margin>
@@ -46,9 +46,9 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="944.0" layoutY="75.0" prefHeight="620.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+      <AnchorPane layoutX="944.0" layoutY="75.0" prefHeight="620.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="58.0" layoutY="66.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0">
+            <VBox AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
                <children>
                   <HBox>
                      <children>
@@ -236,17 +236,17 @@
             </VBox>
             <HBox alignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
-                  <Button fx:id="addSupplierButton" mnemonicParsing="false" onAction="#addSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #35e838;" text="Adicionar">
+                  <Button fx:id="addSupplierButton" mnemonicParsing="false" onAction="#addSupplier" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #35e838;" text="Adicionar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="updateSupplierButton" mnemonicParsing="false" onAction="#updateSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
+                  <Button fx:id="updateSupplierButton" mnemonicParsing="false" onAction="#updateSupplier" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteSupplierButton" mnemonicParsing="false" onAction="#deleteSupplier" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #f55138;" text="Excluir">
+                  <Button fx:id="deleteSupplierButton" mnemonicParsing="false" onAction="#deleteSupplier" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f55138;" text="Excluir">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
