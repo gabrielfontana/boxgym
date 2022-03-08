@@ -3,6 +3,7 @@ package boxgym.controller;
 import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.StageHelper;
 import boxgym.model.Supplier;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import java.io.File;
@@ -114,16 +115,10 @@ public class SuppliersController implements Initializable {
     @FXML
     void addSupplier(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(SUPPLIERS_ADD_VIEW));
-
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setTitle(SUPPLIERS_ADD_TITLE);
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
+            StageHelper sh = new StageHelper();
+            sh.openAddStage(SUPPLIERS_ADD_VIEW, SUPPLIERS_ADD_TITLE);
             initSupplierTableView();
-            supplierTableView.getSelectionModel().selectLast();
+            //supplierTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -145,10 +140,18 @@ public class SuppliersController implements Initializable {
                 stage.setResizable(false);
                 stage.setTitle("Editando Fornecedor");
                 stage.setScene(new Scene(root));
+//                stage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//                    @Override
+//                    public void changed(ObservableValue<? extends Boolean> b, Boolean oldValue, Boolean newValue) {
+//                        if (newValue == false) {
+//                            stage.close();
+//                        }
+//                    }
+//                });
                 stage.showAndWait();
 
                 initSupplierTableView();
-                supplierTableView.getSelectionModel().selectLast();
+                //supplierTableView.getSelectionModel().selectLast();
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -282,7 +285,7 @@ public class SuppliersController implements Initializable {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new ExtensionFilter("Pasta de Trabalho do Excel", "*.xlsx"));
         File file = chooser.showSaveDialog(new Stage());
-        
+
         SupplierDao supplierDao = new SupplierDao();
 
         if (file != null) {

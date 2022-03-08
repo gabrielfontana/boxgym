@@ -34,7 +34,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="supplierTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+            <TableView fx:id="productTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
                <columns>
                   <TableColumn prefWidth="100.0" resizable="false" style="-fx-alignment: CENTER;" />
                   <TableColumn prefWidth="150.0" resizable="false" style="-fx-alignment: CENTER;" />
@@ -49,17 +49,17 @@
          <children>
             <HBox alignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
-                  <Button fx:id="addProductButton" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #35e838;" text="Adicionar">
+                  <Button mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #35e838;" text="Adicionar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="updateProductButton" mnemonicParsing="false" onAction="#updateProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
+                  <Button mnemonicParsing="false" onAction="#updateProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteProductButton" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f55138;" text="Excluir">
+                  <Button mnemonicParsing="false" onAction="#deleteProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f55138;" text="Excluir">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
