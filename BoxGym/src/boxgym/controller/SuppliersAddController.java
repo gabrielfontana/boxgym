@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
@@ -95,8 +96,6 @@ public class SuppliersAddController implements Initializable {
 
         SupplierDao supplierDao = new SupplierDao();
 
-        AlertHelper alert = new AlertHelper();
-
         TextValidationHelper validation = new TextValidationHelper();
 
         validation.handleEmptyField(companyRegistryTextField.getText(), "'CNPJ'\n");
@@ -104,19 +103,19 @@ public class SuppliersAddController implements Initializable {
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage());
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage(), Alert.AlertType.WARNING);
         } else if (!(CnpjValidator.isValid(companyRegistryTextField.getText()))) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.");
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.", Alert.AlertType.WARNING);
         } else if (supplierDao.checkDuplicate(supplier)) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.");
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.", Alert.AlertType.WARNING);
             companyRegistryTextField.setText("");
         } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.", Alert.AlertType.WARNING);
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
-            alert.warningAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.", Alert.AlertType.WARNING);
         } else {
             supplierDao.create(supplier);
-            alert.informationAlert("", "O fornecedor foi cadastrado com sucesso!", "");
+            AlertHelper.customAlert("", "O fornecedor foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();            
         }
     }

@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -61,8 +62,6 @@ public class SuppliersUpdateController implements Initializable {
     @FXML
     private ComboBox<String> federativeUnitComboBox;
     
-    AlertHelper alert = new AlertHelper();
-
     private Supplier loadSupplier;
 
     public Supplier getLoadSupplier() {
@@ -124,7 +123,7 @@ public class SuppliersUpdateController implements Initializable {
 
         SupplierDao supplierDao = new SupplierDao();
         supplierDao.update(supplier);
-        alert.informationAlert("", "O fornecedor foi editado com sucesso!", "");
+        AlertHelper.customAlert("", "O fornecedor foi editado com sucesso!", "", Alert.AlertType.INFORMATION);
         anchorPane.getScene().getWindow().hide();
     }
 

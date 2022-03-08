@@ -5,6 +5,7 @@ import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.model.Supplier;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -29,6 +31,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
@@ -128,7 +132,7 @@ public class SuppliersController implements Initializable {
     @FXML
     void updateSupplier(ActionEvent event) {
         if (selected == null) {
-            alert.warningAlert("", "Selecione um fornecedor para editar.", "");
+            AlertHelper.customAlert("", "Selecione um fornecedor para editar.", "", Alert.AlertType.WARNING);
         } else {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
@@ -156,14 +160,14 @@ public class SuppliersController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
 
         if (selected == null) {
-            alert.warningAlert("", "Selecione um fornecedor para excluir!", "");
+            AlertHelper.customAlert("", "Selecione um fornecedor para excluir!", "", Alert.AlertType.WARNING);
         } else {
             alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
 
             if (alert.getResult().get() == ButtonType.YES) {
                 supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
-                alert.informationAlert("", "O fornecedor foi excluído com sucesso!", "");
+                AlertHelper.customAlert("", "O fornecedor foi excluído com sucesso!", "", Alert.AlertType.INFORMATION);
             }
         }
     }
@@ -275,11 +279,14 @@ public class SuppliersController implements Initializable {
 
     @FXML
     void exportExcel(ActionEvent event) throws IOException {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new ExtensionFilter("Pasta de Trabalho do Excel", "*.xlsx"));
+        File file = chooser.showSaveDialog(new Stage());
+        
         SupplierDao supplierDao = new SupplierDao();
-        if (supplierDao.exportToExcel()) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
+
+        if (file != null) {
+            supplierDao.createExcelFile(file.getAbsolutePath());
         }
     }
 

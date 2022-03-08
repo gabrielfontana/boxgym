@@ -18,10 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -167,10 +165,8 @@ public class SupplierDao {
         return false;
     }
     
-    public boolean exportToExcel() {
-        try {
-            int i;
-            
+    public boolean createExcelFile(String filePath) {
+        try {                        
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Fornecedores");
             
@@ -188,7 +184,7 @@ public class SupplierDao {
             List<String> fields = Arrays.asList("ID", "CNPJ", "Razão Social", "Nome Fantasia", "E-mail", "Telefone", "CEP",
                     "Endereço", "Complemento", "Bairro", "Cidade", "UF", "Criação", "Modificação");
             XSSFRow headerRow = sheet.createRow(2);
-            for (i = 0; i < fields.size(); i++) {
+            for (int i = 0; i < fields.size(); i++) {
                 createStyledCell(headerRow, i, fields.get(i), headerStyle);
             }
             
@@ -216,11 +212,11 @@ public class SupplierDao {
                 contentRow++;
             }
             
-            for (i = 0; i < fields.size(); i++) {
+            for (int i = 0; i < fields.size(); i++) {
                 sheet.autoSizeColumn(i);
             }
             
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Public\\Fornecedores.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(filePath);
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();

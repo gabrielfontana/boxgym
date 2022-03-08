@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,11 +33,10 @@ public class LoginController implements Initializable {
     }
 
     private void checkLogin() throws IOException {
-        AlertHelper alert = new AlertHelper();
         String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
 
         if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
-            alert.warningAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT);
+            AlertHelper.customAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT, Alert.AlertType.WARNING);
         } else if (userTextField.getText().equals(DEFAULT_LOGIN_USERNAME) && sha256hex.equals(DEFAULT_LOGIN_PASSWORD)) {
             loginButton.getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource(MAINSCREEN_VIEW));
@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
             s1.setScene(scene);
             s1.show();
         } else {
-            alert.warningAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_WRONG_CONTENT);
+            AlertHelper.customAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_WRONG_CONTENT, Alert.AlertType.WARNING);
             userTextField.setText("");
             passwordTextField.setText("");
         }
