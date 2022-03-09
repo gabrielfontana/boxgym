@@ -140,14 +140,6 @@ public class SuppliersController implements Initializable {
                 stage.setResizable(false);
                 stage.setTitle("Editando Fornecedor");
                 stage.setScene(new Scene(root));
-//                stage.focusedProperty().addListener(new ChangeListener<Boolean>() {
-//                    @Override
-//                    public void changed(ObservableValue<? extends Boolean> b, Boolean oldValue, Boolean newValue) {
-//                        if (newValue == false) {
-//                            stage.close();
-//                        }
-//                    }
-//                });
                 stage.showAndWait();
 
                 initSupplierTableView();

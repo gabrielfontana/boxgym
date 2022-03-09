@@ -1,5 +1,6 @@
 package boxgym.controller;
 
+import boxgym.helper.StageHelper;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,16 +32,10 @@ public class ProductsController implements Initializable {
     @FXML
     void addProduct(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/ProductsAdd.fxml"));
-
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setTitle("Adicionando Produto");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
-            //initProductTableView();
-            //productTableView.getSelectionModel().selectLast();
+            StageHelper sh = new StageHelper();
+            sh.openAddStage("/boxgym/view/ProductsAdd.fxml", "Adicionando Produto");
+            //initSupplierTableView();
+            //supplierTableView.getSelectionModel().selectLast();            
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }
