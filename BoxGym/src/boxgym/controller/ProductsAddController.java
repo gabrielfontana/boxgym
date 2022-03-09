@@ -31,12 +31,26 @@ public class ProductsAddController implements Initializable {
     @FXML
     private ImageView productImage;
     
-    private String imagePath;
     private byte[] imageBytes;
-    
+    private String imagePath;        
+    private FileInputStream fis;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setDefaultImage();
+    }
 
+    private void setDefaultImage() {
+        imagePath = "src/boxgym/img/default-no-image.png";
+        try {
+            //max_allowed_packet=32M (default -> max_allowed_packet=1M)            
+            fis = new FileInputStream(new File(imagePath));
+            imageBytes = IOUtils.toByteArray(fis);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ProductsAddController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ProductsAddController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -47,10 +61,9 @@ public class ProductsAddController implements Initializable {
         if (file != null) {
             imagePath = file.getAbsolutePath();
             productImage.setImage(new Image("file:///" + imagePath));
-            
             try {
-                //max_allowed_packet=32M
-                FileInputStream fis = new FileInputStream(new File(imagePath));
+                //max_allowed_packet=32M (default -> max_allowed_packet=1M)
+                fis = new FileInputStream(new File(imagePath));
                 imageBytes = IOUtils.toByteArray(fis);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ProductsAddController.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,7 +76,7 @@ public class ProductsAddController implements Initializable {
     @FXML
     void save(ActionEvent event) {
         Product product = new Product(imageBytes);
-        ProductDao productDao = new ProductDao();        
+        ProductDao productDao = new ProductDao();
         if (productDao.create(product)) {
             AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();
