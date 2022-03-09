@@ -23,7 +23,7 @@ CREATE TABLE `supplier` (
 
 CREATE TABLE `product` (
   `productId` INT(11) NOT NULL AUTO_INCREMENT,
-  `photo` MEDIUMBLOB NULL,
+  `image` MEDIUMBLOB NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`productId`)

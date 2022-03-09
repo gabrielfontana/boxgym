@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.ProductsAddController">
    <children>
-      <ImageView fx:id="productPhoto" fitHeight="160.0" fitWidth="160.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#choosePhoto" pickOnBounds="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <ImageView fx:id="productImage" fitHeight="160.0" fitWidth="160.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#chooseImage" pickOnBounds="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <image>
             <Image url="@../img/default-no-image.png" />
          </image>

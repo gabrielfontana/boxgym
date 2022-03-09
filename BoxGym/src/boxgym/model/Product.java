@@ -3,7 +3,7 @@ package boxgym.model;
 public class Product {
 
     private int productId; //Identificador
-    private byte[] photo; //Foto
+    private byte[] image; //Imagem
     private String createdAt; //Criado em
     private String updatedAt; //Atualizado em
 
@@ -12,14 +12,8 @@ public class Product {
     }
 
     //Construtor CREATE
-    public Product(byte[] photo) {
-        this.photo = photo;
-    }
-
-    //Construtor UPDATE
-    public Product(int productId, byte[] photo) {
-        this.productId = productId;
-        this.photo = photo;
+    public Product(byte[] image) {
+        this.image = image;
     }
 
     public int getProductId() {
@@ -30,12 +24,12 @@ public class Product {
         this.productId = productId;
     }
 
-    public byte[] getPhoto() {
-        return photo;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getCreatedAt() {
@@ -53,5 +47,5 @@ public class Product {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+ 
 }
