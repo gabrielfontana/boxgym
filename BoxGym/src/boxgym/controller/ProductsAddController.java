@@ -1,8 +1,8 @@
 package boxgym.controller;
 
 import boxgym.dao.ProductDao;
+import boxgym.helper.AlertHelper;
 import boxgym.model.Product;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -62,9 +63,10 @@ public class ProductsAddController implements Initializable {
     @FXML
     void save(ActionEvent event) {
         Product product = new Product(imageBytes);
-        ProductDao productDao = new ProductDao();
+        ProductDao productDao = new ProductDao();        
         if (productDao.create(product)) {
-            System.out.println("true");
+            AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
+            anchorPane.getScene().getWindow().hide();
         } else {
             System.out.println("false");
         }

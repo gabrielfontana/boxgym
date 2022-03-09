@@ -34,6 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SuppliersController implements Initializable {
@@ -107,6 +108,7 @@ public class SuppliersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        resetDetails();
         initSupplierTableView();
         tableViewListeners();
         searchBox.setOnKeyTyped((KeyEvent e) -> search());
@@ -118,7 +120,7 @@ public class SuppliersController implements Initializable {
             StageHelper sh = new StageHelper();
             sh.openAddStage(SUPPLIERS_ADD_VIEW, SUPPLIERS_ADD_TITLE);
             initSupplierTableView();
-            //supplierTableView.getSelectionModel().selectLast();
+            supplierTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,13 +139,14 @@ public class SuppliersController implements Initializable {
                 controller.setLoadSupplier(selected);
 
                 Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setResizable(false);
                 stage.setTitle("Editando Fornecedor");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
 
                 initSupplierTableView();
-                //supplierTableView.getSelectionModel().selectLast();
+                supplierTableView.getSelectionModel().selectLast();
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -167,7 +170,7 @@ public class SuppliersController implements Initializable {
         }
     }
 
-    private void showDetails() {
+    private void resetDetails() {
         if (selected == null) {
             supplierIdLabel.setText("");
             companyRegistryLabel.setText("");
@@ -183,7 +186,11 @@ public class SuppliersController implements Initializable {
             federativeUnitLabel.setText("");
             createdAtLabel.setText("");
             updatedAtLabel.setText("");
-        } else {
+        }
+    }
+
+    private void showDetails() {
+        if (selected != null) {
             supplierIdLabel.setText(String.valueOf(selected.getSupplierId()));
             companyRegistryLabel.setText(selected.getCompanyRegistry());
             corporateNameLabel.setText(selected.getCorporateName());
