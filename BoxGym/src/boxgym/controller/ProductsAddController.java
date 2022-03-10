@@ -77,7 +77,7 @@ public class ProductsAddController implements Initializable {
     void save(ActionEvent event) {
         Product product = new Product(imageBytes);
         ProductDao productDao = new ProductDao();
-        if (productDao.create(product)) {
+        if (productDao.createImage(product)) {
             AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();
         } else {

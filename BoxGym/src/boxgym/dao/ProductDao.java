@@ -21,13 +21,61 @@ public class ProductDao {
     public ProductDao() {
         this.conn = new ConnectionFactory().getConnection();
     }
+    
+    public boolean createImage(Product product) {
+        String sql = "INSERT INTO product (image) VALUES (?);";
+        
+        try {
+            ps = conn.prepareStatement(sql);          
+            ps.setBytes(1, product.getImage());
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return false;
+    }
+    
+    public List<Product> readImage() {
+        List<Product> productsList = new ArrayList<>();
+        String sql = "SELECT * FROM product";
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductId(rs.getInt("productId"));
+                p.setImage(rs.getBytes("image"));
+                productsList.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return productsList;
+    }
 
     public boolean create(Product product) {
-        String sql = "INSERT INTO product (image) VALUES (?);";
+        String sql = "INSERT INTO product (name, category, description, amount, minimumStock, costPrice, sellingPrice, image, supplierId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setBytes(1, product.getImage());
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getCategory());
+            ps.setString(3, product.getDescription());
+            ps.setInt(4, product.getAmount());
+            ps.setInt(5, product.getMinimumStock());
+            ps.setBigDecimal(6, product.getCostPrice());
+            ps.setBigDecimal(7, product.getSellingPrice());
+            ps.setBytes(8, product.getImage());
+            ps.setInt(9, product.getSupplierId());                  
             ps.execute();
             return true;
         } catch (SQLException ex) {
@@ -48,10 +96,18 @@ public class ProductDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setProductId(rs.getInt("productId"));
+                p.setProductId(rs.getInt("productId"));                                
+                p.setName(rs.getString("name"));
+                p.setCategory(rs.getString("category"));
+                p.setDescription(rs.getString("description"));
+                p.setAmount(rs.getInt("amount"));
+                p.setMinimumStock(rs.getInt("minimumStock"));
+                p.setCostPrice(rs.getBigDecimal("costPrice"));
+                p.setSellingPrice(rs.getBigDecimal("sellingPrice"));                                
                 p.setImage(rs.getBytes("image"));
                 p.setCreatedAt(rs.getString("createdAt"));
                 p.setUpdatedAt(rs.getString("updatedAt"));
+                p.setSupplierId(rs.getInt("supplierId")); 
                 productsList.add(p);
             }
         } catch (SQLException ex) {
@@ -62,5 +118,51 @@ public class ProductDao {
             DbUtils.closeQuietly(rs);
         }
         return productsList;
+    }
+    
+    public boolean update(Product product) {
+        String sql = "UPDATE product SET name = ?, category = ?, description = ?, amount = ?, minimumStock = ?, "
+                + "costPrice = ?, sellingPrice = ?, image = ?, supplierId = ? WHERE productId = ?;";
+        
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getCategory());
+            ps.setString(3, product.getDescription());
+            ps.setInt(4, product.getAmount());
+            ps.setInt(5, product.getMinimumStock());
+            ps.setBigDecimal(6, product.getCostPrice());
+            ps.setBigDecimal(7, product.getSellingPrice());
+            ps.setBytes(8, product.getImage());
+            ps.setInt(9, product.getSupplierId());
+            ps.setInt(10, product.getProductId());
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return false;
+    }
+    
+    public boolean delete(Product product) {
+        String sql = "DELETE FROM product WHERE productId = ?;";
+        
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, product.getProductId());
+            ps.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+        return false;
     }
 }

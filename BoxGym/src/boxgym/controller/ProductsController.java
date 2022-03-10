@@ -60,7 +60,7 @@ public class ProductsController implements Initializable {
             StageHelper sh = new StageHelper();
             sh.openAddStage("/boxgym/view/ProductsAdd.fxml", "Adicionando Produto");
             initProductTableView();
-            //productTableView.getSelectionModel().selectLast();
+            productTableView.getSelectionModel().selectLast();
         } catch (IOException ex) {
             Logger.getLogger(ProductsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +104,7 @@ public class ProductsController implements Initializable {
 
     private ObservableList<Product> loadData() {
         ProductDao productDao = new ProductDao();
-        return FXCollections.observableArrayList(productDao.read());
+        return FXCollections.observableArrayList(productDao.readImage());
     }
 
     private void tableViewListeners() {

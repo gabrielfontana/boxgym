@@ -22,7 +22,8 @@ public class Supplier {
     }
             
     //Construtor CREATE
-    public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone, String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
+    public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone, 
+            String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
         this.companyRegistry = companyRegistry;
         this.corporateName = corporateName;
         this.tradeName = tradeName;
@@ -37,7 +38,8 @@ public class Supplier {
     }
     
     //Construtor UPDATE
-    public Supplier(int supplierId, String corporateName, String tradeName, String email, String phone, String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
+    public Supplier(int supplierId, String corporateName, String tradeName, String email, String phone, 
+            String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
         this.supplierId = supplierId;
         this.corporateName = corporateName;
         this.tradeName = tradeName;
