@@ -63,6 +63,8 @@ public class SuppliersUpdateController implements Initializable {
     private ComboBox<String> federativeUnitComboBox;
     
     private Supplier loadSupplier;
+    
+    private boolean updated = false;
 
     public Supplier getLoadSupplier() {
         return loadSupplier;
@@ -71,9 +73,18 @@ public class SuppliersUpdateController implements Initializable {
     public void setLoadSupplier(Supplier loadSupplier) {
         this.loadSupplier = loadSupplier;
     }
+    
+    public boolean isUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(boolean updated) {
+        this.updated = updated;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setUpdated(false);
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
@@ -123,6 +134,7 @@ public class SuppliersUpdateController implements Initializable {
 
         SupplierDao supplierDao = new SupplierDao();
         supplierDao.update(supplier);
+        setUpdated(true);
         AlertHelper.customAlert("", "O fornecedor foi editado com sucesso!", "", Alert.AlertType.INFORMATION);
         anchorPane.getScene().getWindow().hide();
     }

@@ -117,10 +117,18 @@ public class SuppliersController implements Initializable {
     @FXML
     void addSupplier(ActionEvent event) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(SUPPLIERS_ADD_VIEW));
+            Parent root = (Parent) loader.load();
+
+            SuppliersAddController controller = loader.getController();
+
             StageHelper sh = new StageHelper();
-            sh.openAddStage(SUPPLIERS_ADD_VIEW, SUPPLIERS_ADD_TITLE);
-            initSupplierTableView();
-            supplierTableView.getSelectionModel().selectLast();
+            sh.createStage(SUPPLIERS_ADD_TITLE, root);
+
+            if (controller.isCreated()) {
+                initSupplierTableView();
+                supplierTableView.getSelectionModel().selectLast();
+            }
         } catch (IOException ex) {
             Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -138,15 +146,12 @@ public class SuppliersController implements Initializable {
                 SuppliersUpdateController controller = loader.getController();
                 controller.setLoadSupplier(selected);
 
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(false);
-                stage.setTitle("Editando Fornecedor");
-                stage.setScene(new Scene(root));
-                stage.showAndWait();
+                StageHelper sh = new StageHelper();
+                sh.createStage("Editando Fornecedor", root);
 
-                initSupplierTableView();
-                supplierTableView.getSelectionModel().selectLast();
+                if (controller.isUpdated()) {
+                    initSupplierTableView();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -161,10 +166,10 @@ public class SuppliersController implements Initializable {
             AlertHelper.customAlert("", "Selecione um fornecedor para excluir!", "", Alert.AlertType.WARNING);
         } else {
             alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
-
             if (alert.getResult().get() == ButtonType.YES) {
                 supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
+                resetDetails();
                 AlertHelper.customAlert("", "O fornecedor foi excluído com sucesso!", "", Alert.AlertType.INFORMATION);
             }
         }

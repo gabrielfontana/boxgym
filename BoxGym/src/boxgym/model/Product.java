@@ -13,9 +13,9 @@ public class Product {
     private BigDecimal costPrice; //Preço de custo
     private BigDecimal sellingPrice; //Preço de venda
     private byte[] image; //Imagem
+    private int supplierId; //Fornecedor
     private String createdAt; //Criado em
     private String updatedAt; //Atualizado em
-    private int supplierId; //Fornecedor
 
     public Product() {
 
@@ -126,6 +126,14 @@ public class Product {
     public void setImage(byte[] image) {
         this.image = image;
     }
+    
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
 
     public String getCreatedAt() {
         return createdAt;
@@ -141,14 +149,6 @@ public class Product {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public int getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
-    }
+    }   
  
 }

@@ -18,5 +18,14 @@ public class StageHelper {
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
+    
+    public void createStage(String title, Parent root){
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle(title);
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
 
 }

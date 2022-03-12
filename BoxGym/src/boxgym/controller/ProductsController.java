@@ -18,7 +18,9 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -57,10 +59,18 @@ public class ProductsController implements Initializable {
     @FXML
     void addProduct(ActionEvent event) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/ProductsAdd.fxml"));
+            Parent root = (Parent) loader.load();
+
+            ProductsAddController controller = loader.getController();
+
             StageHelper sh = new StageHelper();
-            sh.openAddStage("/boxgym/view/ProductsAdd.fxml", "Adicionando Produto");
-            initProductTableView();
-            productTableView.getSelectionModel().selectLast();
+            sh.createStage("Adicionando Produto", root);
+
+            if (controller.isCreated()) {
+                initProductTableView();
+                productTableView.getSelectionModel().selectLast();
+            }
         } catch (IOException ex) {
             Logger.getLogger(ProductsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,7 +93,7 @@ public class ProductsController implements Initializable {
         }
     }
 
-    private void showDetails() {        
+    private void showDetails() {
         try {
             if (selected != null) {
                 byte[] imgByteArray = selected.getImage();

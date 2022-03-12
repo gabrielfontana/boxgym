@@ -15,6 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +34,37 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     private ImageView productImage;
+
+    @FXML
+    private TextField nameTextField;
+
+    @FXML
+    private TextField categoryTextField;
+
+    @FXML
+    private TextArea descriptionTextArea;
+
+    @FXML
+    private Spinner<Integer> amountSpinner;
+
+    @FXML
+    private Spinner<Integer> minimumStockSpinner;
+
+    @FXML
+    private TextField costPriceTextField;
+
+    @FXML
+    private TextField sellingPriceTextField;
+    
+    private boolean created = false;
+
+    public boolean isCreated() {
+        return created;
+    }
+
+    public void setCreated(boolean created) {
+        this.created = created;
+    }
     
     private byte[] imageBytes;
     private String imagePath;        
@@ -37,7 +72,9 @@ public class ProductsAddController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setCreated(false);
         setDefaultImage();
+        initSpinner();
     }
 
     private void setDefaultImage() {
@@ -78,6 +115,7 @@ public class ProductsAddController implements Initializable {
         Product product = new Product(imageBytes);
         ProductDao productDao = new ProductDao();
         if (productDao.createImage(product)) {
+            setCreated(true);
             AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();
         } else {
@@ -88,6 +126,16 @@ public class ProductsAddController implements Initializable {
     @FXML
     void clear(ActionEvent event) {
 
+    }
+    
+    private void initSpinner() {
+        SpinnerValueFactory<Integer> amountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000);
+        amountValueFactory.setValue(0);
+        amountSpinner.setValueFactory(amountValueFactory);
+        
+        SpinnerValueFactory<Integer> minimumStockValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000);
+        minimumStockValueFactory.setValue(0);
+        minimumStockSpinner.setValueFactory(minimumStockValueFactory);
     }
 
 }

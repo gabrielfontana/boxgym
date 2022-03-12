@@ -61,9 +61,20 @@ public class SuppliersAddController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
+    
+    private boolean created = false;
 
+    public boolean isCreated() {
+        return created;
+    }
+
+    public void setCreated(boolean created) {
+        this.created = created;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setCreated(false);
         infoTitledPane.setCollapsible(false);
         addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
@@ -115,6 +126,7 @@ public class SuppliersAddController implements Initializable {
             AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.", Alert.AlertType.WARNING);
         } else {
             supplierDao.create(supplier);
+            setCreated(true);
             AlertHelper.customAlert("", "O fornecedor foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();            
         }
