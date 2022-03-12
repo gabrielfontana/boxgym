@@ -23,8 +23,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -53,10 +51,10 @@ public class ProductsAddController implements Initializable {
     private TextArea descriptionTextArea;
 
     @FXML
-    private Spinner<Integer> amountSpinner;
+    private TextField amountTextField;
 
     @FXML
-    private Spinner<Integer> minimumStockSpinner;
+    private TextField minimumStockTextField;
 
     @FXML
     private TextField costPriceTextField;
@@ -65,7 +63,7 @@ public class ProductsAddController implements Initializable {
     private TextField sellingPriceTextField;
 
     @FXML
-    private ComboBox<String> supplierNameComboBox;
+    private ComboBox<String> fkSupplierComboBox;
 
     private String imagePath;
     private FileInputStream fis;
@@ -85,20 +83,9 @@ public class ProductsAddController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setCreated(false);
-        initSpinner();
+        setCreated(false);     
         loadSupplierNameComboBox();
         setDefaultImage();
-    }
-
-    private void initSpinner() {
-        SpinnerValueFactory<Integer> amountValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000);
-        amountValueFactory.setValue(0);
-        amountSpinner.setValueFactory(amountValueFactory);
-
-        SpinnerValueFactory<Integer> minimumStockValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000);
-        minimumStockValueFactory.setValue(0);
-        minimumStockSpinner.setValueFactory(minimumStockValueFactory);
     }
 
     private void loadSupplierNameComboBox() {
@@ -106,14 +93,14 @@ public class ProductsAddController implements Initializable {
         for (String s : map.values()) {
             obsList.add(s);
         }
-        supplierNameComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
-        supplierNameComboBox.setItems(obsList);
+        fkSupplierComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
+        fkSupplierComboBox.setItems(obsList);
     }
 
     private int getKeyFromComboBox() {
         int fkSupplier = 0;
         for (Entry<Integer, String> entry : map.entrySet()) {
-            if (supplierNameComboBox.getSelectionModel().getSelectedItem().equals(entry.getValue())) {
+            if (fkSupplierComboBox.getSelectionModel().getSelectedItem().equals(entry.getValue())) {
                 fkSupplier = entry.getKey();
                 break;
             }
@@ -140,21 +127,33 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     void save(ActionEvent event) {
-        Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), amountSpinner.getValue(), minimumStockSpinner.getValue(),
-                new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()), imageBytes, getKeyFromComboBox());
-        ProductDao productDao = new ProductDao();
-        if (productDao.create(product)) {
+        if (fkSupplierComboBox.getItems().size() <= 0) {
+            System.out.println("Cadastre um fornecedor");
+        } else if (fkSupplierComboBox.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("Escolha um fornecedor");
+        } else {
+            Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()), 
+                    Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()), 
+                    imageBytes, getKeyFromComboBox());
+            ProductDao productDao = new ProductDao();
+            productDao.create(product);
             setCreated(true);
             AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
             anchorPane.getScene().getWindow().hide();
-        } else {
-            System.out.println("false");
         }
     }
 
     @FXML
     void clear(ActionEvent event) {
-
+        nameTextField.setText("");
+        categoryTextField.setText("");
+        descriptionTextArea.setText("");
+        amountTextField.setText("");
+        minimumStockTextField.setText("");
+        costPriceTextField.setText("");
+        sellingPriceTextField.setText("");
+        setDefaultImage();
+        fkSupplierComboBox.valueProperty().set(null);
     }
 
     private void convertImageToBytes(String path) {

@@ -31,7 +31,7 @@ CREATE TABLE `product` (
   `costPrice` DECIMAL(10, 2) NOT NULL,
   `sellingPrice` DECIMAL(10, 2) NOT NULL,
   `image` MEDIUMBLOB NULL,
-  `fkSupplier` INT(11),
+  `fkSupplier` INT(11) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`productId`),
