@@ -20,7 +20,13 @@ public class Supplier {
     public Supplier() {
 
     }
-            
+    
+    //Construtor da CombBox de Produtos
+    public Supplier(int supplierId, String tradeName) {
+        this.supplierId = supplierId;
+        this.tradeName = tradeName;
+    }
+        
     //Construtor CREATE
     public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone, 
             String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {

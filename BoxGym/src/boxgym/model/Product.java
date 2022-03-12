@@ -13,7 +13,7 @@ public class Product {
     private BigDecimal costPrice; //Preço de custo
     private BigDecimal sellingPrice; //Preço de venda
     private byte[] image; //Imagem
-    private int supplierId; //Fornecedor
+    private int fkSupplier; //Fornecedor
     private String createdAt; //Criado em
     private String updatedAt; //Atualizado em
 
@@ -21,14 +21,9 @@ public class Product {
 
     }
     
-    //Construtor CREATE Imagem
-    public Product(byte[] image) {
-        this.image = image;
-    }
-    
     //Construtor CREATE
     public Product(String name, String category, String description, int amount, int minimumStock, 
-            BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int supplierId) {
+            BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int fkSupplier) {
         this.name = name;
         this.category = category;
         this.description = description;
@@ -37,12 +32,12 @@ public class Product {
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.image = image;
-        this.supplierId = supplierId;
+        this.fkSupplier = fkSupplier;
     }
     
     //Construtor  UPDATE
     public Product(int productId, String name, String category, String description, int amount, int minimumStock, 
-            BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int supplierId) {
+            BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int fkSupplier) {
         this.productId = productId;
         this.name = name;
         this.category = category;
@@ -52,7 +47,7 @@ public class Product {
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.image = image;
-        this.supplierId = supplierId;
+        this.fkSupplier = fkSupplier;
     }
 
     public int getProductId() {
@@ -127,12 +122,12 @@ public class Product {
         this.image = image;
     }
     
-    public int getSupplierId() {
-        return supplierId;
+    public int getFkSupplier() {
+        return fkSupplier;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setFkSupplier(int fkSupplier) {
+        this.fkSupplier = fkSupplier;
     }
 
     public String getCreatedAt() {

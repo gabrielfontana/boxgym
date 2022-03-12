@@ -22,24 +22,6 @@ public class ProductDao {
         this.conn = new ConnectionFactory().getConnection();
     }
     
-    public boolean createImage(Product product) {
-        String sql = "INSERT INTO product (image) VALUES (?);";
-        
-        try {
-            ps = conn.prepareStatement(sql);          
-            ps.setBytes(1, product.getImage());
-            ps.execute();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbUtils.closeQuietly(conn);
-            DbUtils.closeQuietly(ps);
-            DbUtils.closeQuietly(rs);
-        }
-        return false;
-    }
-    
     public List<Product> readImage() {
         List<Product> productsList = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -63,7 +45,7 @@ public class ProductDao {
     }
 
     public boolean create(Product product) {
-        String sql = "INSERT INTO product (name, category, description, amount, minimumStock, costPrice, sellingPrice, image, supplierId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO product (name, category, description, amount, minimumStock, costPrice, sellingPrice, image, fkSupplier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -75,7 +57,7 @@ public class ProductDao {
             ps.setBigDecimal(6, product.getCostPrice());
             ps.setBigDecimal(7, product.getSellingPrice());
             ps.setBytes(8, product.getImage());
-            ps.setInt(9, product.getSupplierId());                  
+            ps.setInt(9, product.getFkSupplier());                  
             ps.execute();
             return true;
         } catch (SQLException ex) {
@@ -107,7 +89,7 @@ public class ProductDao {
                 p.setImage(rs.getBytes("image"));
                 p.setCreatedAt(rs.getString("createdAt"));
                 p.setUpdatedAt(rs.getString("updatedAt"));
-                p.setSupplierId(rs.getInt("supplierId")); 
+                p.setFkSupplier(rs.getInt("fkSupplier")); 
                 productsList.add(p);
             }
         } catch (SQLException ex) {
@@ -122,7 +104,7 @@ public class ProductDao {
     
     public boolean update(Product product) {
         String sql = "UPDATE product SET name = ?, category = ?, description = ?, amount = ?, minimumStock = ?, "
-                + "costPrice = ?, sellingPrice = ?, image = ?, supplierId = ? WHERE productId = ?;";
+                + "costPrice = ?, sellingPrice = ?, image = ?, fkSupplier = ? WHERE productId = ?;";
         
         try {
             ps = conn.prepareStatement(sql);
@@ -134,7 +116,7 @@ public class ProductDao {
             ps.setBigDecimal(6, product.getCostPrice());
             ps.setBigDecimal(7, product.getSellingPrice());
             ps.setBytes(8, product.getImage());
-            ps.setInt(9, product.getSupplierId());
+            ps.setInt(9, product.getFkSupplier());
             ps.setInt(10, product.getProductId());
             ps.execute();
             return true;
