@@ -24,7 +24,7 @@ public class ProductDao {
     
     public List<Product> readImage() {
         List<Product> productsList = new ArrayList<>();
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM `product`";
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -45,7 +45,7 @@ public class ProductDao {
     }
 
     public boolean create(Product product) {
-        String sql = "INSERT INTO product (name, category, description, amount, minimumStock, costPrice, sellingPrice, image, fkSupplier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO `product` (`name`, `category`, `description`, `amount`, `minimumStock`, `costPrice`, `sellingPrice`, `image`, `fkSupplier`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -72,7 +72,7 @@ public class ProductDao {
     
     public List<Product> read() {
         List<Product> productsList = new ArrayList<>();
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM `product`";
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -103,8 +103,8 @@ public class ProductDao {
     }
     
     public boolean update(Product product) {
-        String sql = "UPDATE product SET name = ?, category = ?, description = ?, amount = ?, minimumStock = ?, "
-                + "costPrice = ?, sellingPrice = ?, image = ?, fkSupplier = ? WHERE productId = ?;";
+        String sql = "UPDATE `product` SET `name` = ?, `category` = ?, `description` = ?, `amount` = ?, `minimumStock` = ?, "
+                + "`costPrice` = ?, `sellingPrice` = ?, `image` = ?, `fkSupplier` = ? WHERE `productId` = ?;";
         
         try {
             ps = conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class ProductDao {
     }
     
     public boolean delete(Product product) {
-        String sql = "DELETE FROM product WHERE productId = ?;";
+        String sql = "DELETE FROM `product` WHERE `productId` = ?;";
         
         try {
             ps = conn.prepareStatement(sql);

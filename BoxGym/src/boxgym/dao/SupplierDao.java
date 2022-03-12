@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,7 +41,7 @@ public class SupplierDao {
     public boolean checkDuplicate(Supplier supplier) {
         try {
             String cnpj = supplier.getCompanyRegistry();
-            String sql = "SELECT companyRegistry FROM supplier WHERE companyRegistry = '" + cnpj + "';";
+            String sql = "SELECT `companyRegistry` FROM `supplier` WHERE `companyRegistry` = '" + cnpj + "';";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -59,7 +58,7 @@ public class SupplierDao {
     }
 
     public boolean create(Supplier supplier) {
-        String sql = "INSERT INTO supplier (companyRegistry, corporateName, tradeName, email, phone, zipCode, address, addressComplement, district, city, federativeUnit) "
+        String sql = "INSERT INTO `supplier` (`companyRegistry`, `corporateName`, `tradeName`, `email`, `phone`, `zipCode`, `address`, `addressComplement`, `district`, `city`, `federativeUnit`) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
@@ -89,7 +88,7 @@ public class SupplierDao {
 
     public LinkedHashMap<Integer, String> readId() {
         LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
-        String sql = "SELECT supplierId, tradeName FROM supplier;";
+        String sql = "SELECT `supplierId`, `tradeName` FROM `supplier`;";
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -110,7 +109,7 @@ public class SupplierDao {
 
     public List<Supplier> read() {
         List<Supplier> suppliersList = new ArrayList<>();
-        String sql = "SELECT * FROM supplier;";
+        String sql = "SELECT * FROM `supplier`;";
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -143,7 +142,7 @@ public class SupplierDao {
     }
 
     public boolean update(Supplier supplier) {
-        String sql = "UPDATE supplier SET corporateName = ?, tradeName = ?, email = ?, phone = ?, zipCode = ?, address = ?, addressComplement = ?, district = ?, city = ?, federativeUnit = ? WHERE supplierId = ?;";
+        String sql = "UPDATE `supplier` SET `corporateName` = ?, `tradeName` = ?, `email` = ?, `phone` = ?, `zipCode` = ?, `address` = ?, `addressComplement` = ?, `district` = ?, `city` = ?, `federativeUnit` = ? WHERE `supplierId` = ?;";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -171,7 +170,7 @@ public class SupplierDao {
     }
 
     public boolean delete(Supplier supplier) {
-        String sql = "DELETE FROM supplier WHERE supplierId = ?;";
+        String sql = "DELETE FROM `supplier` WHERE `supplierId` = ?;";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -211,7 +210,7 @@ public class SupplierDao {
                 createStyledCell(headerRow, i, fields.get(i), headerStyle);
             }
 
-            String sql = "SELECT * FROM supplier";
+            String sql = "SELECT * FROM `supplier`";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
