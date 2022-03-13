@@ -61,9 +61,9 @@ public class SuppliersUpdateController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
-    
+
     private Supplier loadSupplier;
-    
+
     private boolean updated = false;
 
     public Supplier getLoadSupplier() {
@@ -73,7 +73,7 @@ public class SuppliersUpdateController implements Initializable {
     public void setLoadSupplier(Supplier loadSupplier) {
         this.loadSupplier = loadSupplier;
     }
-    
+
     public boolean isUpdated() {
         return updated;
     }

@@ -20,15 +20,15 @@ public class Supplier {
     public Supplier() {
 
     }
-    
+
     //Construtor da CombBox de Produtos
     public Supplier(int supplierId, String tradeName) {
         this.supplierId = supplierId;
         this.tradeName = tradeName;
     }
-        
+
     //Construtor CREATE
-    public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone, 
+    public Supplier(String companyRegistry, String corporateName, String tradeName, String email, String phone,
             String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
         this.companyRegistry = companyRegistry;
         this.corporateName = corporateName;
@@ -42,9 +42,9 @@ public class Supplier {
         this.city = city;
         this.federativeUnit = federativeUnit;
     }
-    
+
     //Construtor UPDATE
-    public Supplier(int supplierId, String corporateName, String tradeName, String email, String phone, 
+    public Supplier(int supplierId, String corporateName, String tradeName, String email, String phone,
             String zipCode, String address, String addressComplement, String district, String city, String federativeUnit) {
         this.supplierId = supplierId;
         this.corporateName = corporateName;
@@ -58,7 +58,7 @@ public class Supplier {
         this.city = city;
         this.federativeUnit = federativeUnit;
     }
-        
+
     public int getSupplierId() {
         return supplierId;
     }
@@ -170,7 +170,7 @@ public class Supplier {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-        
+
     @Override
     public String toString() {
         return "\nsupplierId = " + supplierId

@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
 public class AlertHelper {
-    Optional<ButtonType> result;
+
+    private Optional<ButtonType> result;
 
     public Optional<ButtonType> getResult() {
         return result;
@@ -29,16 +30,16 @@ public class AlertHelper {
         alert.setTitle(title);
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
-        
+
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
-        
+
         Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
         yesButton.setDefaultButton(false);
-       
+
         Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
-        noButton.setDefaultButton(true); 
-        
+        noButton.setDefaultButton(true);
+
         result = alert.showAndWait();
     }
 }

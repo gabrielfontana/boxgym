@@ -20,9 +20,9 @@ public class Product {
     public Product() {
 
     }
-    
+
     //Construtor CREATE
-    public Product(String name, String category, String description, int amount, int minimumStock, 
+    public Product(String name, String category, String description, int amount, int minimumStock,
             BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int fkSupplier) {
         this.name = name;
         this.category = category;
@@ -34,9 +34,9 @@ public class Product {
         this.image = image;
         this.fkSupplier = fkSupplier;
     }
-    
+
     //Construtor  UPDATE
-    public Product(int productId, String name, String category, String description, int amount, int minimumStock, 
+    public Product(int productId, String name, String category, String description, int amount, int minimumStock,
             BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int fkSupplier) {
         this.productId = productId;
         this.name = name;
@@ -121,7 +121,7 @@ public class Product {
     public void setImage(byte[] image) {
         this.image = image;
     }
-    
+
     public int getFkSupplier() {
         return fkSupplier;
     }
@@ -144,6 +144,6 @@ public class Product {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
-    }   
- 
+    }
+
 }

@@ -13,9 +13,10 @@ import javafx.stage.Stage;
 import org.apache.commons.io.IOUtils;
 
 public class ImageHelper {
+
     private String imagePath;
     private FileInputStream fis;
-    private byte[] imageBytes; 
+    private byte[] imageBytes;
 
     public byte[] getImageBytes() {
         return imageBytes;
@@ -29,7 +30,7 @@ public class ImageHelper {
         imagePath = "src/boxgym/img/default-no-image.png";
         convertImageToBytes(imagePath);
     }
-    
+
     public void choose(ImageView productImage) {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagem", "*.jpg", "*.png", "*.jpeg"));
@@ -40,7 +41,7 @@ public class ImageHelper {
             convertImageToBytes(imagePath);
         }
     }
-    
+
     public void convertImageToBytes(String path) {
         try {
             //max_allowed_packet=32M (default -> max_allowed_packet=1M)

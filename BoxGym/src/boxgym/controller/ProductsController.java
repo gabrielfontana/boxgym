@@ -106,7 +106,7 @@ public class ProductsController implements Initializable {
     private Label updatedAtLabel;
 
     private Product selected;
-    
+
     AlertHelper alert = new AlertHelper();
 
     @Override
@@ -168,7 +168,7 @@ public class ProductsController implements Initializable {
         if (selected == null) {
             AlertHelper.customAlert("", "Selecione um produto para excluir!", "", Alert.AlertType.WARNING);
         } else {
-            alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o produto '" + selected.getName()+ "'?", "Esta ação é irreversível!");
+            alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o produto '" + selected.getName() + "'?", "Esta ação é irreversível!");
             if (alert.getResult().get() == ButtonType.YES) {
                 productDao.delete(selected);
                 productTableView.setItems(loadData());
@@ -256,7 +256,7 @@ public class ProductsController implements Initializable {
                 || (fkSupplier.contains(searchText)) || (createdAt.contains(searchText))
                 || (updatedAt.contains(searchText));
     }
-    
+
     private void search() {
         FilteredList<Product> filteredData = new FilteredList<>(loadData(), p -> true);
 

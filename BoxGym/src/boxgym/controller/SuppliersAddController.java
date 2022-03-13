@@ -61,7 +61,7 @@ public class SuppliersAddController implements Initializable {
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
-    
+
     private boolean created = false;
 
     public boolean isCreated() {
@@ -71,7 +71,7 @@ public class SuppliersAddController implements Initializable {
     public void setCreated(boolean created) {
         this.created = created;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setCreated(false);
@@ -128,7 +128,7 @@ public class SuppliersAddController implements Initializable {
             supplierDao.create(supplier);
             setCreated(true);
             AlertHelper.customAlert("", "O fornecedor foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
-            anchorPane.getScene().getWindow().hide();            
+            anchorPane.getScene().getWindow().hide();
         }
     }
 

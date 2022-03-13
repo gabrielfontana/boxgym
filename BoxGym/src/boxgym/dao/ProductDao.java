@@ -35,7 +35,7 @@ public class ProductDao {
             ps.setBigDecimal(6, product.getCostPrice());
             ps.setBigDecimal(7, product.getSellingPrice());
             ps.setBytes(8, product.getImage());
-            ps.setInt(9, product.getFkSupplier());                  
+            ps.setInt(9, product.getFkSupplier());
             ps.execute();
             return true;
         } catch (SQLException ex) {
@@ -47,7 +47,7 @@ public class ProductDao {
         }
         return false;
     }
-    
+
     public List<Product> read() {
         List<Product> productsList = new ArrayList<>();
         String sql = "SELECT * FROM `product`";
@@ -56,16 +56,16 @@ public class ProductDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setProductId(rs.getInt("productId"));                                
+                p.setProductId(rs.getInt("productId"));
                 p.setName(rs.getString("name"));
                 p.setCategory(rs.getString("category"));
                 p.setDescription(rs.getString("description"));
                 p.setAmount(rs.getInt("amount"));
                 p.setMinimumStock(rs.getInt("minimumStock"));
                 p.setCostPrice(rs.getBigDecimal("costPrice"));
-                p.setSellingPrice(rs.getBigDecimal("sellingPrice"));                                
+                p.setSellingPrice(rs.getBigDecimal("sellingPrice"));
                 p.setImage(rs.getBytes("image"));
-                p.setFkSupplier(rs.getInt("fkSupplier")); 
+                p.setFkSupplier(rs.getInt("fkSupplier"));
                 p.setCreatedAt(rs.getString("createdAt"));
                 p.setUpdatedAt(rs.getString("updatedAt"));
                 productsList.add(p);
@@ -79,11 +79,11 @@ public class ProductDao {
         }
         return productsList;
     }
-    
+
     public boolean update(Product product) {
         String sql = "UPDATE `product` SET `name` = ?, `category` = ?, `description` = ?, `amount` = ?, `minimumStock` = ?, "
                 + "`costPrice` = ?, `sellingPrice` = ?, `image` = ?, `fkSupplier` = ? WHERE `productId` = ?;";
-        
+
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, product.getName());
@@ -107,10 +107,10 @@ public class ProductDao {
         }
         return false;
     }
-    
+
     public boolean delete(Product product) {
         String sql = "DELETE FROM `product` WHERE `productId` = ?;";
-        
+
         try {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, product.getProductId());

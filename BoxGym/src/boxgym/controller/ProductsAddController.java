@@ -25,13 +25,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class ProductsAddController implements Initializable {
-    
+
     SupplierDao dao = new SupplierDao();
     LinkedHashMap<Integer, String> map = dao.readId();
     ImageHelper ih = new ImageHelper();
-    
+
     private boolean created = false;
-    
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -61,14 +61,14 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     private ComboBox<String> fkSupplierComboBox;
-        
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setCreated(false);     
+        setCreated(false);
         loadSupplierNameComboBox();
         ih.setDefaultImage();
     }
-    
+
     public boolean isCreated() {
         return created;
     }
@@ -109,8 +109,8 @@ public class ProductsAddController implements Initializable {
         } else if (fkSupplierComboBox.getSelectionModel().getSelectedItem() == null) {
             System.out.println("Escolha um fornecedor");
         } else {
-            Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()), 
-                    Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()), 
+            Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()),
+                    Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()),
                     ih.getImageBytes(), getKeyFromComboBox());
             ProductDao productDao = new ProductDao();
             productDao.create(product);

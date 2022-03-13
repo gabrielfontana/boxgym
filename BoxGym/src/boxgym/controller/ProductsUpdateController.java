@@ -45,9 +45,9 @@ public class ProductsUpdateController implements Initializable {
 
     @FXML
     private ComboBox<String> fkSupplierComboBox;
-    
+
     private Product loadProduct;
-    
+
     private boolean updated = false;
 
     public Product getLoadProduct() {
@@ -73,7 +73,7 @@ public class ProductsUpdateController implements Initializable {
             initProduct();
         });
     }
-    
+
     private void initProduct() {
         nameTextField.setText(loadProduct.getName());
         categoryTextField.setText(loadProduct.getCategory());
@@ -95,5 +95,5 @@ public class ProductsUpdateController implements Initializable {
     @FXML
     private void clear(ActionEvent event) {
     }
-    
+
 }
