@@ -21,28 +21,6 @@ public class ProductDao {
     public ProductDao() {
         this.conn = new ConnectionFactory().getConnection();
     }
-    
-    public List<Product> readImage() {
-        List<Product> productsList = new ArrayList<>();
-        String sql = "SELECT * FROM `product`";
-        try {
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Product p = new Product();
-                p.setProductId(rs.getInt("productId"));
-                p.setImage(rs.getBytes("image"));
-                productsList.add(p);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbUtils.closeQuietly(conn);
-            DbUtils.closeQuietly(ps);
-            DbUtils.closeQuietly(rs);
-        }
-        return productsList;
-    }
 
     public boolean create(Product product) {
         String sql = "INSERT INTO `product` (`name`, `category`, `description`, `amount`, `minimumStock`, `costPrice`, `sellingPrice`, `image`, `fkSupplier`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -87,9 +65,9 @@ public class ProductDao {
                 p.setCostPrice(rs.getBigDecimal("costPrice"));
                 p.setSellingPrice(rs.getBigDecimal("sellingPrice"));                                
                 p.setImage(rs.getBytes("image"));
+                p.setFkSupplier(rs.getInt("fkSupplier")); 
                 p.setCreatedAt(rs.getString("createdAt"));
                 p.setUpdatedAt(rs.getString("updatedAt"));
-                p.setFkSupplier(rs.getInt("fkSupplier")); 
                 productsList.add(p);
             }
         } catch (SQLException ex) {

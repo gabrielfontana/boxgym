@@ -119,7 +119,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label text="Fornecedor">
+                        <Label text="Fornecedor*">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
