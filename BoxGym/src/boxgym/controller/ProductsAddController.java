@@ -4,18 +4,13 @@ import static boxgym.Constant.*;
 import boxgym.dao.ProductDao;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.ImageHelper;
 import boxgym.model.Product;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,16 +20,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import org.apache.commons.io.IOUtils;
 
 public class ProductsAddController implements Initializable {
-
+    
+    SupplierDao dao = new SupplierDao();
+    LinkedHashMap<Integer, String> map = dao.readId();
+    ImageHelper ih = new ImageHelper();
+    
+    private boolean created = false;
+    
     @FXML
     private AnchorPane anchorPane;
 
@@ -64,28 +61,20 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     private ComboBox<String> fkSupplierComboBox;
-
-    private String imagePath;
-    private FileInputStream fis;
-    private byte[] imageBytes;
-    private boolean created = false;
-
+        
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setCreated(false);     
+        loadSupplierNameComboBox();
+        ih.setDefaultImage();
+    }
+    
     public boolean isCreated() {
         return created;
     }
 
     public void setCreated(boolean created) {
         this.created = created;
-    }
-
-    SupplierDao dao = new SupplierDao();
-    LinkedHashMap<Integer, String> map = dao.readId();
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        setCreated(false);     
-        loadSupplierNameComboBox();
-        setDefaultImage();
     }
 
     private void loadSupplierNameComboBox() {
@@ -108,21 +97,9 @@ public class ProductsAddController implements Initializable {
         return fkSupplier;
     }
 
-    private void setDefaultImage() {
-        imagePath = "src/boxgym/img/default-no-image.png";
-        convertImageToBytes(imagePath);
-    }
-
     @FXML
     void chooseImage(MouseEvent event) {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagem", "*.jpg", "*.png", "*.jpeg"));
-        File file = chooser.showOpenDialog(new Stage());
-        if (file != null) {
-            imagePath = file.getAbsolutePath();
-            productImage.setImage(new Image("file:///" + imagePath));
-            convertImageToBytes(imagePath);
-        }
+        ih.choose(productImage);
     }
 
     @FXML
@@ -134,7 +111,7 @@ public class ProductsAddController implements Initializable {
         } else {
             Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()), 
                     Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()), 
-                    imageBytes, getKeyFromComboBox());
+                    ih.getImageBytes(), getKeyFromComboBox());
             ProductDao productDao = new ProductDao();
             productDao.create(product);
             setCreated(true);
@@ -152,20 +129,8 @@ public class ProductsAddController implements Initializable {
         minimumStockTextField.setText("");
         costPriceTextField.setText("");
         sellingPriceTextField.setText("");
-        setDefaultImage();
+        ih.setDefaultImage();
         fkSupplierComboBox.valueProperty().set(null);
-    }
-
-    private void convertImageToBytes(String path) {
-        try {
-            //max_allowed_packet=32M (default -> max_allowed_packet=1M)
-            fis = new FileInputStream(new File(path));
-            imageBytes = IOUtils.toByteArray(fis);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ProductsAddController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ProductsAddController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }
