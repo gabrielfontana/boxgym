@@ -72,7 +72,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label onMouseClicked="#register" styleClass="register-button" text="Cadastre-se">
+                  <Label fx:id="registerLabel" onMouseClicked="#register" styleClass="register-button" text="Cadastre-se">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

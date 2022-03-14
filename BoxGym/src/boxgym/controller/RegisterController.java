@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import static boxgym.Constant.*;
 import com.jfoenix.controls.JFXButton;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,6 +21,9 @@ public class RegisterController implements Initializable {
 
     @FXML
     private AnchorPane content;
+
+    @FXML
+    private MaterialDesignIconView backArrow;
 
     @FXML
     private TextField userTextField;
@@ -34,6 +39,7 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        buttonProperties();
     }
 
     @FXML
@@ -46,5 +52,12 @@ public class RegisterController implements Initializable {
 
     @FXML
     void register(ActionEvent event) {
+
+    }
+
+    private void buttonProperties() {
+        registerButton.setDefaultButton(true);
+        registerButton.setCursor(Cursor.HAND);
+        backArrow.setCursor(Cursor.HAND);
     }
 }

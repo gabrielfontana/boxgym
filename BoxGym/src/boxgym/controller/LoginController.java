@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -33,9 +35,12 @@ public class LoginController implements Initializable {
     @FXML
     private JFXButton loginButton;
 
+    @FXML
+    private Label registerLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loginButton.setDefaultButton(true);
+        buttonProperties();
     }
 
     private void checkLogin() throws IOException {
@@ -70,6 +75,12 @@ public class LoginController implements Initializable {
         content.getChildren().removeAll();
         content.getChildren().setAll(fxml);
         boxgym.Main.stage.setTitle("Cadastro");
+    }
+
+    private void buttonProperties() {
+        loginButton.setDefaultButton(true);
+        loginButton.setCursor(Cursor.HAND);
+        registerLabel.setCursor(Cursor.HAND);
     }
 
 }
