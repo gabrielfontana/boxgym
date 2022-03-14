@@ -1,38 +1,44 @@
-.border-pane {
+.main-anchor-pane {
     -fx-background-color: #303138;
 }
 
-.left-pane {
-    -fx-background-color: #ffffff;
+.left-anchor-pane {
+    -fx-background-color: #F9A620;
 }
 
-.right-pane {
-    -fx-background-color: #303138;
+.right-anchor-pane {
+    -fx-background-color: #f7f3f2;
 }
 
 .icon-label {
-    -fx-background-color:  #363b41;
+    -fx-background-color: #e8ddda;
 }
 
 .icon {
-    -fx-fill: #ffffff;
+    -fx-fill: #251819;
 }
 
 .txt-field {
-    -fx-background-color: #3b4148;
+    -fx-background-color: #f0e8e6;
     -fx-background-radius: 0px;
-    -fx-prompt-text-fill: #adadad;
-    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #A6777C;
+    -fx-text-fill: #251819;
 }
 
 .txt-field:focused {
-    -fx-background-color: #363b41;
-    -fx-background-radius: 0px;
-    -fx-prompt-text-fill: #ffffff;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #e8ddda;
 }
 
 .login-btn {
-    -fx-background-color: #8a2f5b;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #F9A620;
+    -fx-text-fill: #251819;
+}
+
+.register-label {
+    -fx-text-fill: #251819;
+}
+
+.register-button {
+    -fx-text-fill: #251819;
+    -fx-font-weight: bold; 
 }

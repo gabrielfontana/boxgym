@@ -9,10 +9,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Stage stage;
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(LOGIN_VIEW)); //Carrega FXML          
+        Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml")); //Carrega FXML          
         Scene scene = new Scene(root); //Coloca o FXML em uma cena
+        Main.stage = stage;
         stage.setResizable(false); //Não permitir a maximização da janela
         stage.setTitle(LOGIN_TITLE); //Título da janela
         stage.setScene(scene); //Coloca a cena em uma janela

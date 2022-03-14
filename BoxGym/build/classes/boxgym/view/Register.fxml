@@ -11,9 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="350.0" styleClass="right-anchor-pane" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.LoginController">
+
+<AnchorPane fx:id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="350.0" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.RegisterController">
    <children>
-      <VBox layoutX="50.0" layoutY="109.0">
+      <MaterialDesignIconView fill="#903131" glyphName="ARROW_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#backToLogin" size="21.0" styleClass="icon" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox layoutX="50.0" layoutY="83.0">
          <children>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
                <children>
@@ -49,31 +51,28 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="45.0" prefWidth="250.0" ripplerFill="WHITE" styleClass="login-btn" text="Entrar">
-               <font>
-                  <Font size="15.0" />
-               </font>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
+                     <graphic>
+                        <MaterialDesignIconView fill="#903131" glyphName="LOCK" size="21.0" styleClass="icon" />
+                     </graphic>
+                  </Label>
+                  <PasswordField fx:id="confirmPasswordTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Confirmar Senha" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+               </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </JFXButton>
-            <HBox alignment="CENTER">
-               <children>
-                  <Label styleClass="register-label" text="Ainda não está cadastrado?">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label onMouseClicked="#register" styleClass="register-button" text="Cadastre-se">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
             </HBox>
+            <JFXButton fx:id="registerButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" onAction="#register" prefHeight="45.0" prefWidth="250.0" ripplerFill="WHITE" styleClass="login-btn" text="Cadastrar">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
          </children>
       </VBox>
    </children>

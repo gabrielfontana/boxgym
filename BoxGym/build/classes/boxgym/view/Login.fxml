@@ -2,22 +2,20 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="loginBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="border-pane" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.LoginController">
-   <left>
-      <Pane prefHeight="375.0" prefWidth="350.0" styleClass="left-pane" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane fx:id="content" prefHeight="375.0" prefWidth="350.0" styleClass="right-pane" BorderPane.alignment="CENTER">
+<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="350.0" styleClass="right-anchor-pane" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.LoginController">
+   <children>
+      <VBox layoutX="50.0" layoutY="109.0">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
                      <graphic>
@@ -30,8 +28,11 @@
                      </font>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
                      <graphic>
@@ -44,13 +45,36 @@
                      </font>
                   </PasswordField>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="50.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="45.0" prefWidth="250.0" ripplerFill="WHITE" styleClass="login-btn" text="Entrar">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="45.0" prefWidth="250.0" ripplerFill="WHITE" styleClass="login-btn" text="Entrar">
                <font>
                   <Font size="15.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </JFXButton>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label styleClass="register-label" text="Ainda não está cadastrado?">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label onMouseClicked="#register" styleClass="register-button" text="Cadastre-se">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
-      </Pane>
-   </right>
-</BorderPane>
+      </VBox>
+   </children>
+</AnchorPane>

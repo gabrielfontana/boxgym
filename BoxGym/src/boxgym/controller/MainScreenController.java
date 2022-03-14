@@ -57,7 +57,7 @@ public class MainScreenController implements Initializable {
 
         if (alert.getResult().get() == ButtonType.YES) {
             borderPane.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource(LOGIN_VIEW));
+            Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml"));
             Scene scene = new Scene(root);
             Stage s1 = new Stage();
             s1.setResizable(false);

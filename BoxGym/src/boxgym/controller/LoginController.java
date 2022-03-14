@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,9 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
+
+    @FXML
+    private AnchorPane content;
 
     @FXML
     private TextField userTextField;
@@ -54,8 +60,16 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void login() throws IOException {
+    void login(ActionEvent event) throws IOException {
         checkLogin();
+    }
+
+    @FXML
+    void register(MouseEvent event) throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/boxgym/view/Register.fxml"));
+        content.getChildren().removeAll();
+        content.getChildren().setAll(fxml);
+        boxgym.Main.stage.setTitle("Cadastro");
     }
 
 }
