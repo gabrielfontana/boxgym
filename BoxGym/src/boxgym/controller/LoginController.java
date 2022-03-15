@@ -2,6 +2,9 @@ package boxgym.controller;
 
 import boxgym.helper.AlertHelper;
 import static boxgym.Constant.*;
+import boxgym.dao.UserDao;
+import boxgym.helper.StageHelper;
+import boxgym.model.User;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -12,14 +15,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
@@ -27,7 +28,7 @@ public class LoginController implements Initializable {
     private AnchorPane content;
 
     @FXML
-    private TextField userTextField;
+    private TextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -43,30 +44,26 @@ public class LoginController implements Initializable {
         buttonProperties();
     }
 
-    private void checkLogin() throws IOException {
-        String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
-
-        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
-            AlertHelper.customAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT, Alert.AlertType.WARNING);
-        } else if (userTextField.getText().equals(DEFAULT_LOGIN_USERNAME) && sha256hex.equals(DEFAULT_LOGIN_PASSWORD)) {
-            loginButton.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource(MAINSCREEN_VIEW));
-            Scene scene = new Scene(root);
-            Stage s1 = new Stage();
-            s1.setResizable(false);
-            s1.setTitle(MAINSCREEN_TITLE);
-            s1.setScene(scene);
-            s1.show();
-        } else {
-            AlertHelper.customAlert(LOGIN_WARNING_ALERT_TITLE, LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_WRONG_CONTENT, Alert.AlertType.WARNING);
-            userTextField.setText("");
-            passwordTextField.setText("");
-        }
-    }
-
     @FXML
     void login(ActionEvent event) throws IOException {
-        checkLogin();
+        if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
+            AlertHelper.customAlert("Login", LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_EMPTY_CONTENT, Alert.AlertType.WARNING);
+        } else {
+            String passwordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
+
+            User user = new User(usernameTextField.getText(), passwordSha256);
+            UserDao userDao = new UserDao();
+
+            if (userDao.authenticate(user)) {
+                loginButton.getScene().getWindow().hide();
+                StageHelper sh = new StageHelper();
+                sh.createMainScreenStage(MAINSCREEN_VIEW, MAINSCREEN_TITLE);
+            } else {
+                AlertHelper.customAlert("Login", LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_WRONG_CONTENT, Alert.AlertType.WARNING);
+                usernameTextField.setText("");
+                passwordTextField.setText("");
+            }
+        }
     }
 
     @FXML

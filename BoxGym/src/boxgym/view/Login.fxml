@@ -30,7 +30,7 @@
                         <MaterialDesignIconView fill="#ee3333" glyphName="ACCOUNT" size="21.0" styleClass="icon" />
                      </graphic>
                   </Label>
-                  <TextField fx:id="userTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="usernameTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>

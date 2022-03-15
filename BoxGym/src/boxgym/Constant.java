@@ -2,10 +2,6 @@ package boxgym;
 
 public final class Constant {
 
-    //Credenciais de login
-    public static final String DEFAULT_LOGIN_USERNAME = "admin";
-    public static final String DEFAULT_LOGIN_PASSWORD = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
-
     //Caminhos FXML
     public static final String LOGIN_VIEW = "/boxgym/view/Login.fxml";
     public static final String MAINSCREEN_VIEW = "/boxgym/view/MainScreen.fxml";

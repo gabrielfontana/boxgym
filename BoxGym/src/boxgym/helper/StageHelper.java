@@ -8,17 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class StageHelper {
-
-    public void openAddStage(String path, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
-
+    
     public void createStage(String title, Parent root) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -26,6 +16,15 @@ public class StageHelper {
         stage.setTitle(title);
         stage.setScene(new Scene(root));
         stage.showAndWait();
+    }
+    
+    public void createMainScreenStage(String path, String title) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle(title);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

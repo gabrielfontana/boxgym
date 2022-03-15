@@ -40,9 +40,9 @@ CREATE TABLE `product` (
 
 CREATE TABLE `user` (
   `userId` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(32) NOT NULL,
-  `password` VARCHAR(64) NOT NULL,
-  `confirmPassword` VARCHAR(64) NOT NULL,
+  `username` VARCHAR(25) NOT NULL,
+  `password` VARCHAR(25) NOT NULL,
+  `confirmPassword` VARCHAR(25) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`userId`)
