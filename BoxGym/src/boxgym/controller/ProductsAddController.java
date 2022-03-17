@@ -82,7 +82,7 @@ public class ProductsAddController implements Initializable {
         for (String s : map.values()) {
             obsList.add(s);
         }
-        fkSupplierComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
+        fkSupplierComboBox.setPromptText("Selecione");
         fkSupplierComboBox.setItems(obsList);
     }
 

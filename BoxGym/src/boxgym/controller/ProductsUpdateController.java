@@ -1,6 +1,5 @@
 package boxgym.controller;
 
-import static boxgym.Constant.COMBO_BOX_PROMPT_TEXT;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.ImageHelper;
 import boxgym.model.Product;
@@ -95,7 +94,7 @@ public class ProductsUpdateController implements Initializable {
         for (String s : map.values()) {
             obsList.add(s);
         }
-        fkSupplierComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
+        fkSupplierComboBox.setPromptText("Selecione");
         fkSupplierComboBox.setItems(obsList);
     }
     

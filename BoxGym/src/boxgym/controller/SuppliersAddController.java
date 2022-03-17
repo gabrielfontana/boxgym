@@ -82,21 +82,28 @@ public class SuppliersAddController implements Initializable {
     }
 
     private void loadFederativeUnitComboBox() {
-        federativeUnitComboBox.setPromptText(COMBO_BOX_PROMPT_TEXT);
-        federativeUnitComboBox.setItems(FXCollections.observableArrayList(FEDERATIVE_UNITS_LIST));
+        String[] federativeUnitsList = {
+            "AC", "AL", "AP", "AM", "BA", "CE",
+            "DF", "ES", "GO", "MA", "MT", "MS",
+            "MG", "PA", "PB", "PR", "PE", "PI",
+            "RJ", "RN", "RS", "RO", "RR", "SC",
+            "SP", "SE", "TO"
+        };
+        federativeUnitComboBox.setPromptText("Selecione");
+        federativeUnitComboBox.setItems(FXCollections.observableArrayList(federativeUnitsList));
     }
 
     private void suppliersInputRestrictions() {
-        companyRegistryTextField.setValidationPattern(POSITIVE_INTEGERS_NUMBERS_REGEX, CNPJ_MAX_LENGTH, TOOLTIP_TEXT);
-        corporateNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
-        tradeNameTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
-        emailTextField.setValidationPattern(EMAIL_REGEX, STANDARD_MAX_LENGTH);
-        phoneTextField.setValidationPattern(POSITIVE_INTEGERS_NUMBERS_REGEX, PHONE_MAX_LENGTH, TOOLTIP_TEXT);
-        zipCodeTextField.setValidationPattern(POSITIVE_INTEGERS_NUMBERS_REGEX, CEP_MAX_LENGTH, TOOLTIP_TEXT);
-        addressTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
-        addressComplementTextField.setValidationPattern(STANDARD_REGEX, STANDARD_MAX_LENGTH);
-        districtTextField.setValidationPattern(LETTERS_REGEX, STANDARD_MAX_LENGTH);
-        cityTextField.setValidationPattern(LETTERS_REGEX, STANDARD_MAX_LENGTH);
+        companyRegistryTextField.setValidationPattern("[0-9]", 14, "Sem pontuação!");
+        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
+        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
+        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
+        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
     }
 
     @FXML
