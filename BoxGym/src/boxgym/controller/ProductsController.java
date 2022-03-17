@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.dao.ProductDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.ImageHelper;
 import boxgym.helper.StageHelper;
 import boxgym.model.Product;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -196,26 +197,23 @@ public class ProductsController implements Initializable {
     }
 
     private void showDetails() {
-        try {
-            if (selected != null) {
-                byte[] imgByteArray = selected.getImage();
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(imgByteArray);
-                BufferedImage bufferedImg = ImageIO.read(inputStream);
-                productImageView.setImage(SwingFXUtils.toFXImage(bufferedImg, null));
-                productIdLabel.setText(String.valueOf(selected.getProductId()));
-                nameLabel.setText(selected.getName());
-                categoryLabel.setText(selected.getCategory());
-                descriptionLabel.setText(selected.getDescription());
-                amountLabel.setText(String.valueOf(selected.getAmount()));
-                minimumStockLabel.setText(String.valueOf(selected.getMinimumStock()));
-                costPriceLabel.setText(String.valueOf(selected.getCostPrice()));
-                sellingPriceLabel.setText(String.valueOf(selected.getSellingPrice()));
-                fkSupplierLabel.setText(String.valueOf(selected.getFkSupplier()));
-                createdAtLabel.setText(selected.getCreatedAt());
-                updatedAtLabel.setText(selected.getUpdatedAt());
+        if (selected != null) {
+            productIdLabel.setText(String.valueOf(selected.getProductId()));
+            nameLabel.setText(selected.getName());
+            categoryLabel.setText(selected.getCategory());
+            descriptionLabel.setText(selected.getDescription());
+            amountLabel.setText(String.valueOf(selected.getAmount()));
+            minimumStockLabel.setText(String.valueOf(selected.getMinimumStock()));
+            costPriceLabel.setText(String.valueOf(selected.getCostPrice()));
+            sellingPriceLabel.setText(String.valueOf(selected.getSellingPrice()));
+            fkSupplierLabel.setText(String.valueOf(selected.getFkSupplier()));
+            createdAtLabel.setText(selected.getCreatedAt());
+            updatedAtLabel.setText(selected.getUpdatedAt());
+            try {
+                productImageView.setImage(SwingFXUtils.toFXImage(ImageHelper.convertBytesToImage(selected), null));
+            } catch (IOException ex) {
+                Logger.getLogger(ProductsController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(ProductsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

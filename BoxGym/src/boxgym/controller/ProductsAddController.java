@@ -66,7 +66,7 @@ public class ProductsAddController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setCreated(false);
         loadSupplierNameComboBox();
-        ih.setDefaultImage();
+        ih.loadDefaultImage(productImage);
     }
 
     public boolean isCreated() {
@@ -99,7 +99,7 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     void chooseImage(MouseEvent event) {
-        ih.choose(productImage);
+        ih.chooser(productImage);
     }
 
     @FXML
@@ -129,8 +129,8 @@ public class ProductsAddController implements Initializable {
         minimumStockTextField.setText("");
         costPriceTextField.setText("");
         sellingPriceTextField.setText("");
-        ih.setDefaultImage();
         fkSupplierComboBox.valueProperty().set(null);
+        ih.loadDefaultImage(productImage);
     }
 
 }
