@@ -1,7 +1,6 @@
 package boxgym.controller;
 
 import boxgym.helper.AlertHelper;
-import static boxgym.Constant.*;
 import boxgym.dao.UserDao;
 import boxgym.helper.StageHelper;
 import boxgym.model.User;

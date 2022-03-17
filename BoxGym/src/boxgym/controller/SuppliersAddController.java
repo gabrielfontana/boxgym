@@ -1,6 +1,5 @@
 package boxgym.controller;
 
-import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.helper.CnpjValidator;

@@ -6,8 +6,6 @@ import boxgym.helper.ImageHelper;
 import boxgym.helper.StageHelper;
 import boxgym.model.Product;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -36,7 +34,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javax.imageio.ImageIO;
 
 public class ProductsController implements Initializable {
 
