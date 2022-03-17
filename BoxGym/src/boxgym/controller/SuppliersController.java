@@ -1,6 +1,5 @@
 package boxgym.controller;
 
-import static boxgym.Constant.*;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.helper.StageHelper;
@@ -115,13 +114,13 @@ public class SuppliersController implements Initializable {
     @FXML
     void addSupplier(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(SUPPLIERS_ADD_VIEW));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersAdd.fxml"));
             Parent root = (Parent) loader.load();
 
             SuppliersAddController controller = loader.getController();
 
             StageHelper sh = new StageHelper();
-            sh.createStage(SUPPLIERS_ADD_TITLE, root);
+            sh.createStage("Adicionando Fornecedor", root);
 
             if (controller.isCreated()) {
                 initSupplierTableView();

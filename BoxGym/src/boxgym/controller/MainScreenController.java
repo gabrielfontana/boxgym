@@ -1,6 +1,5 @@
 package boxgym.controller;
 
-import static boxgym.Constant.*;
 import boxgym.helper.AlertHelper;
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +30,7 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            changeContentArea(HOME_VIEW);
+            changeContentArea("/boxgym/view/Home.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,7 +47,7 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void handleHome(ActionEvent event) throws IOException {
-        changeContentArea(HOME_VIEW);
+        changeContentArea("/boxgym/view/Home.fxml");
     }
 
     @FXML
@@ -61,7 +60,7 @@ public class MainScreenController implements Initializable {
             Scene scene = new Scene(root);
             Stage s1 = new Stage();
             s1.setResizable(false);
-            s1.setTitle(LOGIN_TITLE);
+            s1.setTitle("Login");
             s1.setScene(scene);
             s1.show();
         }
@@ -69,72 +68,72 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void handlePlans(ActionEvent event) throws IOException {
-        changeContentArea(PLANS_VIEW);
+        changeContentArea("/boxgym/view/Plans.fxml");
     }
 
     @FXML
     void handleClients(ActionEvent event) throws IOException {
-        changeContentArea(CLIENTS_VIEW);
+        changeContentArea("/boxgym/view/Clients.fxml");
     }
 
     @FXML
     void handleSuppliers(ActionEvent event) throws IOException {
-        changeContentArea(SUPPLIERS_VIEW);
+        changeContentArea("/boxgym/view/Suppliers.fxml");
     }
 
     @FXML
     void handleEmployees(ActionEvent event) throws IOException {
-        changeContentArea(EMPLOYEES_VIEW);
+        changeContentArea("/boxgym/view/Employees.fxml");
     }
 
     @FXML
     void handleBillsToPay(ActionEvent event) throws IOException {
-        changeContentArea(BILLSTOPAY_VIEW);
+        changeContentArea("/boxgym/view/BillsToPay.fxml");
     }
 
     @FXML
     void handleBillsToReceive(ActionEvent event) throws IOException {
-        changeContentArea(BILLSTORECEIVE_VIEW);
+        changeContentArea("/boxgym/view/BillsToReceive.fxml");
     }
 
     @FXML
     void handleBanks(ActionEvent event) throws IOException {
-        changeContentArea(BANKS_VIEW);
+        changeContentArea("/boxgym/view/Banks.fxml");
     }
 
     @FXML
     void handleSales(ActionEvent event) throws IOException {
-        changeContentArea(SALES_VIEW);
+        changeContentArea("/boxgym/view/Sales.fxml");
     }
 
     @FXML
     void handleProducts(ActionEvent event) throws IOException {
-        changeContentArea(PRODUCTS_VIEW);
+        changeContentArea("/boxgym/view/Products.fxml");
     }
 
     @FXML
     void handleStock(ActionEvent event) throws IOException {
-        changeContentArea(STOCK_VIEW);
+        changeContentArea("/boxgym/view/Stock.fxml");
     }
 
     @FXML
     void handleFiles(ActionEvent event) throws IOException {
-        changeContentArea(FILES_VIEW);
+        changeContentArea("/boxgym/view/Files.fxml");
     }
 
     @FXML
     void handleExercises(ActionEvent event) throws IOException {
-        changeContentArea(EXERCISES_VIEW);
+        changeContentArea("/boxgym/view/Exercises.fxml");
     }
 
     @FXML
     void handleMeasurements(ActionEvent event) throws IOException {
-        changeContentArea(MEASUREMENTS_VIEW);
+        changeContentArea("/boxgym/view/Measurements.fxml");
     }
 
     @FXML
     void handleAbout(ActionEvent event) throws IOException {
-        changeContentArea(ABOUT_VIEW);
+        changeContentArea("/boxgym/view/About.fxml");
     }
 
 }

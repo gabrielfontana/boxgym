@@ -17,7 +17,7 @@ public class Main extends Application {
         Scene scene = new Scene(root); //Coloca o FXML em uma cena
         Main.stage = stage;
         stage.setResizable(false); //Não permitir a maximização da janela
-        stage.setTitle(LOGIN_TITLE); //Título da janela
+        stage.setTitle("Login"); //Título da janela
         stage.setScene(scene); //Coloca a cena em uma janela
         stage.show(); //Abre a janela
     }

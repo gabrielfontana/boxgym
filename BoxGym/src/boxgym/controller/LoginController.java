@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
             if (userDao.authenticate(user)) {
                 loginButton.getScene().getWindow().hide();
                 StageHelper sh = new StageHelper();
-                sh.createMainScreenStage(MAINSCREEN_VIEW, MAINSCREEN_TITLE);
+                sh.createMainScreenStage("/boxgym/view/MainScreen.fxml", "Tela Principal");
             } else {
                 AlertHelper.customAlert("Login", LOGIN_WARNING_ALERT_HEADER, LOGIN_WARNING_ALERT_WRONG_CONTENT, Alert.AlertType.WARNING);
                 usernameTextField.setText("");

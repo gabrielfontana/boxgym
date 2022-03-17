@@ -1,6 +1,5 @@
 package boxgym.controller;
 
-import static boxgym.Constant.*;
 import boxgym.dao.UserDao;
 import boxgym.helper.AlertHelper;
 import boxgym.model.User;
@@ -18,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class RegisterController implements Initializable {
@@ -51,7 +49,7 @@ public class RegisterController implements Initializable {
         Parent fxml = FXMLLoader.load(getClass().getResource("/boxgym/view/Login.fxml"));
         content.getChildren().removeAll();
         content.getChildren().setAll(fxml);
-        boxgym.Main.stage.setTitle(LOGIN_TITLE);
+        boxgym.Main.stage.setTitle("Login");
     }
 
     @FXML
