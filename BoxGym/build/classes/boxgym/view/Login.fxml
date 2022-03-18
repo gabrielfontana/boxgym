@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import boxgym.helper.LimitedTextField?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
@@ -30,11 +31,11 @@
                         <MaterialDesignIconView fill="#ee3333" glyphName="ACCOUNT" size="21.0" styleClass="icon" />
                      </graphic>
                   </Label>
-                  <TextField fx:id="usernameTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                  <LimitedTextField fx:id="usernameTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
-                  </TextField>
+                  </LimitedTextField>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />

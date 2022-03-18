@@ -58,8 +58,8 @@ public class SupplierDao {
     }
 
     public boolean create(Supplier supplier) {
-        String sql = "INSERT INTO `supplier` (`companyRegistry`, `corporateName`, `tradeName`, `email`, `phone`, `zipCode`, `address`, `addressComplement`, `district`, `city`, `federativeUnit`) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO `supplier` (`companyRegistry`, `corporateName`, `tradeName`, `email`, `phone`, `zipCode`, `address`, `addressComplement`, "
+                + "`district`, `city`, `federativeUnit`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -142,7 +142,8 @@ public class SupplierDao {
     }
 
     public boolean update(Supplier supplier) {
-        String sql = "UPDATE `supplier` SET `corporateName` = ?, `tradeName` = ?, `email` = ?, `phone` = ?, `zipCode` = ?, `address` = ?, `addressComplement` = ?, `district` = ?, `city` = ?, `federativeUnit` = ? WHERE `supplierId` = ?;";
+        String sql = "UPDATE `supplier` SET `corporateName` = ?, `tradeName` = ?, `email` = ?, `phone` = ?, `zipCode` = ?, `address` = ?, `addressComplement` = ?, "
+                + "`district` = ?, `city` = ?, `federativeUnit` = ? WHERE `supplierId` = ?;";
 
         try {
             ps = conn.prepareStatement(sql);

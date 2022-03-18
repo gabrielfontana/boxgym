@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.helper.AlertHelper;
 import boxgym.dao.UserDao;
+import boxgym.helper.LimitedTextField;
 import boxgym.helper.StageHelper;
 import boxgym.model.User;
 import com.jfoenix.controls.JFXButton;
@@ -17,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -27,7 +27,7 @@ public class LoginController implements Initializable {
     private AnchorPane content;
 
     @FXML
-    private TextField usernameTextField;
+    private LimitedTextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -41,6 +41,11 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buttonProperties();
+        registerInputRestrictions();
+    }
+    
+    public void registerInputRestrictions() {
+        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
     }
 
     @FXML

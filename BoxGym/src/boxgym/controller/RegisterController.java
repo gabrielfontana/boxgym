@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.dao.UserDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.LimitedTextField;
 import boxgym.model.User;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
@@ -16,7 +17,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class RegisterController implements Initializable {
@@ -28,7 +28,7 @@ public class RegisterController implements Initializable {
     private MaterialDesignIconView backArrow;
 
     @FXML
-    private TextField usernameTextField;
+    private LimitedTextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -42,6 +42,7 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonProperties();
+        registerInputRestrictions();
     }
 
     @FXML
@@ -52,19 +53,27 @@ public class RegisterController implements Initializable {
         boxgym.Main.stage.setTitle("Login");
     }
 
+    public void registerInputRestrictions() {
+        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
+    }
+
     @FXML
     public void register(ActionEvent event) throws IOException {
-        if(usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || confirmPasswordTextField.getText().isEmpty()) {
+        UserDao userDao = new UserDao();
+
+        if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || confirmPasswordTextField.getText().isEmpty()) {
             AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "Por favor, preencha todos os campos!", Alert.AlertType.WARNING);
-        } else if(!passwordTextField.getText().equals(confirmPasswordTextField.getText())) {
+        } else if (!passwordTextField.getText().equals(confirmPasswordTextField.getText())) {
             AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "As senhas não coincidem!", Alert.AlertType.WARNING);
-        } else{            
+        } else if (userDao.checkDuplicate(usernameTextField.getText())) {
+            usernameTextField.setText("");
+            AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "Nome de usuário já cadastrado!", Alert.AlertType.WARNING);
+        } else {
             String passwordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
             String confirmPasswordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(confirmPasswordTextField.getText());
-            
+
             User user = new User(usernameTextField.getText(), passwordSha256, confirmPasswordSha256);
-            
-            UserDao userDao = new UserDao();
+
             userDao.create(user);
             AlertHelper.customAlert("Cadastro", "O cadastro foi realizado com sucesso!", "", Alert.AlertType.INFORMATION);
             backToLogin();
