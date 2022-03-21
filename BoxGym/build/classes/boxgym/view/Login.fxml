@@ -14,53 +14,53 @@
 
 <AnchorPane fx:id="content" prefHeight="400.0" prefWidth="350.0" styleClass="right-anchor-pane" stylesheets="@../css/login-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.LoginController">
    <children>
-      <VBox layoutX="50.0" layoutY="89.0">
+      <VBox layoutX="50.0" layoutY="84.0">
          <children>
             <Label text="Login">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="45.0" styleClass="icon-label">
                      <graphic>
                         <MaterialDesignIconView fill="#ee3333" glyphName="ACCOUNT" size="21.0" styleClass="icon" />
                      </graphic>
                   </Label>
-                  <TextField fx:id="usernameTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="usernameTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="45.0" promptText="Usuário" styleClass="txt-field" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="250.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" styleClass="icon-label">
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="45.0" styleClass="icon-label">
                      <graphic>
                         <MaterialDesignIconView fill="#903131" glyphName="LOCK" size="21.0" styleClass="icon" />
                      </graphic>
                   </Label>
-                  <PasswordField fx:id="passwordTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="45.0" promptText="Senha" styleClass="txt-field" HBox.hgrow="ALWAYS">
+                  <PasswordField fx:id="passwordTextField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="45.0" promptText="Senha" styleClass="txt-field" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="250.0" styleClass="login-btn" text="Entrar">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="250.0" styleClass="login-btn" text="Entrar">
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
             <HBox alignment="CENTER">

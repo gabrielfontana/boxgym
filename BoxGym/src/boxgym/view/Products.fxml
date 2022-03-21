@@ -12,18 +12,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1280.0" stylesheets="@../css/table-view-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.ProductsController">
+<AnchorPane prefHeight="695.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@../css/table-view-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boxgym.controller.ProductsController">
    <children>
-      <AnchorPane layoutX="155.0" layoutY="113.0" prefHeight="695.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="20.0" layoutY="25.0" AnchorPane.bottomAnchor="615.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Vendas &gt; Produtos" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+            <Label text="Vendas &gt; Produtos" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="searchBox" prefHeight="30.0" prefWidth="500.0" promptText="Pesquisar..." AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="90.0" />
-            <HBox alignment="CENTER_RIGHT" layoutX="695.0" layoutY="90.0" prefHeight="30.0" prefWidth="225.0">
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="155.0" layoutY="113.0" prefHeight="695.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" prefHeight="30.0" prefWidth="900.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <TextField fx:id="searchBox" prefHeight="30.0" prefWidth="661.0" promptText="Pesquisar...">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </TextField>
                   <Button mnemonicParsing="false" onAction="#generatePdf" prefHeight="30.0" prefWidth="100.0" text="Gerar PDF">
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -36,23 +44,23 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="productTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+            <TableView fx:id="productTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
                <columns>
-                  <TableColumn fx:id="productIdTableColumn" prefWidth="85.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="nameTableColumn" prefWidth="155.0" resizable="false" text="Nome" />
-                  <TableColumn fx:id="categoryTableColumn" prefWidth="155.0" resizable="false" text="Categoria" />
-                  <TableColumn fx:id="amountTableColumn" prefWidth="85.0" resizable="false" text="Qtd." />
-                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="85.0" resizable="false" text="Estoque Mín." />
-                  <TableColumn fx:id="costPriceTableColumn" prefWidth="100.0" resizable="false" text="Preço de Custo" />
-                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="100.0" resizable="false" text="Preço de Venda" />
-                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="133.0" resizable="false" text="Fornecedor" />
+                  <TableColumn fx:id="productIdTableColumn" prefWidth="90.0" resizable="false" text="ID" />
+                  <TableColumn fx:id="nameTableColumn" prefWidth="180.0" resizable="false" text="Nome" />
+                  <TableColumn fx:id="categoryTableColumn" prefWidth="180.0" resizable="false" text="Categoria" />
+                  <TableColumn fx:id="amountTableColumn" prefWidth="90.0" resizable="false" text="Qtd." />
+                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="130.0" resizable="false" text="Estoque Mín." />
+                  <TableColumn fx:id="costPriceTableColumn" prefWidth="130.0" resizable="false" text="Preço de Custo" />
+                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="130.0" resizable="false" text="Preço de Venda" />
+                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="90.0" resizable="false" text="Fornecedor" />
                </columns>
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="940.0" layoutY="6.0" prefHeight="695.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="940.0" layoutY="6.0" prefHeight="695.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="940.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
-            <VBox AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+            <VBox AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fx:id="productImageView" fitHeight="160.0" fitWidth="160.0" pickOnBounds="true">
                      <VBox.margin>
@@ -203,17 +211,17 @@
             </VBox>
             <HBox alignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #35e838;" text="Adicionar">
+                  <Button mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="90.0" text="Adicionar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#updateProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #6ed8f0;" text="Atualizar">
+                  <Button mnemonicParsing="false" onAction="#updateProduct" prefHeight="30.0" prefWidth="90.0" text="Atualizar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteProduct" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f55138;" text="Excluir">
+                  <Button mnemonicParsing="false" onAction="#deleteProduct" prefHeight="30.0" prefWidth="90.0" text="Excluir">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

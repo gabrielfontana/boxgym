@@ -17,7 +17,7 @@ public class ConnectionFactory {
 
             return DriverManager.getConnection(url, userName, userPassword);
         } catch (SQLException ex) {
-            AlertHelper.customAlert("", "Ops, algo deu errado!", "Falha ao estabelecer conexão com o banco de dados.", Alert.AlertType.ERROR);
+            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "Ops, algo deu errado!", "Falha ao estabelecer conexão com o banco de dados.");
             throw new RuntimeException(ex);
         }
     }

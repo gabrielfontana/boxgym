@@ -53,7 +53,7 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void handleLogout(ActionEvent event) throws IOException {
-        alert.confirmationAlert("", "Tem certeza que deseja sair do sistema?", "");
+        alert.confirmationAlert("Tem certeza que deseja sair do sistema?", "");
 
         if (alert.getResult().get() == ButtonType.YES) {
             borderPane.getScene().getWindow().hide();

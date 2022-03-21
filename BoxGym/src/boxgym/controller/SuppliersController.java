@@ -33,6 +33,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 public class SuppliersController implements Initializable {
 
@@ -116,7 +118,8 @@ public class SuppliersController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersAdd.fxml"));
             Parent root = (Parent) loader.load();
-
+            JMetro jMetro = new JMetro(root, Style.LIGHT);
+            
             SuppliersAddController controller = loader.getController();
 
             StageHelper.createAddOrUpdateStage("Adicionando Fornecedor", root);
@@ -133,13 +136,14 @@ public class SuppliersController implements Initializable {
     @FXML
     void updateSupplier(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um fornecedor para editar!", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para editar!", "");
         } else {
             int index = supplierTableView.getSelectionModel().getSelectedIndex();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
                 Parent root = (Parent) loader.load();
-
+                JMetro jMetro = new JMetro(root, Style.LIGHT);
+                
                 SuppliersUpdateController controller = loader.getController();
                 controller.setLoadSupplier(selected);
 
@@ -160,14 +164,14 @@ public class SuppliersController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
 
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um fornecedor para excluir!", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para excluir!", "");
         } else {
-            alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
+            alert.confirmationAlert("Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
             if (alert.getResult().get() == ButtonType.YES) {
                 supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
                 resetDetails();
-                AlertHelper.customAlert("", "O fornecedor foi excluído com sucesso!", "", Alert.AlertType.INFORMATION);
+                AlertHelper.customAlert(Alert.AlertType.WARNING, "O fornecedor foi excluído com sucesso!", "");
             }
         }
     }

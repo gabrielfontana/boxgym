@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class RegisterController implements Initializable {
@@ -28,7 +29,7 @@ public class RegisterController implements Initializable {
     private MaterialDesignIconView backArrow;
 
     @FXML
-    private LimitedTextField usernameTextField;
+    private TextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -54,7 +55,7 @@ public class RegisterController implements Initializable {
     }
 
     public void registerInputRestrictions() {
-        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
+        //usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
     }
 
     @FXML
@@ -62,12 +63,12 @@ public class RegisterController implements Initializable {
         UserDao userDao = new UserDao();
 
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || confirmPasswordTextField.getText().isEmpty()) {
-            AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "Por favor, preencha todos os campos!", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "Por favor, preencha todos os campos!");
         } else if (!passwordTextField.getText().equals(confirmPasswordTextField.getText())) {
-            AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "As senhas não coincidem!", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "As senhas não coincidem!");
         } else if (userDao.checkDuplicate(usernameTextField.getText())) {
             usernameTextField.setText("");
-            AlertHelper.customAlert("Cadastro", "Não foi possível efetuar o cadastro!", "Nome de usuário já cadastrado!", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "Nome de usuário já cadastrado!");
         } else {
             String passwordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
             String confirmPasswordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(confirmPasswordTextField.getText());
@@ -75,7 +76,7 @@ public class RegisterController implements Initializable {
             User user = new User(usernameTextField.getText(), passwordSha256, confirmPasswordSha256);
 
             userDao.create(user);
-            AlertHelper.customAlert("Cadastro", "O cadastro foi realizado com sucesso!", "", Alert.AlertType.INFORMATION);
+            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O cadastro foi realizado com sucesso!", "");
             backToLogin();
         }
     }

@@ -114,7 +114,7 @@ public class ProductsAddController implements Initializable {
             ProductDao productDao = new ProductDao();
             productDao.create(product);
             setCreated(true);
-            AlertHelper.customAlert("", "O produto foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
+            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O produto foi cadastrado com sucesso!", "");
             anchorPane.getScene().getWindow().hide();
         }
     }

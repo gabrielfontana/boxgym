@@ -2,7 +2,6 @@ package boxgym.controller;
 
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
-import boxgym.helper.LimitedTextField;
 import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
@@ -15,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class SuppliersUpdateController implements Initializable {
@@ -24,40 +23,34 @@ public class SuppliersUpdateController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private TitledPane infoTitledPane;
-
-    @FXML
-    private TitledPane addressTitledPane;
-
-    @FXML
     private Label companyRegistryLabel;
 
     @FXML
-    private LimitedTextField corporateNameTextField;
+    private TextField corporateNameTextField;
 
     @FXML
-    private LimitedTextField tradeNameTextField;
+    private TextField tradeNameTextField;
 
     @FXML
-    private LimitedTextField emailTextField;
+    private TextField emailTextField;
 
     @FXML
-    private LimitedTextField phoneTextField;
+    private TextField phoneTextField;
 
     @FXML
-    private LimitedTextField zipCodeTextField;
+    private TextField zipCodeTextField;
 
     @FXML
-    private LimitedTextField addressTextField;
+    private TextField addressTextField;
 
     @FXML
-    private LimitedTextField addressComplementTextField;
+    private TextField addressComplementTextField;
 
     @FXML
-    private LimitedTextField districtTextField;
+    private TextField districtTextField;
 
     @FXML
-    private LimitedTextField cityTextField;
+    private TextField cityTextField;
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
@@ -85,8 +78,6 @@ public class SuppliersUpdateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setUpdated(false);
-        infoTitledPane.setCollapsible(false);
-        addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
         suppliersInputRestrictions();
 
@@ -122,15 +113,15 @@ public class SuppliersUpdateController implements Initializable {
     }
 
     private void suppliersInputRestrictions() {
-        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
-        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
-        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
-        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
-        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+//        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
+//        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
+//        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
+//        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+//        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
     }
 
     @FXML
@@ -147,15 +138,15 @@ public class SuppliersUpdateController implements Initializable {
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível editar o cadastro deste fornecedor!", validation.getMessage(), Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível editar o cadastro deste fornecedor!", validation.getMessage());
         } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
             supplierDao.update(supplier);
             setUpdated(true);
-            AlertHelper.customAlert("", "O fornecedor foi editado com sucesso!", "", Alert.AlertType.INFORMATION);
+            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O fornecedor foi editado com sucesso!", "");
             anchorPane.getScene().getWindow().hide();
         }
     }

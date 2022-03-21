@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 
@@ -23,40 +24,34 @@ public class SuppliersAddController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private TitledPane infoTitledPane;
+    private TextField companyRegistryTextField;
 
     @FXML
-    private TitledPane addressTitledPane;
+    private TextField corporateNameTextField;
 
     @FXML
-    private LimitedTextField companyRegistryTextField;
+    private TextField tradeNameTextField;
 
     @FXML
-    private LimitedTextField corporateNameTextField;
+    private TextField emailTextField;
 
     @FXML
-    private LimitedTextField tradeNameTextField;
+    private TextField phoneTextField;
 
     @FXML
-    private LimitedTextField emailTextField;
+    private TextField zipCodeTextField;
 
     @FXML
-    private LimitedTextField phoneTextField;
+    private TextField addressTextField;
 
     @FXML
-    private LimitedTextField zipCodeTextField;
+    private TextField addressComplementTextField;
 
     @FXML
-    private LimitedTextField addressTextField;
+    private TextField districtTextField;
 
     @FXML
-    private LimitedTextField addressComplementTextField;
-
-    @FXML
-    private LimitedTextField districtTextField;
-
-    @FXML
-    private LimitedTextField cityTextField;
+    private TextField cityTextField;
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
@@ -74,8 +69,6 @@ public class SuppliersAddController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setCreated(false);
-        infoTitledPane.setCollapsible(false);
-        addressTitledPane.setCollapsible(false);
         loadFederativeUnitComboBox();
         suppliersInputRestrictions();
     }
@@ -93,16 +86,16 @@ public class SuppliersAddController implements Initializable {
     }
 
     private void suppliersInputRestrictions() {
-        companyRegistryTextField.setValidationPattern("[0-9]", 14, "Sem pontuação!");
-        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
-        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
-        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
-        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
-        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+//        companyRegistryTextField.setValidationPattern("[0-9]", 14, "Sem pontuação!");
+//        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
+//        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
+//        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
+//        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+//        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+//        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
     }
 
     @FXML
@@ -120,20 +113,20 @@ public class SuppliersAddController implements Initializable {
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage(), Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", validation.getMessage());
         } else if (!(CnpjValidator.isValid(companyRegistryTextField.getText()))) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "'CNPJ' inválido.");
         } else if (supplierDao.checkDuplicate(supplier)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "Este CNPJ já está cadastrado.");
             companyRegistryTextField.setText("");
         } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
-            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
             supplierDao.create(supplier);
             setCreated(true);
-            AlertHelper.customAlert("", "O fornecedor foi cadastrado com sucesso!", "", Alert.AlertType.INFORMATION);
+            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O fornecedor foi cadastrado com sucesso!", "");
             anchorPane.getScene().getWindow().hide();
         }
     }

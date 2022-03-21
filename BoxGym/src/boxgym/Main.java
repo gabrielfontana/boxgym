@@ -17,12 +17,11 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml"));
         JMetro jMetro = new JMetro(root, Style.LIGHT);
-        Scene scene = new Scene(root);
         Main.stage = stage;
         stage.getIcons().add(new Image("boxgym/img/dumbbell.png"));
         stage.setResizable(false);
         stage.setTitle("Login"); 
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 

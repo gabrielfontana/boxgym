@@ -137,7 +137,7 @@ public class ProductsController implements Initializable {
     @FXML
     void updateProduct(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um produto para editar!", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um produto para editar!", "");
         } else {
             int index = productTableView.getSelectionModel().getSelectedIndex();
             try {
@@ -164,14 +164,14 @@ public class ProductsController implements Initializable {
         ProductDao productDao = new ProductDao();
 
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um produto para excluir!", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um produto para excluir!", "");
         } else {
-            alert.confirmationAlert("Aviso", "Tem certeza que deseja excluir o produto '" + selected.getName() + "'?", "Esta ação é irreversível!");
+            alert.confirmationAlert("Tem certeza que deseja excluir o produto '" + selected.getName() + "'?", "Esta ação é irreversível!");
             if (alert.getResult().get() == ButtonType.YES) {
                 productDao.delete(selected);
                 productTableView.setItems(loadData());
                 resetDetails();
-                AlertHelper.customAlert("", "O produto foi excluído com sucesso!", "", Alert.AlertType.INFORMATION);
+                AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O produto foi excluído com sucesso!", "");
             }
         }
     }
