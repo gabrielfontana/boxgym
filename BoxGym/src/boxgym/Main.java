@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 public class Main extends Application {
 
@@ -13,7 +15,8 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml"));        
+        Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml"));
+        JMetro jMetro = new JMetro(root, Style.LIGHT);
         Scene scene = new Scene(root);
         Main.stage = stage;
         stage.getIcons().add(new Image("boxgym/img/dumbbell.png"));

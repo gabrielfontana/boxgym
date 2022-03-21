@@ -119,8 +119,7 @@ public class SuppliersController implements Initializable {
 
             SuppliersAddController controller = loader.getController();
 
-            StageHelper sh = new StageHelper();
-            sh.createStage("Adicionando Fornecedor", root);
+            StageHelper.createAddOrUpdateStage("Adicionando Fornecedor", root);
 
             if (controller.isCreated()) {
                 initSupplierTableView();
@@ -134,8 +133,9 @@ public class SuppliersController implements Initializable {
     @FXML
     void updateSupplier(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um fornecedor para editar.", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert("", "Selecione um fornecedor para editar!", "", Alert.AlertType.WARNING);
         } else {
+            int index = supplierTableView.getSelectionModel().getSelectedIndex();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/SuppliersUpdate.fxml"));
                 Parent root = (Parent) loader.load();
@@ -143,11 +143,11 @@ public class SuppliersController implements Initializable {
                 SuppliersUpdateController controller = loader.getController();
                 controller.setLoadSupplier(selected);
 
-                StageHelper sh = new StageHelper();
-                sh.createStage("Editando Fornecedor", root);
+                StageHelper.createAddOrUpdateStage("Editando Fornecedor", root);
 
                 if (controller.isUpdated()) {
                     initSupplierTableView();
+                    supplierTableView.getSelectionModel().select(index);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(SuppliersController.class.getName()).log(Level.SEVERE, null, ex);

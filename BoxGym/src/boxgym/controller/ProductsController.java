@@ -123,8 +123,7 @@ public class ProductsController implements Initializable {
 
             ProductsAddController controller = loader.getController();
 
-            StageHelper sh = new StageHelper();
-            sh.createStage("Adicionando Produto", root);
+            StageHelper.createAddOrUpdateStage("Adicionando Produto", root);
 
             if (controller.isCreated()) {
                 initProductTableView();
@@ -138,8 +137,9 @@ public class ProductsController implements Initializable {
     @FXML
     void updateProduct(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert("", "Selecione um produto para editar.", "", Alert.AlertType.WARNING);
+            AlertHelper.customAlert("", "Selecione um produto para editar!", "", Alert.AlertType.WARNING);
         } else {
+            int index = productTableView.getSelectionModel().getSelectedIndex();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/ProductsUpdate.fxml"));
                 Parent root = (Parent) loader.load();
@@ -147,11 +147,11 @@ public class ProductsController implements Initializable {
                 ProductsUpdateController controller = loader.getController();
                 controller.setLoadProduct(selected);
 
-                StageHelper sh = new StageHelper();
-                sh.createStage("Editando Produto", root);
+                StageHelper.createAddOrUpdateStage("Editando Produto", root);
 
                 if (controller.isUpdated()) {
                     initProductTableView();
+                    productTableView.getSelectionModel().select(index);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(ProductsController.class.getName()).log(Level.SEVERE, null, ex);

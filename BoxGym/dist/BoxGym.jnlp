@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BoxGym.jar" size="105683" download="eager" />
+    <jar href="BoxGym.jar" size="106302" download="eager" />
     <jar href="lib\caelum-stella-core-2.1.2.jar" size="119794" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
     <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
@@ -27,6 +27,7 @@
     <jar href="lib\fontawesomefx-octicons-4.3.0-5.jar" size="37157" download="eager" />
     <jar href="lib\fontawesomefx-weathericons-2.0.10-5.jar" size="83098" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\jmetro-8.6.14.jar" size="119507" download="eager" />
     <jar href="lib\log4j-api-2.17.2.jar" size="302511" download="eager" />
     <jar href="lib\log4j-core-2.17.2.jar" size="1811090" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.21.jar" size="827942" download="eager" />

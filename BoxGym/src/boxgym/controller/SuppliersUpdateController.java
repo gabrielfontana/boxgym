@@ -3,6 +3,7 @@ package boxgym.controller;
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.helper.LimitedTextField;
+import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -139,10 +140,24 @@ public class SuppliersUpdateController implements Initializable {
                 districtTextField.getText(), cityTextField.getText(), federativeUnitComboBox.getSelectionModel().getSelectedItem());
 
         SupplierDao supplierDao = new SupplierDao();
-        supplierDao.update(supplier);
-        setUpdated(true);
-        AlertHelper.customAlert("", "O fornecedor foi editado com sucesso!", "", Alert.AlertType.INFORMATION);
-        anchorPane.getScene().getWindow().hide();
+
+        TextValidationHelper validation = new TextValidationHelper();
+
+        validation.handleEmptyField(corporateNameTextField.getText(), "'Razão Social'\n");
+        validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
+
+        if (!(validation.getEmptyCounter() == 0)) {
+            AlertHelper.customAlert("Atenção", "Não foi possível editar o cadastro deste fornecedor!", validation.getMessage(), Alert.AlertType.WARNING);
+        } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.", Alert.AlertType.WARNING);
+        } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
+            AlertHelper.customAlert("Atenção", "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.", Alert.AlertType.WARNING);
+        } else {
+            supplierDao.update(supplier);
+            setUpdated(true);
+            AlertHelper.customAlert("", "O fornecedor foi editado com sucesso!", "", Alert.AlertType.INFORMATION);
+            anchorPane.getScene().getWindow().hide();
+        }
     }
 
     @FXML

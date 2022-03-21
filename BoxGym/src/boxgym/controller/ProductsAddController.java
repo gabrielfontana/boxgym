@@ -104,9 +104,9 @@ public class ProductsAddController implements Initializable {
     @FXML
     void save(ActionEvent event) {
         if (fkSupplierComboBox.getItems().size() <= 0) {
-            System.out.println("Cadastre um fornecedor");
+            System.out.println("Cadastre um fornecedor!");
         } else if (fkSupplierComboBox.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("Escolha um fornecedor");
+            System.out.println("Escolha um fornecedor!");
         } else {
             Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()),
                     Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getText()), new BigDecimal(sellingPriceTextField.getText()),

@@ -4,7 +4,6 @@ import boxgym.dao.UserDao;
 import boxgym.helper.AlertHelper;
 import boxgym.helper.LimitedTextField;
 import boxgym.model.User;
-import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 
@@ -37,7 +37,7 @@ public class RegisterController implements Initializable {
     private PasswordField confirmPasswordTextField;
 
     @FXML
-    private JFXButton registerButton;
+    private Button registerButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

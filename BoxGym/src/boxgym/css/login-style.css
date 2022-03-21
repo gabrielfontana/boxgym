@@ -10,15 +10,15 @@
     -fx-background-color: #f7f3f2;
 }
 
-.icon-label {
+/*.icon-label {
     -fx-background-color: #e8ddda;
-}
+}*/
 
 .icon {
     -fx-fill: #251819;
 }
 
-.txt-field {
+/*.txt-field {
     -fx-background-color: #f0e8e6;
     -fx-background-radius: 0px;
     -fx-prompt-text-fill: #A6777C;
@@ -27,18 +27,13 @@
 
 .txt-field:focused {
     -fx-background-color: #e8ddda;
-}
+}*/
 
 .login-btn {
-    -fx-background-color: #F9A620;
-    -fx-text-fill: #251819;
+    -fx-background-color: #F9A620 !important;
+    -fx-text-fill: #251819 !important;
 }
 
 .register-label {
     -fx-text-fill: #251819;
-}
-
-.register-button {
-    -fx-text-fill: #251819;
-    -fx-font-weight: bold; 
 }

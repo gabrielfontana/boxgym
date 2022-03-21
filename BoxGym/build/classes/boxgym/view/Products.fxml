@@ -38,14 +38,14 @@
             </HBox>
             <TableView fx:id="productTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
                <columns>
-                  <TableColumn fx:id="productIdTableColumn" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="ID" />
-                  <TableColumn fx:id="nameTableColumn" prefWidth="155.0" resizable="false" style="-fx-alignment: CENTER;" text="Nome" />
-                  <TableColumn fx:id="categoryTableColumn" prefWidth="155.0" resizable="false" style="-fx-alignment: CENTER;" text="Categoria" />
-                  <TableColumn fx:id="amountTableColumn" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="Qtd." />
-                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="Estoque Mín." />
-                  <TableColumn fx:id="costPriceTableColumn" prefWidth="100.0" resizable="false" style="-fx-alignment: CENTER;" text="Preço de Custo" />
-                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="100.0" resizable="false" style="-fx-alignment: CENTER;" text="Preço de Venda" />
-                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="133.0" resizable="false" style="-fx-alignment: CENTER;" text="Fornecedor" />
+                  <TableColumn fx:id="productIdTableColumn" prefWidth="85.0" resizable="false" text="ID" />
+                  <TableColumn fx:id="nameTableColumn" prefWidth="155.0" resizable="false" text="Nome" />
+                  <TableColumn fx:id="categoryTableColumn" prefWidth="155.0" resizable="false" text="Categoria" />
+                  <TableColumn fx:id="amountTableColumn" prefWidth="85.0" resizable="false" text="Qtd." />
+                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="85.0" resizable="false" text="Estoque Mín." />
+                  <TableColumn fx:id="costPriceTableColumn" prefWidth="100.0" resizable="false" text="Preço de Custo" />
+                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="100.0" resizable="false" text="Preço de Venda" />
+                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="133.0" resizable="false" text="Fornecedor" />
                </columns>
             </TableView>
          </children>

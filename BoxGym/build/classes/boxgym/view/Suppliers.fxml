@@ -37,11 +37,11 @@
             </HBox>
             <TableView fx:id="supplierTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
               <columns>
-                  <TableColumn fx:id="supplierIdTableColumn" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="ID" />
-                  <TableColumn fx:id="companyRegistryTableColumn" prefWidth="125.0" resizable="false" style="-fx-alignment: CENTER;" text="CNPJ" />
-                  <TableColumn fx:id="tradeNameTableColumn" prefWidth="270.0" resizable="false" style="-fx-alignment: CENTER;" text="Nome Fantasia" />
-                  <TableColumn fx:id="emailTableColumn" prefWidth="270.0" resizable="false" style="-fx-alignment: CENTER;" text="E-mail" />
-                  <TableColumn fx:id="phoneTableColumn" prefWidth="148.0" resizable="false" style="-fx-alignment: CENTER;" text="Telefone" />
+                  <TableColumn fx:id="supplierIdTableColumn" prefWidth="85.0" resizable="false" text="ID" />
+                  <TableColumn fx:id="companyRegistryTableColumn" prefWidth="125.0" resizable="false" text="CNPJ" />
+                  <TableColumn fx:id="tradeNameTableColumn" prefWidth="270.0" resizable="false" text="Nome Fantasia" />
+                  <TableColumn fx:id="emailTableColumn" prefWidth="270.0" resizable="false" text="E-mail" />
+                  <TableColumn fx:id="phoneTableColumn" prefWidth="148.0" resizable="false" text="Telefone" />
               </columns>
             </TableView>
          </children>

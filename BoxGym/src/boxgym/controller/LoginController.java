@@ -5,7 +5,6 @@ import boxgym.dao.UserDao;
 import boxgym.helper.LimitedTextField;
 import boxgym.helper.StageHelper;
 import boxgym.model.User;
-import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,8 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -27,16 +28,16 @@ public class LoginController implements Initializable {
     private AnchorPane content;
 
     @FXML
-    private LimitedTextField usernameTextField;
+    private TextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
 
     @FXML
-    private JFXButton loginButton;
+    private Button loginButton;
 
     @FXML
-    private Label registerLabel;
+    private Hyperlink registerLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,7 +46,7 @@ public class LoginController implements Initializable {
     }
     
     public void registerInputRestrictions() {
-        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
+        //usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
     }
 
     @FXML
