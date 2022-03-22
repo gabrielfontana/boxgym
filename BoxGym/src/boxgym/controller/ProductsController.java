@@ -36,7 +36,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class ProductsController implements Initializable {
-
+    
+    AlertHelper ah = new AlertHelper();
+    
     @FXML
     private TextField searchBox;
 
@@ -137,7 +139,7 @@ public class ProductsController implements Initializable {
     @FXML
     void updateProduct(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um produto para editar!", "");
+            ah.customAlert(Alert.AlertType.WARNING, "Selecione um produto para editar!", "");
         } else {
             int index = productTableView.getSelectionModel().getSelectedIndex();
             try {
@@ -164,14 +166,14 @@ public class ProductsController implements Initializable {
         ProductDao productDao = new ProductDao();
 
         if (selected == null) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um produto para excluir!", "");
+            ah.customAlert(Alert.AlertType.WARNING, "Selecione um produto para excluir!", "");
         } else {
             alert.confirmationAlert("Tem certeza que deseja excluir o produto '" + selected.getName() + "'?", "Esta ação é irreversível!");
             if (alert.getResult().get() == ButtonType.YES) {
                 productDao.delete(selected);
                 productTableView.setItems(loadData());
                 resetDetails();
-                AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O produto foi excluído com sucesso!", "");
+                ah.customAlert(Alert.AlertType.INFORMATION, "O produto foi excluído com sucesso!", "");
             }
         }
     }

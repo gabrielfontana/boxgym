@@ -28,6 +28,7 @@ public class ProductsAddController implements Initializable {
     SupplierDao dao = new SupplierDao();
     LinkedHashMap<Integer, String> map = dao.readId();
     ImageHelper ih = new ImageHelper();
+    AlertHelper ah = new AlertHelper();
 
     private boolean created = false;
 
@@ -114,7 +115,7 @@ public class ProductsAddController implements Initializable {
             ProductDao productDao = new ProductDao();
             productDao.create(product);
             setCreated(true);
-            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O produto foi cadastrado com sucesso!", "");
+            ah.customAlert(Alert.AlertType.INFORMATION, "O produto foi cadastrado com sucesso!", "");
             anchorPane.getScene().getWindow().hide();
         }
     }

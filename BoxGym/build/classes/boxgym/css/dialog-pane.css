@@ -1,0 +1,14 @@
+@import "base.css";
+
+.myDialog .button{
+    -fx-background-color: -main-theme-color !important;
+    -fx-text-fill: -light-text-color !important;
+}
+
+.myDialog .button:hover {
+    -fx-border-color: -button-border-color !important;
+}
+
+.myDialog .button:pressed {
+    -fx-background-color: derive(-main-theme-color, -40%) !important;
+}

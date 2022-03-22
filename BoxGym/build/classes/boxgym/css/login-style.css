@@ -1,39 +1,30 @@
-.main-anchor-pane {
-    -fx-background-color: #303138;
-}
+@import "base.css";
 
 .left-anchor-pane {
-    -fx-background-color: #F9A620;
+    -fx-background-color: -main-theme-color;
 }
 
 .right-anchor-pane {
-    -fx-background-color: #f7f3f2;
+    -fx-background-color: -secundary-theme-color;
 }
-
-/*.icon-label {
-    -fx-background-color: #e8ddda;
-}*/
 
 .icon {
-    -fx-fill: #251819;
+    -fx-fill: -main-theme-color;
 }
-
-/*.txt-field {
-    -fx-background-color: #f0e8e6;
-    -fx-background-radius: 0px;
-    -fx-prompt-text-fill: #A6777C;
-    -fx-text-fill: #251819;
-}
-
-.txt-field:focused {
-    -fx-background-color: #e8ddda;
-}*/
 
 .login-btn {
-    -fx-background-color: #F9A620 !important;
-    -fx-text-fill: #251819 !important;
+    -fx-background-color: -main-theme-color !important;
+    -fx-text-fill: -light-text-color !important;
 }
 
-.register-label {
-    -fx-text-fill: #251819;
+.login-btn:hover {
+    -fx-border-color: -button-border-color !important;
+}
+
+.login-btn:pressed {
+    -fx-background-color: derive(-main-theme-color, -40%) !important;
+}
+
+.normal-label {
+    -fx-text-fill: -dark-text-color;
 }

@@ -2,7 +2,6 @@ package boxgym.controller;
 
 import boxgym.helper.AlertHelper;
 import boxgym.dao.UserDao;
-import boxgym.helper.LimitedTextField;
 import boxgym.helper.StageHelper;
 import boxgym.model.User;
 import java.io.IOException;
@@ -23,7 +22,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class LoginController implements Initializable {
-
+    
+    AlertHelper ah = new AlertHelper();
+    
     @FXML
     private AnchorPane content;
 
@@ -52,7 +53,7 @@ public class LoginController implements Initializable {
     @FXML
     void login(ActionEvent event) throws IOException {
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o login!", "Por favor, preencha todos os campos!");
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o login!", "Por favor, preencha todos os campos!");
         } else {
             String passwordSha256 = org.apache.commons.codec.digest.DigestUtils.sha256Hex(passwordTextField.getText());
 
@@ -64,7 +65,7 @@ public class LoginController implements Initializable {
                 StageHelper sh = new StageHelper();
                 sh.createMainScreenStage("/boxgym/view/MainScreen.fxml", "Tela Principal");
             } else {
-                AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o login!", "Usuário e/ou senha inválido(s)!");
+                ah.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o login!", "Usuário e/ou senha inválido(s)!");
                 usernameTextField.setText("");
                 passwordTextField.setText("");
             }

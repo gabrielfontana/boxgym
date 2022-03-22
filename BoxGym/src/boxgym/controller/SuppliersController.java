@@ -37,7 +37,9 @@ import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
 public class SuppliersController implements Initializable {
-
+    
+    AlertHelper ah = new AlertHelper();
+    
     @FXML
     private TextField searchBox;
 
@@ -136,7 +138,7 @@ public class SuppliersController implements Initializable {
     @FXML
     void updateSupplier(ActionEvent event) {
         if (selected == null) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para editar!", "");
+            ah.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para editar!", "");
         } else {
             int index = supplierTableView.getSelectionModel().getSelectedIndex();
             try {
@@ -164,14 +166,14 @@ public class SuppliersController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
 
         if (selected == null) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para excluir!", "");
+            ah.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para excluir!", "");
         } else {
             alert.confirmationAlert("Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
             if (alert.getResult().get() == ButtonType.YES) {
                 supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
                 resetDetails();
-                AlertHelper.customAlert(Alert.AlertType.WARNING, "O fornecedor foi excluído com sucesso!", "");
+                ah.customAlert(Alert.AlertType.WARNING, "O fornecedor foi excluído com sucesso!", "");
             }
         }
     }

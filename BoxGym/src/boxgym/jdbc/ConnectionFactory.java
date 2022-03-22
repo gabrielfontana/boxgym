@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import javafx.scene.control.Alert;
 
 public class ConnectionFactory {
-
+    
+    AlertHelper ah = new AlertHelper();
+    
     public Connection getConnection() {
         try {
             String url = CONNECTION_URL;
@@ -17,7 +19,7 @@ public class ConnectionFactory {
 
             return DriverManager.getConnection(url, userName, userPassword);
         } catch (SQLException ex) {
-            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "Ops, algo deu errado!", "Falha ao estabelecer conexão com o banco de dados.");
+            ah.customAlert(Alert.AlertType.INFORMATION, "Ops, algo deu errado!", "Falha ao estabelecer conexão com o banco de dados.");
             throw new RuntimeException(ex);
         }
     }

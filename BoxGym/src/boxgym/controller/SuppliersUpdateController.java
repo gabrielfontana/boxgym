@@ -18,7 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class SuppliersUpdateController implements Initializable {
-
+    
+    AlertHelper ah = new AlertHelper();
+    
     @FXML
     private AnchorPane anchorPane;
 
@@ -138,15 +140,15 @@ public class SuppliersUpdateController implements Initializable {
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
         if (!(validation.getEmptyCounter() == 0)) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível editar o cadastro deste fornecedor!", validation.getMessage());
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível editar o cadastro deste fornecedor!", validation.getMessage());
         } else if (!(phoneTextField.getText().length() == 0 || phoneTextField.getText().length() == 10 || phoneTextField.getText().length() == 11)) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O formato do campo 'Telefone' está incorreto.");
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
-            AlertHelper.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
             supplierDao.update(supplier);
             setUpdated(true);
-            AlertHelper.customAlert(Alert.AlertType.INFORMATION, "O fornecedor foi editado com sucesso!", "");
+            ah.customAlert(Alert.AlertType.INFORMATION, "O fornecedor foi editado com sucesso!", "");
             anchorPane.getScene().getWindow().hide();
         }
     }
