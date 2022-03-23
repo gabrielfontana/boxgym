@@ -59,7 +59,7 @@ public class MainScreenController implements Initializable {
             borderPane.getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource("/boxgym/view/FirstScreen.fxml"));
             JMetro jMetro = new JMetro(root, Style.LIGHT);
-            StageHelper.openLoginStageAfterLogout("Login", root);
+            StageHelper.openFirstScreenAfterLogout("Login", root);
         }
     }
 

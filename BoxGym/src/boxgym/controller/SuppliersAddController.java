@@ -116,7 +116,6 @@ public class SuppliersAddController implements Initializable {
         SupplierDao supplierDao = new SupplierDao();
 
         TextValidationHelper validation = new TextValidationHelper();
-
         validation.handleEmptyField(companyRegistryTextField.getText(), "'CNPJ'\n");
         validation.handleEmptyField(corporateNameTextField.getText(), "'Razão Social'\n");
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");

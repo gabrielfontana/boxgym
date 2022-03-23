@@ -81,7 +81,7 @@ public class ProductDao {
     }
 
     public boolean update(Product product) {
-        String sql = "UPDATE `product` SET `name` = ?, `category` = ?, `description` = ?, `amount` = ?, `minimumStock` = ?, "
+        String sql = "UPDATE `product` SET `name` = ?, `category` = ?, `description` = ?, `minimumStock` = ?, "
                 + "`costPrice` = ?, `sellingPrice` = ?, `image` = ?, `fkSupplier` = ? WHERE `productId` = ?;";
 
         try {
@@ -89,13 +89,12 @@ public class ProductDao {
             ps.setString(1, product.getName());
             ps.setString(2, product.getCategory());
             ps.setString(3, product.getDescription());
-            ps.setInt(4, product.getAmount());
-            ps.setInt(5, product.getMinimumStock());
-            ps.setBigDecimal(6, product.getCostPrice());
-            ps.setBigDecimal(7, product.getSellingPrice());
-            ps.setBytes(8, product.getImage());
-            ps.setInt(9, product.getFkSupplier());
-            ps.setInt(10, product.getProductId());
+            ps.setInt(4, product.getMinimumStock());
+            ps.setBigDecimal(5, product.getCostPrice());
+            ps.setBigDecimal(6, product.getSellingPrice());
+            ps.setBytes(7, product.getImage());
+            ps.setInt(8, product.getFkSupplier());
+            ps.setInt(9, product.getProductId());
             ps.execute();
             return true;
         } catch (SQLException ex) {

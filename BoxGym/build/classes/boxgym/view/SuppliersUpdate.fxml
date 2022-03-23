@@ -22,7 +22,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="companyRegistryLabel" prefHeight="30.0" prefWidth="300.0" />
+                        <LimitedTextField fx:id="companyRegistryTextField" disable="true" editable="false" prefHeight="30.0" prefWidth="280.0" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />

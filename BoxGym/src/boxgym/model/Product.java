@@ -36,13 +36,12 @@ public class Product {
     }
 
     //Construtor  UPDATE
-    public Product(int productId, String name, String category, String description, int amount, int minimumStock,
+    public Product(int productId, String name, String category, String description, int minimumStock,
             BigDecimal costPrice, BigDecimal sellingPrice, byte[] image, int fkSupplier) {
         this.productId = productId;
         this.name = name;
         this.category = category;
         this.description = description;
-        this.amount = amount;
         this.minimumStock = minimumStock;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;

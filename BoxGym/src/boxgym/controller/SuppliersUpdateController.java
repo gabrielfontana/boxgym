@@ -15,8 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import limitedtextfield.LimitedTextField;
 
@@ -28,7 +26,7 @@ public class SuppliersUpdateController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private Label companyRegistryLabel;
+    private LimitedTextField companyRegistryTextField;
 
     @FXML
     private LimitedTextField corporateNameTextField;
@@ -100,7 +98,7 @@ public class SuppliersUpdateController implements Initializable {
     }
 
     private void initSupplier() {
-        companyRegistryLabel.setText(loadSupplier.getCompanyRegistry());
+        companyRegistryTextField.setText(loadSupplier.getCompanyRegistry());
         corporateNameTextField.setText(loadSupplier.getCorporateName());
         tradeNameTextField.setText(loadSupplier.getTradeName());
         emailTextField.setText(loadSupplier.getEmail());
@@ -139,14 +137,7 @@ public class SuppliersUpdateController implements Initializable {
 
     @FXML
     void save(ActionEvent event) {
-        Supplier supplier = new Supplier(loadSupplier.getSupplierId(), corporateNameTextField.getText(), tradeNameTextField.getText(),
-                emailTextField.getText(), phoneTextField.getText(), zipCodeTextField.getText(), addressTextField.getText(), addressComplementTextField.getText(),
-                districtTextField.getText(), cityTextField.getText(), federativeUnitComboBox.getSelectionModel().getSelectedItem());
-
-        SupplierDao supplierDao = new SupplierDao();
-
         TextValidationHelper validation = new TextValidationHelper();
-
         validation.handleEmptyField(corporateNameTextField.getText(), "'Razão Social'\n");
         validation.handleEmptyField(tradeNameTextField.getText(), "'Nome Fantasia'");
 
@@ -157,6 +148,10 @@ public class SuppliersUpdateController implements Initializable {
         } else if (!(zipCodeTextField.getText().length() == 0 || zipCodeTextField.getText().length() == 8)) {
             ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste fornecedor!", "O campo 'CEP' deve conter 8 dígitos.");
         } else {
+            Supplier supplier = new Supplier(loadSupplier.getSupplierId(), corporateNameTextField.getText(), tradeNameTextField.getText(),
+                emailTextField.getText(), phoneTextField.getText(), zipCodeTextField.getText(), addressTextField.getText(), addressComplementTextField.getText(),
+                districtTextField.getText(), cityTextField.getText(), federativeUnitComboBox.getSelectionModel().getSelectedItem());
+            SupplierDao supplierDao = new SupplierDao();
             supplierDao.update(supplier);
             setUpdated(true);
             ah.customAlert(Alert.AlertType.INFORMATION, "O fornecedor foi editado com sucesso!", "");

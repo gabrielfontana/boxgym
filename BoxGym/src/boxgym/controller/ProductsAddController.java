@@ -5,6 +5,7 @@ import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
 import boxgym.helper.ButtonHelper;
 import boxgym.helper.ImageHelper;
+import boxgym.helper.TextValidationHelper;
 import boxgym.model.Product;
 import currencyfield.CurrencyField;
 import java.math.BigDecimal;
@@ -104,7 +105,7 @@ public class ProductsAddController implements Initializable {
         amountTextField.setValidationPattern("[0-9]", 10);
         minimumStockTextField.setValidationPattern("[0-9]", 10);
     }
-    
+
     private int getKeyFromComboBox() {
         int fkSupplier = 0;
         for (Entry<Integer, String> entry : map.entrySet()) {
@@ -123,13 +124,20 @@ public class ProductsAddController implements Initializable {
 
     @FXML
     void save(ActionEvent event) {
-        if (fkSupplierComboBox.getItems().size() <= 0) {
-            System.out.println("Cadastre um fornecedor!");
+        TextValidationHelper validation = new TextValidationHelper();
+        validation.handleEmptyField(nameTextField.getText(), "'Nome'\n");
+        validation.handleEmptyField(amountTextField.getText(), "'Quantidade'\n");
+        validation.handleEmptyField(minimumStockTextField.getText(), "'Estoque Mínimo'\n");
+
+        if (!(validation.getEmptyCounter() == 0)) {
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste produto!", validation.getMessage());
+        } else if (fkSupplierComboBox.getItems().size() <= 0) {
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste produto!", "Cadastre um fornecedor antes.");
         } else if (fkSupplierComboBox.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("Escolha um fornecedor!");
+            ah.customAlert(Alert.AlertType.WARNING, "Não foi possível realizar o cadastro deste produto!", "Escolha um fornecedor!");
         } else {
             Product product = new Product(nameTextField.getText(), categoryTextField.getText(), descriptionTextArea.getText(), Integer.valueOf(amountTextField.getText()),
-                    Integer.parseInt(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getPrice()), new BigDecimal(sellingPriceTextField.getPrice()),
+                    Integer.valueOf(minimumStockTextField.getText()), new BigDecimal(costPriceTextField.getPrice()), new BigDecimal(sellingPriceTextField.getPrice()),
                     ih.getImageBytes(), getKeyFromComboBox());
             ProductDao productDao = new ProductDao();
             productDao.create(product);

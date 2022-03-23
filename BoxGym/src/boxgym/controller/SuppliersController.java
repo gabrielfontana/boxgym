@@ -186,7 +186,7 @@ public class SuppliersController implements Initializable {
         if (selected == null) {
             ah.customAlert(Alert.AlertType.WARNING, "Selecione um fornecedor para excluir!", "");
         } else {
-            alert.confirmationAlert("Tem certeza que deseja excluir o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível!");
+            alert.confirmationAlert("Tem certeza que deseja excluir \n o fornecedor '" + selected.getTradeName() + "'?", "Esta ação é irreversível e irá afetar todos os produtos cadastrados com esse fornecedor!");
             if (alert.getResult().get() == ButtonType.YES) {
                 supplierDao.delete(selected);
                 supplierTableView.setItems(loadData());
