@@ -40,7 +40,9 @@ public class AlertHelper {
         FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
-
+        
+        alertCss(alert);
+        
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
 

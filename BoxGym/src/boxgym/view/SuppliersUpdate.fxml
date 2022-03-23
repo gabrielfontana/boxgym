@@ -17,7 +17,7 @@
                <children>
                   <VBox>
                      <children>
-                        <Label text="CNPJ*">
+                        <Label text="CNPJ *">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -30,7 +30,7 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label text="Razão Social*">
+                        <Label text="Razão Social *">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -45,7 +45,7 @@
             </HBox>
             <VBox>
                <children>
-                  <Label text="Nome Fantasia*">
+                  <Label text="Nome Fantasia *">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
