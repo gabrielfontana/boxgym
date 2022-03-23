@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.dao.SupplierDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.ButtonHelper;
 import boxgym.helper.TextValidationHelper;
 import boxgym.model.Supplier;
 import java.net.URL;
@@ -12,10 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import limitedtextfield.LimitedTextField;
 
 public class SuppliersUpdateController implements Initializable {
     
@@ -28,34 +31,41 @@ public class SuppliersUpdateController implements Initializable {
     private Label companyRegistryLabel;
 
     @FXML
-    private TextField corporateNameTextField;
+    private LimitedTextField corporateNameTextField;
 
     @FXML
-    private TextField tradeNameTextField;
+    private LimitedTextField tradeNameTextField;
 
     @FXML
-    private TextField emailTextField;
+    private LimitedTextField emailTextField;
 
     @FXML
-    private TextField phoneTextField;
+    private LimitedTextField phoneTextField;
 
     @FXML
-    private TextField zipCodeTextField;
+    private LimitedTextField zipCodeTextField;
 
     @FXML
-    private TextField addressTextField;
+    private LimitedTextField addressTextField;
 
     @FXML
-    private TextField addressComplementTextField;
+    private LimitedTextField addressComplementTextField;
 
     @FXML
-    private TextField districtTextField;
+    private LimitedTextField districtTextField;
 
     @FXML
-    private TextField cityTextField;
+    private LimitedTextField cityTextField;
 
     @FXML
     private ComboBox<String> federativeUnitComboBox;
+    
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button clearButton;
+
 
     private Supplier loadSupplier;
 
@@ -80,6 +90,7 @@ public class SuppliersUpdateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setUpdated(false);
+        ButtonHelper.addOrUpdateButtons(saveButton, clearButton);
         loadFederativeUnitComboBox();
         suppliersInputRestrictions();
 
@@ -115,15 +126,15 @@ public class SuppliersUpdateController implements Initializable {
     }
 
     private void suppliersInputRestrictions() {
-//        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-//        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-//        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
-//        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
-//        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
-//        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-//        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
-//        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
-//        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+        corporateNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        tradeNameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        emailTextField.setValidationPattern("[A-Za-z0-9@._-]", 255);
+        phoneTextField.setValidationPattern("[0-9]", 11, "Sem pontuação!");
+        zipCodeTextField.setValidationPattern("[0-9]", 8, "Sem pontuação!");
+        addressTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        addressComplementTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        districtTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
+        cityTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF ]", 255);
     }
 
     @FXML

@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.helper.AlertHelper;
 import boxgym.dao.UserDao;
+import boxgym.helper.ButtonHelper;
 import boxgym.helper.StageHelper;
 import boxgym.model.User;
 import java.io.IOException;
@@ -11,15 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import limitedtextfield.LimitedTextField;
 
 public class LoginController implements Initializable {
     
@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
     private AnchorPane content;
 
     @FXML
-    private TextField usernameTextField;
+    private LimitedTextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -42,12 +42,12 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buttonProperties();
+        ButtonHelper.loginButtons(loginButton, registerLabel);
         registerInputRestrictions();
     }
     
     public void registerInputRestrictions() {
-        //usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
+        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
     }
 
     @FXML
@@ -79,11 +79,4 @@ public class LoginController implements Initializable {
         content.getChildren().setAll(fxml);
         boxgym.Main.stage.setTitle("Cadastro");
     }
-
-    private void buttonProperties() {
-        loginButton.setDefaultButton(true);
-        loginButton.setCursor(Cursor.HAND);
-        registerLabel.setCursor(Cursor.HAND);
-    }
-
 }

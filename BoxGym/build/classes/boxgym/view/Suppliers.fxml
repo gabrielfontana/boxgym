@@ -31,12 +31,12 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#generatePdf" prefHeight="30.0" prefWidth="100.0" text="Gerar PDF">
+                  <Button fx:id="generatePdfButton" mnemonicParsing="false" onAction="#generatePdf" prefHeight="30.0" prefWidth="100.0" text="Gerar PDF">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#exportExcel" prefHeight="30.0" prefWidth="109.0" text="Exportar p/ Excel">
+                  <Button fx:id="exportExcelButton" mnemonicParsing="false" onAction="#exportExcel" prefHeight="30.0" prefWidth="109.0" text="Exportar p/ Excel">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -244,17 +244,17 @@
             </VBox>
             <HBox alignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
-                  <Button fx:id="addSupplierButton" mnemonicParsing="false" onAction="#addSupplier" prefHeight="30.0" prefWidth="90.0" text="Adicionar">
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addSupplier" prefHeight="30.0" prefWidth="90.0" text="Adicionar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="updateSupplierButton" mnemonicParsing="false" onAction="#updateSupplier" prefHeight="30.0" prefWidth="90.0" text="Atualizar">
+                  <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateSupplier" prefHeight="30.0" prefWidth="90.0" text="Atualizar">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteSupplierButton" mnemonicParsing="false" onAction="#deleteSupplier" prefHeight="30.0" prefWidth="90.0" text="Excluir">
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteSupplier" prefHeight="30.0" prefWidth="90.0" text="Excluir">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

@@ -1,8 +1,10 @@
 package boxgym.controller;
 
 import boxgym.dao.SupplierDao;
+import boxgym.helper.ButtonHelper;
 import boxgym.helper.ImageHelper;
 import boxgym.model.Product;
+import currencyfield.CurrencyField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
@@ -17,12 +19,13 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import limitedtextfield.LimitedTextField;
 
 public class ProductsUpdateController implements Initializable {
 
@@ -37,28 +40,34 @@ public class ProductsUpdateController implements Initializable {
     private ImageView productImage;
 
     @FXML
-    private TextField nameTextField;
+    private LimitedTextField nameTextField;
 
     @FXML
-    private TextField categoryTextField;
+    private LimitedTextField categoryTextField;
 
     @FXML
     private TextArea descriptionTextArea;
 
     @FXML
-    private TextField amountTextField;
+    private LimitedTextField amountTextField;
 
     @FXML
-    private TextField minimumStockTextField;
+    private LimitedTextField minimumStockTextField;
 
     @FXML
-    private TextField costPriceTextField;
+    private CurrencyField costPriceTextField;
 
     @FXML
-    private TextField sellingPriceTextField;
+    private CurrencyField sellingPriceTextField;
 
     @FXML
     private ComboBox<String> fkSupplierComboBox;
+    
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button clearButton;
 
     private Product loadProduct;
 
@@ -83,7 +92,11 @@ public class ProductsUpdateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setUpdated(false);
+        ButtonHelper.addOrUpdateButtons(saveButton, clearButton);
+        ButtonHelper.imageButton(productImage);
         loadSupplierNameComboBox();
+        productsInputRestrictions();
+        ih.loadDefaultImage(productImage);
         Platform.runLater(() -> {
             initProduct();
         });
@@ -96,6 +109,13 @@ public class ProductsUpdateController implements Initializable {
         }
         fkSupplierComboBox.setPromptText("Selecione");
         fkSupplierComboBox.setItems(obsList);
+    }
+    
+    private void productsInputRestrictions() {
+        nameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        categoryTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 255);
+        amountTextField.setValidationPattern("[0-9]", 10);
+        minimumStockTextField.setValidationPattern("[0-9]", 10);
     }
     
     private String getValueFromComboBox() {
@@ -115,8 +135,8 @@ public class ProductsUpdateController implements Initializable {
         descriptionTextArea.setText(loadProduct.getDescription());
         amountTextField.setText(String.valueOf(loadProduct.getAmount()));
         minimumStockTextField.setText(String.valueOf(loadProduct.getMinimumStock()));
-        costPriceTextField.setText(String.valueOf(loadProduct.getCostPrice()));
-        sellingPriceTextField.setText(String.valueOf(loadProduct.getSellingPrice()));
+        costPriceTextField.setPrice(loadProduct.getCostPrice().doubleValue());
+        sellingPriceTextField.setPrice(loadProduct.getSellingPrice().doubleValue());
         fkSupplierComboBox.valueProperty().set(getValueFromComboBox());
         try{
             productImage.setImage(SwingFXUtils.toFXImage(ImageHelper.convertBytesToImage(loadProduct), null));
@@ -142,8 +162,8 @@ public class ProductsUpdateController implements Initializable {
         descriptionTextArea.setText("");
         amountTextField.setText("");
         minimumStockTextField.setText("");
-        costPriceTextField.setText("");
-        sellingPriceTextField.setText("");
+        costPriceTextField.setPrice(0.0);
+        sellingPriceTextField.setPrice(0.0);
         fkSupplierComboBox.valueProperty().set(null);
         ih.loadDefaultImage(productImage);
     }

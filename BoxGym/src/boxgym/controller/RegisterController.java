@@ -2,7 +2,7 @@ package boxgym.controller;
 
 import boxgym.dao.UserDao;
 import boxgym.helper.AlertHelper;
-import boxgym.helper.LimitedTextField;
+import boxgym.helper.ButtonHelper;
 import boxgym.model.User;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
@@ -12,13 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import limitedtextfield.LimitedTextField;
 
 public class RegisterController implements Initializable {
     
@@ -31,7 +30,7 @@ public class RegisterController implements Initializable {
     private MaterialDesignIconView backArrow;
 
     @FXML
-    private TextField usernameTextField;
+    private LimitedTextField usernameTextField;
 
     @FXML
     private PasswordField passwordTextField;
@@ -44,7 +43,7 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        buttonProperties();
+        ButtonHelper.registerButtons(registerButton, backArrow);
         registerInputRestrictions();
     }
 
@@ -57,7 +56,7 @@ public class RegisterController implements Initializable {
     }
 
     public void registerInputRestrictions() {
-        //usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
+        usernameTextField.setValidationPattern("[a-zA-Z\\u00C0-\\u00FF0-9 ._-]", 32);
     }
 
     @FXML
@@ -68,6 +67,8 @@ public class RegisterController implements Initializable {
             ah.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "Por favor, preencha todos os campos!");
         } else if (!passwordTextField.getText().equals(confirmPasswordTextField.getText())) {
             ah.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "As senhas não coincidem!");
+            passwordTextField.setText("");
+            confirmPasswordTextField.setText("");
         } else if (userDao.checkDuplicate(usernameTextField.getText())) {
             usernameTextField.setText("");
             ah.customAlert(Alert.AlertType.WARNING, "Não foi possível efetuar o cadastro!", "Nome de usuário já cadastrado!");
@@ -81,11 +82,5 @@ public class RegisterController implements Initializable {
             ah.customAlert(Alert.AlertType.INFORMATION, "O cadastro foi realizado com sucesso!", "");
             backToLogin();
         }
-    }
-
-    private void buttonProperties() {
-        registerButton.setDefaultButton(true);
-        registerButton.setCursor(Cursor.HAND);
-        backArrow.setCursor(Cursor.HAND);
     }
 }

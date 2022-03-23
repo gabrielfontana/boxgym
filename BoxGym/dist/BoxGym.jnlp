@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BoxGym.jar" size="106234" download="eager" />
+    <jar href="BoxGym.jar" size="112349" download="eager" />
     <jar href="lib\caelum-stella-core-2.1.2.jar" size="119794" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
     <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
@@ -16,6 +16,7 @@
     <jar href="lib\commons-dbutils-1.7.jar" size="97075" download="eager" />
     <jar href="lib\commons-io-2.11.0.jar" size="327135" download="eager" />
     <jar href="lib\controlsfx-8.40.18.jar" size="1436095" download="eager" />
+    <jar href="lib\currency-field.jar" size="4216" download="eager" />
     <jar href="lib\fontawesomefx-commons-8.15.jar" size="20957" download="eager" />
     <jar href="lib\fontawesomefx-controls-8.15.jar" size="3369" download="eager" />
     <jar href="lib\fontawesomefx-emojione-2.2.7-2.jar" size="3642164" download="eager" />
@@ -28,6 +29,7 @@
     <jar href="lib\fontawesomefx-weathericons-2.0.10-5.jar" size="83098" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\jmetro-8.6.14.jar" size="119507" download="eager" />
+    <jar href="lib\limited-textfield.jar" size="3156" download="eager" />
     <jar href="lib\log4j-api-2.17.2.jar" size="302511" download="eager" />
     <jar href="lib\log4j-core-2.17.2.jar" size="1811090" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.21.jar" size="827942" download="eager" />

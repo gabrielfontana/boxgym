@@ -2,6 +2,7 @@ package boxgym.controller;
 
 import boxgym.dao.ProductDao;
 import boxgym.helper.AlertHelper;
+import boxgym.helper.ButtonHelper;
 import boxgym.helper.ImageHelper;
 import boxgym.helper.StageHelper;
 import boxgym.model.Product;
@@ -25,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -34,6 +36,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 public class ProductsController implements Initializable {
     
@@ -41,6 +45,12 @@ public class ProductsController implements Initializable {
     
     @FXML
     private TextField searchBox;
+    
+    @FXML
+    private Button generatePdfButton;
+
+    @FXML
+    private Button exportExcelButton;
 
     @FXML
     private TableView<Product> productTableView;
@@ -104,6 +114,15 @@ public class ProductsController implements Initializable {
 
     @FXML
     private Label updatedAtLabel;
+    
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Button deleteButton;
 
     private Product selected;
 
@@ -112,6 +131,7 @@ public class ProductsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         resetDetails();
+        ButtonHelper.buttons(generatePdfButton, exportExcelButton, addButton, updateButton, deleteButton);
         initProductTableView();
         tableViewListeners();
         searchBox.setOnKeyTyped((KeyEvent e) -> search());
@@ -122,7 +142,8 @@ public class ProductsController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/ProductsAdd.fxml"));
             Parent root = (Parent) loader.load();
-
+            JMetro jMetro = new JMetro(root, Style.LIGHT);
+            
             ProductsAddController controller = loader.getController();
 
             StageHelper.createAddOrUpdateStage("Adicionando Produto", root);
@@ -145,7 +166,8 @@ public class ProductsController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/boxgym/view/ProductsUpdate.fxml"));
                 Parent root = (Parent) loader.load();
-
+                JMetro jMetro = new JMetro(root, Style.LIGHT);
+                
                 ProductsUpdateController controller = loader.getController();
                 controller.setLoadProduct(selected);
 
