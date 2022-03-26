@@ -46,10 +46,10 @@
             <TableView fx:id="supplierTableView" layoutY="58.0" prefHeight="533.0" prefWidth="900.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
               <columns>
                   <TableColumn fx:id="supplierIdTableColumn" prefWidth="90.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="companyRegistryTableColumn" prefWidth="130.0" resizable="false" text="CNPJ" />
-                  <TableColumn fx:id="tradeNameTableColumn" prefWidth="285.0" resizable="false" text="Nome Fantasia" />
-                  <TableColumn fx:id="emailTableColumn" prefWidth="285.0" resizable="false" text="E-mail" />
-                  <TableColumn fx:id="phoneTableColumn" prefWidth="130.0" resizable="false" text="Telefone" />
+                  <TableColumn fx:id="companyRegistryTableColumn" prefWidth="134.0" resizable="false" text="CNPJ" />
+                  <TableColumn fx:id="tradeNameTableColumn" prefWidth="270.0" resizable="false" text="Nome Fantasia" />
+                  <TableColumn fx:id="emailTableColumn" prefWidth="270.0" resizable="false" text="E-mail" />
+                  <TableColumn fx:id="phoneTableColumn" prefWidth="134.0" resizable="false" text="Telefone" />
               </columns>
             </TableView>
          </children>

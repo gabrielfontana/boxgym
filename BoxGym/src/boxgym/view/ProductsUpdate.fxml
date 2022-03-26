@@ -63,7 +63,7 @@
                <children>
                   <VBox prefWidth="97.0">
                      <children>
-                        <Label text="Quantidade *">
+                        <Label text="Estoque Atual *">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>

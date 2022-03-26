@@ -47,13 +47,13 @@
             <TableView fx:id="productTableView" prefHeight="612.0" prefWidth="920.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
                <columns>
                   <TableColumn fx:id="productIdTableColumn" prefWidth="90.0" resizable="false" text="ID" />
-                  <TableColumn fx:id="nameTableColumn" prefWidth="180.0" resizable="false" text="Nome" />
-                  <TableColumn fx:id="categoryTableColumn" prefWidth="180.0" resizable="false" text="Categoria" />
-                  <TableColumn fx:id="amountTableColumn" prefWidth="90.0" resizable="false" text="Qtd." />
-                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="130.0" resizable="false" text="Estoque Mín." />
-                  <TableColumn fx:id="costPriceTableColumn" prefWidth="130.0" resizable="false" text="Preço de Custo" />
-                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="130.0" resizable="false" text="Preço de Venda" />
-                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="90.0" resizable="false" text="Fornecedor" />
+                  <TableColumn fx:id="nameTableColumn" prefWidth="200.0" resizable="false" text="Nome" />
+                  <TableColumn fx:id="categoryTableColumn" prefWidth="200.0" resizable="false" text="Categoria" />
+                  <TableColumn fx:id="amountTableColumn" prefWidth="150.0" resizable="false" text="Estoque" />
+                  <TableColumn fx:id="minimumStockTableColumn" prefWidth="150.0" resizable="false" text="Estoque Mín." />
+                  <TableColumn fx:id="costPriceTableColumn" prefWidth="150.0" resizable="false" text="Preço de Custo" />
+                  <TableColumn fx:id="sellingPriceTableColumn" prefWidth="150.0" resizable="false" text="Preço de Venda" />
+                  <TableColumn fx:id="fkSupplierTableColumn" prefWidth="150.0" resizable="false" text="Fornecedor" />
                </columns>
             </TableView>
          </children>
@@ -121,12 +121,12 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="210.0">
                      <children>
-                        <Label styleClass="title-label" text="Qtd.: ">
+                        <Label styleClass="title-label" text="Estoque: ">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="amountLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="264.0" styleClass="data-label" />
+                        <Label fx:id="amountLabel" maxWidth="-Infinity" prefHeight="20.0" prefWidth="241.0" styleClass="data-label" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
