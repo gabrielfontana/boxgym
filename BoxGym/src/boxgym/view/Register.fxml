@@ -60,7 +60,7 @@
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </HBox>
-                <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="250.0" styleClass="login-btn" text="Entrar" />
+                <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="250.0" styleClass="login-btn" text="Cadastrar" />
             </children>
         </VBox>
     </children>
