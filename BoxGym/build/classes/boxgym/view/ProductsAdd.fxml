@@ -16,9 +16,9 @@
    <children>
       <VBox layoutX="15.0" layoutY="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <children>
-            <HBox prefWidth="397.0">
+            <HBox prefWidth="397.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Nome *">
                            <VBox.margin>
@@ -31,7 +31,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Categoria">
                            <VBox.margin>
@@ -46,7 +46,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
-            <VBox prefHeight="120.0" prefWidth="623.0">
+            <VBox prefHeight="120.0" prefWidth="623.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Descrição">
                      <VBox.margin>
@@ -61,7 +61,7 @@
             </VBox>
             <HBox>
                <children>
-                  <VBox prefWidth="97.0">
+                  <VBox prefWidth="97.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Estoque Inicial *">
                            <VBox.margin>
@@ -74,7 +74,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="47.0" prefWidth="97.0">
+                  <VBox prefHeight="47.0" prefWidth="97.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Estoque Mínimo *">
                            <VBox.margin>
@@ -87,7 +87,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefWidth="97.0">
+                  <VBox prefWidth="97.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Preço de Custo *">
                            <VBox.margin>
@@ -100,7 +100,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefWidth="97.0">
+                  <VBox prefWidth="97.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Preço de Venda *">
                            <VBox.margin>
@@ -113,14 +113,14 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefWidth="193.0">
+                  <VBox prefWidth="193.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Fornecedor *">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <ComboBox fx:id="fkSupplierComboBox" prefHeight="30.0" prefWidth="209.0" />
+                        <ComboBox fx:id="fkSupplierComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="209.0" />
                      </children>
                   </VBox>
                </children>
